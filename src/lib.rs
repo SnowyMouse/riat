@@ -4,30 +4,10 @@
 mod test;
 mod definitions;
 mod value_type;
+mod error;
+pub use error::{CompileErrorType, CompileError};
 
 pub use value_type::ValueType;
-
-use std::fmt;
-
-pub struct CompileError {
-    message: String,
-    file: String,
-    error_type: &'static str,
-    line: usize,
-    column: usize
-}
-
-impl CompileError {
-    pub fn from_message(file: &str, line: usize, column: usize, error_type: &'static str, message: &str) -> CompileError {
-        CompileError { line: line, column: column, error_type: error_type, file: file.to_owned(), message: message.to_owned() }
-    }
-}
-
-impl fmt::Display for CompileError {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f, "{}:{}:{}: {}: {}", self.file, self.line, self.column, self.error_type, self.message)
-    }
-}
 
 pub struct Compiler {
     tokens: Vec<Token>,
@@ -66,6 +46,9 @@ impl Compiler {
 
         // Go through every character
         for i in 0..script.len() {
+            // Increment the column
+            column = column + 1;
+
             let mut add_token = || {
                 // Check if quoted
                 let quoted = match currently_in {
@@ -80,16 +63,13 @@ impl Compiler {
                     file: file,
                     string: match std::str::from_utf8(&script[current_token_offset + if quoted { 1 } else { 0 }..i]) {
                         Ok(n) => n.to_owned(),
-                        Err(e) => return Err(CompileError::from_message(filename, line, column, "error", &format!("failed to parse token - {e}")))
+                        Err(e) => return Err(CompileError::from_message(filename, line, column, CompileErrorType::Error, &format!("failed to parse token - {e}")))
                     }
                 });
 
                 // Done!
                 Ok(())
             };
-
-            // Increment the column
-            column = column + 1;
 
             // Get the character
             let c = script[i] as char;
@@ -167,7 +147,7 @@ impl Compiler {
 
         // Did the token end prematurely?
         if let CurrentlyIn::Token(_) = currently_in {
-            return Err(CompileError::from_message(filename, line, column, "error", "unterminated token"));
+            return Err(CompileError::from_message(filename, line, column, CompileErrorType::Error, "unterminated token"));
         }
 
         // Make sure # of "(" = ")" and that anything else is in a block
@@ -177,16 +157,22 @@ impl Compiler {
                 "(" => depth = depth + 1,
                 ")" => depth = match depth.checked_sub(1) {
                     Some(n) => n,
-                    None => return Err(CompileError::from_message(filename, line, column, "error", "unexpected right parenthesis"))
+                    None => return Err(CompileError::from_message(filename, line, column, CompileErrorType::Error, "unexpected right parenthesis"))
                 },
                 n => if depth == 0 {
-                    return Err(CompileError::from_message(filename, line, column, "error", &format!("expected left parenthesis, got {n} instead")))
+                    return Err(CompileError::from_message(filename, line, column, CompileErrorType::Error, &format!("expected left parenthesis, got {n} instead")))
                 }
             }
         }
 
         self.files.push(filename.to_owned());
         self.tokens.extend(tokens);
+
+        Ok(())
+    }
+
+    pub fn compile_script_data(&self) -> Result<(), String> {
+
 
         Ok(())
     }
