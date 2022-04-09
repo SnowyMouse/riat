@@ -2,6 +2,9 @@
 
 #[cfg(test)]
 mod test;
+mod value_type;
+
+pub use value_type::ValueType;
 
 pub struct Compiler {
     tokens: Vec<Token>,
