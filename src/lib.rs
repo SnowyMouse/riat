@@ -2,6 +2,7 @@
 
 #[cfg(test)]
 mod test;
+mod definitions;
 mod value_type;
 
 pub use value_type::ValueType;
