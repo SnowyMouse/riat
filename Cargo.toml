@@ -1,0 +1,10 @@
+[package]
+name = "hamster-in-a-tube"
+description = "Halo: Combat Evolved Script Compiler"
+version = "0.1.0"
+authors = ["Snowy Mouse"]
+license = "GPL-3.0-only"
+
+[lib]
+name = "hiat"
+crate-type = ["lib", "staticlib", "cdylib"]
