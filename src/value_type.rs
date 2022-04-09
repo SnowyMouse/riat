@@ -1,5 +1,5 @@
 /// Value type, used for typing for parameters, return types, and globals
-#[derive(Copy, Clone)]
+#[derive(Copy, Clone, PartialEq)]
 pub enum ValueType {
     Unparsed,
     SpecialForm,
@@ -52,6 +52,12 @@ pub enum ValueType {
     SceneryName
 }
 
+impl Default for ValueType {
+    fn default() -> ValueType {
+        ValueType::Unparsed
+    }
+}
+
 impl ToString for ValueType {
     fn to_string(&self) -> String {
         self.as_str().to_owned()
@@ -59,6 +65,39 @@ impl ToString for ValueType {
 }
 
 impl ValueType {
+    pub fn can_convert_to(&self, to: ValueType) -> bool {
+        match *self {
+            // Anything matches itself
+            n if n == to => true,
+            
+
+            // Passthrough can become anything else
+            ValueType::Passthrough => true,
+
+
+            // Reals can convert into any integer type
+            ValueType::Real => to == ValueType::Long || to == ValueType::Short,
+
+            // Shorts can ONLY convert into reals but NOT longs. This is probably a bug in Halo
+            ValueType::Short => to == ValueType::Real,
+
+            // Longs can be demoted into shorts or converted into a real number
+            ValueType::Long => to == ValueType::Short || to == ValueType::Real,
+
+
+            // Vehicles can be converted into units
+            ValueType::Vehicle if to == ValueType::Unit => true,
+
+
+            // Objects can be converted into object lists and objects
+            ValueType::ObjectName | ValueType::Object | ValueType::Unit | ValueType::Weapon | ValueType::Scenery | ValueType::Vehicle | ValueType::Device => to == ValueType::Object || to == ValueType::ObjectList,
+
+
+            // Anything not covered is false
+            _ => false
+        }
+    }
+
     pub fn as_str(&self) -> &str {
         match *self {
             ValueType::Unparsed => "unparsed",

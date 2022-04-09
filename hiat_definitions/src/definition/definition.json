@@ -76,6 +76,7 @@
                     "type": "boolean"
                 },
                 {
+                    "many_group": true,
                     "type": "passthrough"
                 }
             ],

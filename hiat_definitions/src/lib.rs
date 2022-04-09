@@ -26,7 +26,10 @@ struct FunctionParameter {
     many: bool,
 
     #[serde(default = "default_value")]
-    many_group: bool
+    many_group: bool,
+
+    #[serde(default = "default_value")]
+    allow_uppercase: bool
 }
 
 #[allow(dead_code)]
@@ -105,7 +108,7 @@ pub fn generate_definitions(_: TokenStream) -> TokenStream {
         modify_thing("gbx-retail", "gbx_retail");
         modify_thing("gbx-demo", "gbx_demo");
 
-        format!("Availability {{ {s} }}")
+        format!("EngineAvailability {{ {s} }}")
     }
 
     // Generate globals
@@ -115,7 +118,7 @@ pub fn generate_definitions(_: TokenStream) -> TokenStream {
         let global_type = snake_to_pascal(&g.r#type);
         let global_availability = generate_availability(&g.engines);
 
-        globals_list += &format!("Global {{ name: \"{global_name}\", value_type: {global_type}, availability: {global_availability} }},");
+        globals_list += &format!("EngineGlobal {{ name: \"{global_name}\", value_type: {global_type}, availability: {global_availability} }},");
     }
 
     // Generate functions
@@ -131,11 +134,12 @@ pub fn generate_definitions(_: TokenStream) -> TokenStream {
             let parameter_type = snake_to_pascal(&p.r#type);
             let parameter_many = &p.many;
             let parameter_many_group = &p.many_group;
-            function_parameters += &format!("FunctionParameter {{ value_type: {parameter_type}, many: {parameter_many}, many_group: {parameter_many_group} }},")
+            let parameter_allow_uppercase = &p.allow_uppercase;
+            function_parameters += &format!("EngineFunctionParameter {{ value_type: {parameter_type}, many: {parameter_many}, many_group: {parameter_many_group}, allow_uppercase: {parameter_allow_uppercase} }},")
         }
 
-        functions_list += &format!("Function {{ name: \"{function_name}\", return_type: {function_type}, availability: {function_availability}, number_passthrough: {function_number_passthrough}, parameters: &[{function_parameters}] }},");
+        functions_list += &format!("EngineFunction {{ name: \"{function_name}\", return_type: {function_type}, availability: {function_availability}, number_passthrough: {function_number_passthrough}, parameters: &[{function_parameters}] }},");
     }
 
-    format!("pub const ALL_GLOBALS: [Global; {}] = [{}]; pub const ALL_FUNCTIONS: [Function; {}] = [{}];", definitions.globals.len(), globals_list, definitions.functions.len(), functions_list).parse().unwrap()
+    format!("pub const ALL_GLOBALS: [EngineGlobal; {}] = [{}]; pub const ALL_FUNCTIONS: [EngineFunction; {}] = [{}];", definitions.globals.len(), globals_list, definitions.functions.len(), functions_list).parse().unwrap()
 }
