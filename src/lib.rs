@@ -1,5 +1,8 @@
 #![allow(dead_code, unused_variables)] // for now, don't warn about these
 
+#[cfg(test)]
+mod test;
+
 pub struct Compiler {
     tokens: Vec<Token>,
     files: Vec<String>
@@ -112,7 +115,7 @@ impl Compiler {
 
                 // Starting a comment?
                 if matches!(currently_in, CurrentlyIn::Whitespace) {
-                    currently_in = CurrentlyIn::Comment(!matches!(&script.get(i + 1), Some(&ASTERISK))); // check if the next character is an asterisk. if so, it's terminated by a *;
+                    currently_in = CurrentlyIn::Comment(matches!(&script.get(i + 1), Some(&ASTERISK))); // check if the next character is an asterisk. if so, it's terminated by a *;
                 }
 
                 // Ending a multi line comment?
