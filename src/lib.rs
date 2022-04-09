@@ -7,6 +7,28 @@ mod value_type;
 
 pub use value_type::ValueType;
 
+use std::fmt;
+
+pub struct CompileError {
+    message: String,
+    file: String,
+    error_type: &'static str,
+    line: usize,
+    column: usize
+}
+
+impl CompileError {
+    pub fn from_message(file: &str, line: usize, column: usize, error_type: &'static str, message: &str) -> CompileError {
+        CompileError { line: line, column: column, error_type: error_type, file: file.to_owned(), message: message.to_owned() }
+    }
+}
+
+impl fmt::Display for CompileError {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "{}:{}:{}: {}: {}", self.file, self.line, self.column, self.error_type, self.message)
+    }
+}
+
 pub struct Compiler {
     tokens: Vec<Token>,
     files: Vec<String>
@@ -20,7 +42,7 @@ impl Compiler {
         }
     }
 
-    pub fn read_script_data(&mut self, filename: &str, script: &[u8]) -> Result<(), String> {
+    pub fn read_script_data(&mut self, filename: &str, script: &[u8]) -> Result<(), CompileError> {
         let mut tokens = Vec::<Token>::new();
 
         let file = self.files.len();
@@ -58,7 +80,7 @@ impl Compiler {
                     file: file,
                     string: match std::str::from_utf8(&script[current_token_offset + if quoted { 1 } else { 0 }..i]) {
                         Ok(n) => n.to_owned(),
-                        Err(e) => return Err(format!("{filename}:{}:{}: error: failed to parse token - {e}", current_token_line, current_token_column))
+                        Err(e) => return Err(CompileError::from_message(filename, line, column, "error", &format!("failed to parse token - {e}")))
                     }
                 });
 
@@ -145,7 +167,7 @@ impl Compiler {
 
         // Did the token end prematurely?
         if let CurrentlyIn::Token(_) = currently_in {
-            return Err(format!("{filename}:{}:{}: error: unterminated token", current_token_line, current_token_column));
+            return Err(CompileError::from_message(filename, line, column, "error", "unterminated token"));
         }
 
         // Make sure # of "(" = ")" and that anything else is in a block
@@ -155,10 +177,10 @@ impl Compiler {
                 "(" => depth = depth + 1,
                 ")" => depth = match depth.checked_sub(1) {
                     Some(n) => n,
-                    None => return Err(format!("{filename}:{}:{}: error: unexpected right parenthesis", i.line, i.column))
+                    None => return Err(CompileError::from_message(filename, line, column, "error", "unexpected right parenthesis"))
                 },
                 n => if depth == 0 {
-                    return Err(format!("{filename}:{}:{}: error: expected left parenthesis, got '{n}' instead", i.line, i.column))
+                    return Err(CompileError::from_message(filename, line, column, "error", &format!("expected left parenthesis, got {n} instead")))
                 }
             }
         }
