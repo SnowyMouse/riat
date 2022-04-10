@@ -4,22 +4,25 @@ use super::*;
 #[derive(Copy, Clone, PartialEq)]
 pub enum CompileTarget {
     /// Halo: Combat Evolved Anniversary as released by 343 Industries on Windows.
-    HaloCombatEvolvedAnniversary,
+    HaloCEA,
+
+    /// NTSC Xbox version is supported
+    HaloCEXboxNTSC,
 
     /// Halo: Combat Evolved as released by Gearbox and MacSoft on Windows and Mac OS X, respectively.
     ///
     /// This also applies to the demo released by MacSoft.
-    GearboxHaloCombatEvolved,
+    HaloCEGBX,
 
     /// Halo: Combat Evolved demo as released by Gearbox on Windows.
     ///
     /// This also applies to the un-updated CD version by Gearbox on Windows.
     ///
     /// This does not apply to the demo released by MacSoft for Mac OS X, as it's based on a newer version.
-    GearboxHaloCombatEvolvedDemo,
+    HaloCEGBXDemo,
 
     /// Halo Custom Edition as released by Gearbox on Windows.
-    GearboxHaloCustomEdition,
+    HaloCustomEdition,
 }
 
 /// Script type which determines how a script is run and parsed.
@@ -103,6 +106,10 @@ impl CallableFunction for Script {
     fn is_number_passthrough(&self) -> bool {
         false
     }
+
+    fn supports_target(&self, _target: CompileTarget) -> bool {
+        true
+    }
 }
 
 pub(crate) struct Global {
@@ -113,8 +120,22 @@ pub(crate) struct Global {
     pub original_body_offset: usize
 }
 
+impl CallableGlobal for Global {
+    fn get_name(&self) -> &str {
+        &self.name
+    }
+
+    fn get_value_type(&self) -> ValueType {
+        self.value_type
+    }
+
+    fn supports_target(&self, target: CompileTarget) -> bool {
+        true
+    }
+}
+
 /// Function that can be called in a script
-pub trait CallableFunction {
+pub(crate) trait CallableFunction {
     /// Get the function name.
     fn get_name(&self) -> &str;
 
@@ -129,13 +150,19 @@ pub trait CallableFunction {
 
     /// Get whether any 'real' function parameters can be converted to any other numerical type.
     fn is_number_passthrough(&self) -> bool;
+
+    /// Get whether or not the target engine is supported
+    fn supports_target(&self, target: CompileTarget) -> bool;
 }
 
 /// Global that can be referenced in a script
-pub trait CallableGlobal {
+pub(crate) trait CallableGlobal {
     /// Get the name of the global.
     fn get_name(&self) -> &str;
 
     /// Get the value type of the global.
     fn get_value_type(&self) -> ValueType;
+
+    /// Get whether or not the target engine is supported
+    fn supports_target(&self, target: CompileTarget) -> bool;
 }

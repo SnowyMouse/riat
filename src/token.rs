@@ -1,10 +1,10 @@
 use super::*;
 
-pub struct Token {
-    pub(crate) line: usize,
-    pub(crate) column: usize,
-    pub(crate) file: usize,
-    pub(crate) string: String
+pub(crate) struct Token {
+    pub line: usize,
+    pub column: usize,
+    pub file: usize,
+    pub string: String
 }
 
 impl Compiler {

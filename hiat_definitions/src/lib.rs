@@ -141,5 +141,5 @@ pub fn generate_definitions(_: TokenStream) -> TokenStream {
         functions_list += &format!("EngineFunction {{ name: \"{function_name}\", return_type: {function_type}, availability: {function_availability}, number_passthrough: {function_number_passthrough}, parameters: &[{function_parameters}] }},");
     }
 
-    format!("pub const ALL_GLOBALS: [EngineGlobal; {}] = [{}]; pub const ALL_FUNCTIONS: [EngineFunction; {}] = [{}];", definitions.globals.len(), globals_list, definitions.functions.len(), functions_list).parse().unwrap()
+    format!("pub(crate) const ALL_GLOBALS: [EngineGlobal; {}] = [{}]; pub(crate) const ALL_FUNCTIONS: [EngineFunction; {}] = [{}];", definitions.globals.len(), globals_list, definitions.functions.len(), functions_list).parse().unwrap()
 }

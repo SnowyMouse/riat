@@ -1,8 +1,8 @@
 extern crate hiat_definitions;
 use self::hiat_definitions::generate_definitions;
-use super::{ValueType, CallableGlobal, CallableFunction};
+use super::{ValueType, CallableGlobal, CallableFunction, CompileTarget};
 
-pub struct EngineAvailability {
+pub(crate) struct EngineAvailability {
     pub mcc_cea: Option<u16>,
     pub gbx_retail: Option<u16>,
     pub gbx_custom: Option<u16>,
@@ -10,14 +10,26 @@ pub struct EngineAvailability {
     pub xbox_ntsc: Option<u16>
 }
 
-pub struct EngineFunctionParameter {
-    pub value_type: ValueType,
-    pub many: bool,
-    pub many_group: bool,
-    pub allow_uppercase: bool
+impl EngineAvailability {
+    fn supports(&self, target: CompileTarget) -> bool {
+        match target {
+            CompileTarget::HaloCEA => !matches!(self.mcc_cea, None),
+            CompileTarget::HaloCEXboxNTSC => !matches!(self.xbox_ntsc, None),
+            CompileTarget::HaloCEGBX => !matches!(self.gbx_retail, None),
+            CompileTarget::HaloCEGBXDemo => !matches!(self.gbx_demo, None),
+            CompileTarget::HaloCustomEdition => !matches!(self.gbx_custom, None),
+        }
+    }
 }
 
-pub struct EngineFunction {
+pub(crate) struct EngineFunctionParameter {
+    value_type: ValueType,
+    many: bool,
+    many_group: bool,
+    allow_uppercase: bool
+}
+
+pub(crate) struct EngineFunction {
     pub name: &'static str,
     pub parameters: &'static [EngineFunctionParameter],
     pub number_passthrough: bool,
@@ -76,9 +88,13 @@ impl CallableFunction for EngineFunction {
     fn is_number_passthrough(&self) -> bool {
         self.number_passthrough
     }
+
+    fn supports_target(&self, target: CompileTarget) -> bool {
+        self.availability.supports(target)
+    }
 }
 
-pub struct EngineGlobal {
+pub(crate) struct EngineGlobal {
     pub name: &'static str,
     pub value_type: ValueType,
     pub availability: EngineAvailability
@@ -91,6 +107,10 @@ impl CallableGlobal for EngineGlobal {
 
     fn get_value_type(&self) -> ValueType {
         self.value_type
+    }
+
+    fn supports_target(&self, target: CompileTarget) -> bool {
+        self.availability.supports(target)
     }
 }
 

@@ -13,7 +13,7 @@ mod types;
 pub use types::*;
 
 mod token;
-pub use token::Token;
+use token::Token;
 
 pub use value_type::ValueType;
 

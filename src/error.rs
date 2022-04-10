@@ -35,7 +35,7 @@ pub struct CompileError {
 
 impl CompileError {
     /// Create a `CompileError` from the given parameters.
-    pub fn from_message(file: &str, line: usize, column: usize, error_type: CompileErrorType, message: &str) -> CompileError {
+    pub(crate) fn from_message(file: &str, line: usize, column: usize, error_type: CompileErrorType, message: &str) -> CompileError {
         CompileError { line: line, column: column, error_type: error_type, file: file.to_owned(), message: message.to_owned() }
     }
 
