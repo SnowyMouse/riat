@@ -1,6 +1,6 @@
 extern crate hiat_definitions;
 use self::hiat_definitions::generate_definitions;
-use super::ValueType;
+use super::{ValueType, CallableGlobal, CallableFunction};
 
 pub struct EngineAvailability {
     pub mcc_cea: Option<u16>,
@@ -23,23 +23,6 @@ pub struct EngineFunction {
     pub number_passthrough: bool,
     pub return_type: ValueType,
     pub availability: EngineAvailability
-}
-
-pub trait CallableFunction {
-    /// Get the function name.
-    fn get_name(&self) -> &str;
-
-    /// Get the return type.
-    fn get_return_type(&self) -> ValueType;
-
-    /// Get the number of parameters of the function.
-    fn get_parameter_count(&self) -> usize;
-
-    /// Get the type of a given parameter, taking into account parameters that can be used multiple times.
-    fn get_type_of_parameter(&self, index: usize) -> Option<ValueType>;
-
-    /// Get whether any 'real' function parameters can be converted to any other numerical type.
-    fn is_number_passthrough(&self) -> bool;
 }
 
 impl CallableFunction for EngineFunction {
@@ -99,14 +82,6 @@ pub struct EngineGlobal {
     pub name: &'static str,
     pub value_type: ValueType,
     pub availability: EngineAvailability
-}
-
-pub trait CallableGlobal {
-    /// Get the name of the global.
-    fn get_name(&self) -> &str;
-
-    /// Get the value type of the global.
-    fn get_value_type(&self) -> ValueType;
 }
 
 impl CallableGlobal for EngineGlobal {

@@ -69,7 +69,7 @@ impl ValueType {
         match *self {
             // Anything matches itself
             n if n == to => true,
-            
+
 
             // Passthrough can become anything else
             ValueType::Passthrough => true,
@@ -150,6 +150,62 @@ impl ValueType {
             ValueType::DeviceName => "device name",
             ValueType::SceneryName => "scenery name"
         }
+    }
+
+    pub fn from_str_underscore(string: &str) -> Option<ValueType> {
+        Some(match string {
+            "unparsed" => ValueType::Unparsed,
+            "special_form" => ValueType::SpecialForm,
+            "function_name" => ValueType::FunctionName,
+            "passthrough" => ValueType::Passthrough,
+            "void" => ValueType::Void,
+            "boolean" => ValueType::Boolean,
+            "real" => ValueType::Real,
+            "short" => ValueType::Short,
+            "long" => ValueType::Long,
+            "string" => ValueType::String,
+            "script" => ValueType::Script,
+            "trigger_volume" => ValueType::TriggerVolume,
+            "cutscene_flag" => ValueType::CutsceneFlag,
+            "cutscene_camera_point" => ValueType::CutsceneCameraPoint,
+            "cutscene_title" => ValueType::CutsceneTitle,
+            "cutscene_recording" => ValueType::CutsceneRecording,
+            "device_group" => ValueType::DeviceGroup,
+            "ai" => ValueType::Ai,
+            "ai_command_list" => ValueType::AiCommandList,
+            "starting_profile" => ValueType::StartingProfile,
+            "conversation" => ValueType::Conversation,
+            "navpoint" => ValueType::Navpoint,
+            "hud_message" => ValueType::HudMessage,
+            "object_list" => ValueType::ObjectList,
+            "sound" => ValueType::Sound,
+            "effect" => ValueType::Effect,
+            "damage" => ValueType::Damage,
+            "looping_sound" => ValueType::LoopingSound,
+            "animation_graph" => ValueType::AnimationGraph,
+            "actor_variant" => ValueType::ActorVariant,
+            "damage_effect" => ValueType::DamageEffect,
+            "object_definition" => ValueType::ObjectDefinition,
+            "game_difficulty" => ValueType::GameDifficulty,
+            "team" => ValueType::Team,
+            "ai_default_state" => ValueType::AiDefaultState,
+            "actor_type" => ValueType::ActorType,
+            "hud_corner" => ValueType::HudCorner,
+            "object" => ValueType::Object,
+            "unit" => ValueType::Unit,
+            "vehicle" => ValueType::Vehicle,
+            "weapon" => ValueType::Weapon,
+            "device" => ValueType::Device,
+            "scenery" => ValueType::Scenery,
+            "object_name" => ValueType::ObjectName,
+            "unit_name" => ValueType::UnitName,
+            "vehicle_name" => ValueType::VehicleName,
+            "weapon_name" => ValueType::WeaponName,
+            "device_name" => ValueType::DeviceName,
+            "scenery_name" => ValueType::SceneryName,
+
+            _ => return None
+        })
     }
 
     pub fn as_int(&self) -> u16 {

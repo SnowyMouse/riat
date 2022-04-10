@@ -1,18 +1,16 @@
-#![allow(dead_code, unused_variables)] // for now, don't warn about these
+#![allow(dead_code, unused_variables, unused_mut)] // for now, don't warn about these
 
 #[cfg(test)]
 mod test;
-
 mod definitions;
-use definitions::CallableFunction;
-
 mod value_type;
 
 mod error;
 pub use error::{CompileErrorType, CompileError};
 
 mod compile;
-pub use compile::{Script, Global};
+mod types;
+pub use types::*;
 
 mod token;
 pub use token::Token;
@@ -21,14 +19,18 @@ pub use value_type::ValueType;
 
 pub struct Compiler {
     tokens: Vec<Token>,
-    files: Vec<String>
+    files: Vec<String>,
+
+    target: CompileTarget
 }
 
 impl Compiler {
-    pub fn new() -> Compiler {
+    pub fn new(target: CompileTarget) -> Compiler {
         Compiler { 
             tokens: Vec::new(),
-            files: Vec::new()
+            files: Vec::new(),
+
+            target: target
         }
     }
 
@@ -46,7 +48,7 @@ impl Compiler {
     /// # Errors
     ///
     /// Errors if the script data is invalid.
-    pub fn compile_script_data(&self) -> Result<(), CompileError> {
+    pub fn compile_script_data(&mut self) -> Result<(), CompileError> {
         self.digest_tokens()
     }
 }
