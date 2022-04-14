@@ -98,6 +98,9 @@ impl Compiler {
                                  available_globals: &BTreeMap<&str, &dyn CallableGlobal>) -> Result<Node, CompileError> {
         let mut parameters = Vec::<Node>::new();
 
+        // This should never be true. We will always have a type to convert to.
+        debug_assert!(expected_type != ValueType::Passthrough);
+
         // Get the function
         let function = match available_functions.get(function_name.as_str()) {
             Some(n) => n,
@@ -116,7 +119,7 @@ impl Compiler {
             let token = &tokens[parameter_index];
 
             // Get the next type. Or complain if this is impossible because we've hit the max number of parameters.
-            let parameter_expected_type = match function.get_type_of_parameter(parameter_index) {
+            let mut parameter_expected_type = match function.get_type_of_parameter(parameter_index) {
                 Some(n) => n,
                 None => return_compile_error!(self, token, format!("function '{function_name}' takes at most {} parameter(s) but extraneous parameter(s) were given", function.get_total_parameter_count()))
             };
@@ -177,6 +180,7 @@ impl Compiler {
                                 let value_type_token = &children[1];
                                 let value_type_string = self.lowercase_token(&value_type_token);
                                 match ValueType::from_str_underscore(&value_type_string) {
+                                    Some(ValueType::Passthrough) => return_compile_error!(self, value_type_token, format!("cannot define '{value_type_string}' globals")),
                                     Some(n) => n,
                                     None => return_compile_error!(self, value_type_token, format!("expected global value type, got '{value_type_string}' instead"))
                                 }
@@ -225,6 +229,7 @@ impl Compiler {
                                 let return_type_token_string = self.lowercase_token(return_type_token);
 
                                 match ValueType::from_str_underscore(&return_type_token_string) {
+                                    Some(ValueType::Passthrough) => return_compile_error!(self, return_type_token, format!("cannot define '{return_type_token_string}' scripts")),
                                     Some(n) => n,
                                     None => return_compile_error!(self, return_type_token, format!("expected global return value type, got '{return_type_token_string}' instead"))
                                 }
