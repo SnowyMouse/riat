@@ -33,6 +33,7 @@ pub(crate) struct EngineFunction {
     pub name: &'static str,
     pub parameters: &'static [EngineFunctionParameter],
     pub number_passthrough: bool,
+    pub passthrough_last: bool,
     pub return_type: ValueType,
     pub availability: EngineAvailability
 }
@@ -100,6 +101,10 @@ impl CallableFunction for EngineFunction {
 
     fn is_engine_function(&self) -> bool {
         true
+    }
+
+    fn is_passthrough_last(&self) -> bool {
+        self.passthrough_last
     }
 }
 

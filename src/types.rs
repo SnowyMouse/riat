@@ -160,6 +160,11 @@ pub(crate) trait CallableFunction {
         false
     }
 
+    /// Get whether the last parameter is used for determining passthrough.
+    fn is_passthrough_last(&self) -> bool {
+        false
+    }
+
     /// Get whether or not the target engine is supported
     fn supports_target(&self, target: CompileTarget) -> bool;
 

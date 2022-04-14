@@ -48,6 +48,9 @@ struct Function {
     #[serde(default = "default_value")]
     number_passthrough: bool,
 
+    #[serde(default = "default_value")]
+    passthrough_last: bool,
+
     engines: BTreeMap<String, Value>
 }
 
@@ -128,6 +131,7 @@ pub fn generate_definitions(_: TokenStream) -> TokenStream {
         let function_type = snake_to_pascal(&f.r#type);
         let function_availability = generate_availability(&f.engines);
         let function_number_passthrough = &f.number_passthrough;
+        let function_passthrough_last = &f.passthrough_last;
 
         let mut function_parameters = String::new();
         for p in &f.parameters {
@@ -138,7 +142,7 @@ pub fn generate_definitions(_: TokenStream) -> TokenStream {
             function_parameters += &format!("EngineFunctionParameter {{ value_type: {parameter_type}, many: {parameter_many}, allow_uppercase: {parameter_allow_uppercase}, optional: {parameter_optional} }},")
         }
 
-        functions_list += &format!("EngineFunction {{ name: \"{function_name}\", return_type: {function_type}, availability: {function_availability}, number_passthrough: {function_number_passthrough}, parameters: &[{function_parameters}] }},");
+        functions_list += &format!("EngineFunction {{ name: \"{function_name}\", return_type: {function_type}, availability: {function_availability}, number_passthrough: {function_number_passthrough}, passthrough_last: {function_passthrough_last}, parameters: &[{function_parameters}] }},");
     }
 
     format!("pub(crate) const ALL_GLOBALS: [EngineGlobal; {}] = [{}]; pub(crate) const ALL_FUNCTIONS: [EngineFunction; {}] = [{}];", definitions.globals.len(), globals_list, definitions.functions.len(), functions_list).parse().unwrap()
