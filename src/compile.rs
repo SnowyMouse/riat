@@ -270,7 +270,7 @@ impl Compiler {
 
         // Parse all the globals
         for g in &globals {
-            global_nodes.insert(g.get_name().to_owned(), self.create_node_from_tokens(&g.original_token.children.as_ref().unwrap()[3], &callable_functions, &callable_globals)?);
+            global_nodes.insert(g.get_name().to_owned(), self.create_function_parameters_for_node_from_tokens("begin".to_owned(), &g.original_token, &g.original_token.children.as_ref().unwrap()[3..], &callable_functions, &callable_globals)?);
         }
 
         // Now parse all the scripts
