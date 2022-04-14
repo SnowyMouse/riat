@@ -28,9 +28,26 @@ macro_rules! return_compile_error {
     };
 }
 
+macro_rules! compile_warn {
+    ($compiler: expr, $token: expr, $message: expr) => {
+        $compiler.warnings.push(CompileError::from_message(&$compiler.files[$token.file], $token.line, $token.column, CompileErrorType::Warning, $message))
+    };
+}
+
 impl Compiler {
+    fn lowercase_token(&mut self, token: &Token) -> String {
+        let mut t = token.string.clone();
+        t.make_ascii_lowercase();
+
+        if t != token.string {
+            compile_warn!(self, token, format!("token '{}' contains uppercase characters and was made lowercase", token.string))
+        }
+
+        t
+    }
+
     fn create_node_from_tokens(&self,
-                               starting_token: usize, 
+                               token: &Token, 
                                available_functions: &BTreeMap<&str, &dyn CallableFunction>,
                                available_globals: &BTreeMap<&str, &dyn CallableGlobal>,
                                expected_type: ValueType) -> Result<Node, CompileError> {
@@ -42,8 +59,8 @@ impl Compiler {
 
     fn create_function_parameters_for_node_from_tokens(&self,
                                                        node: &mut Node,
-                                                       function_call_token: usize,
-                                                       current_token: &mut usize,
+                                                       function_call_token: &Token,
+                                                       tokens: &[Token],
                                                        available_functions: &BTreeMap<&str, &dyn CallableFunction>,
                                                        available_globals: &BTreeMap<&str, &dyn CallableGlobal>) -> Result<(), CompileError> {
 
@@ -51,23 +68,16 @@ impl Compiler {
         let function_name = node.string_data.as_ref().unwrap().as_str();
         let function = match available_functions.get(function_name) {
             Some(n) => n,
-            None => return_compile_error!(self, &self.tokens[function_call_token], &format!("function '{function_name}' is not defined"))
+            None => return_compile_error!(self, function_call_token, format!("function '{function_name}' is not defined"))
         };
 
         // Keep going until we have a )
         let mut parameter_index : usize = 0;
-        loop {
-            let token = &self.tokens[*current_token];
-
-            // Done!
-            if token.string == ")" {
-                break;
-            }
-
+        for token in tokens {
             // Get the next type. Or complain if this is impossible because we've hit the max number of parameters.
             let expected_type = match function.get_type_of_parameter(parameter_index) {
                 Some(n) => n,
-                None => return_compile_error!(self, token, &format!("function '{function_name}' takes at most {} parameter(s) but extraneous parameter(s) were given", function.get_total_parameter_count()))
+                None => return_compile_error!(self, token, format!("function '{function_name}' takes at most {} parameter(s) but extraneous parameter(s) were given", function.get_total_parameter_count()))
             };
 
             parameter_index += 1;
@@ -75,9 +85,8 @@ impl Compiler {
 
         // Did we get enough parameters?
         let minimum = function.get_minimum_parameter_count();
-
         if parameter_index < minimum {
-            return_compile_error!(self, self.tokens[function_call_token], &format!("function '{function_name}' takes at least {minimum} parameter(s), got {parameter_index} instead"))
+            return_compile_error!(self, function_call_token, format!("function '{function_name}' takes at least {minimum} parameter(s), got {parameter_index} instead"))
         }
 
         // Done!
@@ -86,153 +95,98 @@ impl Compiler {
 
     pub fn digest_tokens(&mut self) -> Result<(), CompileError> {
         let (mut scripts, mut globals) = {
+            let mut tokens : Vec<Token> = self.tokens.drain(..).collect();
+
             let mut scripts = Vec::<Script>::new();
             let mut globals = Vec::<Global>::new();
-            
-            let mut t = 0;
 
-            loop {
-                // Get the file/line/column
-                let (file, line, column) = if let Some(n) = self.tokens.get_mut(t) {
-                    // This should ALWAYS be true, and if not there's a bug with this library
-                    debug_assert_eq!(n.string, "(");
+            for token in tokens {
+                let children = token.children.as_ref().unwrap();
 
-                    // Good!
-                    (n.file, n.line, n.column)
-                }
-                else {
-                    // We're done
-                    break;
-                };
+                // Get the object type
+                let block_type = &children[0];
+                match self.lowercase_token(block_type).as_str() {
+                    "global" => {
+                        // Make sure we have enough tokens here
+                        match children.len() {
+                            n if n < 4 => {
+                                return_compile_error!(self, token, format!("incomplete global definition, expected (global <type> <name> <expression>)"));
+                            },
+                            n if n > 4 => {
+                                return_compile_error!(self, children[4], format!("extraneous token in global definition (note: globals do not have implicit begin blocks)"));
+                            },
+                            4 => (),
+                            _ => unreachable!()
+                        }
 
-                // Increment t to get to the block type and step over the left parenthesis for the loop below this check
-                t = t + 1;
-
-                // Check the block type
-                let object_type_token = &mut self.tokens[t];
-
-                // Make it lowercase
-                let object_type = &mut object_type_token.string;
-                object_type.make_ascii_lowercase();
-
-                // Add the thing
-                match object_type as &str {
-                    // Global
-                    "global" => globals.push(Global {
-                        value_type: {
-                            let value_type_token = &mut self.tokens[t + 1];
-                            let value_type_string = &mut value_type_token.string;
-                            value_type_string.make_ascii_lowercase();
-
-                            if let Some(n) = ValueType::from_str_underscore(value_type_string) {
-                                n
-                            }
-                            else {
-                                return_compile_error!(self, value_type_token, &format!("expected global value type, got {t} instead"));
-                            }
-                        },
-
-                        name: {
-                            let name_token = &mut self.tokens[t + 2];
-                            let name_string = &mut name_token.string;
-
-                            // The name of a global cannot be parenthesis
-                            if name_string == ")" || name_string == "(" {
-                                return_compile_error!(self, name_token, &format!("expected global name, got {name_string} instead"));
-                            }
-
-                            name_string.make_ascii_lowercase();
-                            name_string.to_owned()
-                        },
-
-                        original_token_offset: t - 1,
-                        original_body_offset: t + 3,
-
-                        node: None // we're going to parse this later
-                    }),
-
-                    // Script
+                        // Add the global
+                        globals.push(Global {
+                            name: {
+                                let global_name_token = &children[2];
+                                if !matches!(global_name_token.children, None) {
+                                    return_compile_error!(self, global_name_token, format!("expected global name, got a block instead"))
+                                }
+                                self.lowercase_token(&global_name_token)
+                            },
+                            value_type: {
+                                let value_type_token = &children[1];
+                                let value_type_string = self.lowercase_token(&value_type_token);
+                                match ValueType::from_str_underscore(&value_type_string) {
+                                    Some(n) => n,
+                                    None => return_compile_error!(self, value_type_token, format!("expected global value type, got '{value_type_string}' instead"))
+                                }
+                            },
+                            original_token: token,
+                            node: None // we're going to parse this later
+                        });
+                    },
                     "script" => {
                         // Get the script type
-                        let script_type = {
-                            let script_type_token = &mut self.tokens[t + 1];
-                            let script_type_string = &mut script_type_token.string;
-                            script_type_string.make_ascii_lowercase();
-
-                            if let Some(n) = ScriptType::from_str(script_type_string) {
-                                n
-                            }
-                            else {
-                                return_compile_error!(self, script_type_token, &format!("expected script type, got {t} instead"));
-                            }
+                        let script_type_token = match children.get(1) {
+                            Some(n) => n,
+                            None => return_compile_error!(self, token, format!("incomplete script definition, expected script type after 'script'"))
                         };
+                        let script_type_string = self.lowercase_token(script_type_token);
+                        let script_type = match ScriptType::from_str(&script_type_string) {
+                            Some(n) => n,
+                            None => return_compile_error!(self, script_type_token, format!("expected script type, got '{script_type_string}' instead"))
+                        };
+                        let type_expected = script_type.always_returns_void();
 
-                        // Get the return value if applicable
-                        let (return_type, name_offset) = if !script_type.always_returns_void() {
-                            let value_type_token = &mut self.tokens[t + 1];
-                            let value_type_string = &mut value_type_token.string;
-                            value_type_string.make_ascii_lowercase();
-
-                            if let Some(n) = ValueType::from_str_underscore(value_type_string) {
-                                (n, t + 3)
-                            }
-                            else {
-                                return_compile_error!(self, value_type_token, &format!("expected script value type, got {t} instead"));
-                            }
+                        // Do we have enough tokens?
+                        let minimum_number_of_tokens = script_type.expression_offset() + 1;
+                        if children.len() < minimum_number_of_tokens {
+                            return_compile_error!(self, token, format!("incomplete script definition, expected (script {script_type_string}{} <name> <expression(s)>)", if type_expected { "" } else { " <return type>" }))
                         }
-                        else {
-                            (ValueType::Void, t + 2)
-                        };
 
-                        // Get the name of the script
-                        let script_name = {
-                            let name_token = &mut self.tokens[name_offset];
-                            let name_string = &mut name_token.string;
-
-                            // The name of a script cannot be parenthesis
-                            if name_string == ")" || name_string == "(" {
-                                return_compile_error!(self, name_token, &format!("expected script name, got {name_string} instead"));
-                            }
-
-                            name_string.make_ascii_lowercase();
-
-                            // Using 'begin' is not allowed
-                            if name_string == "begin" {
-                                return_compile_error!(self, name_token, &format!("function 'begin' cannot be overridden"));
-                            }
-
-                            name_string.to_owned()
-                        };
-
-                        // Add it
+                        // Add the script
                         scripts.push(Script {
-                            name: script_name,
-                            return_type: return_type,
-                            script_type: script_type,
+                            name: {
+                                let name_token = &children[minimum_number_of_tokens - 2];
+                                if !matches!(name_token.children, None) {
+                                    return_compile_error!(self, name_token, format!("expected script name, got a block instead (note: function parameters are not supported prior to Halo 3)"))
+                                }
+                                self.lowercase_token(&name_token)
+                            },
+                            return_type: if type_expected {
+                                let return_type_token = &children[2];
+                                let return_type_token_string = self.lowercase_token(return_type_token);
 
-                            original_token_offset: t - 1,
-                            original_body_offset: name_offset + 1,
+                                match ValueType::from_str_underscore(&return_type_token_string) {
+                                    Some(n) => n,
+                                    None => return_compile_error!(self, return_type_token, format!("expected global return value type, got '{return_type_token_string}' instead"))
+                                }
+                            }
+                            else {
+                                ValueType::Void
+                            },
+                            script_type: script_type,
+                            original_token: token,
 
                             node: None // we're going to parse this later
-                        })
+                        });
                     },
-
-                    t => return_compile_error!(self, object_type_token, &format!("expected 'global' or 'script', got {t} instead"))
-                }
-
-                // Find the end of this block
-                let mut depth : usize = 1;
-                while depth > 0 {
-                    let this_token_str = self.tokens[t].string.as_str();
-
-                    // Increment t
-                    t = t + 1;
-
-                    depth = match this_token_str {
-                        "(" => depth + 1,
-                        ")" => depth - 1,
-                        _ => depth
-                    };
+                    n => return_compile_error!(self, block_type, format!("expected 'global' or 'script', got '{n}' instead"))
                 }
             }
             
@@ -269,7 +223,7 @@ impl Compiler {
 
         // Parse all the globals
         for g in &globals {
-            global_nodes.insert(g.get_name().to_owned(), self.create_node_from_tokens(g.original_body_offset, &callable_functions, &callable_globals, g.value_type)?);
+            global_nodes.insert(g.get_name().to_owned(), self.create_node_from_tokens(&g.original_token.children.as_ref().unwrap()[3], &callable_functions, &callable_globals, g.value_type)?);
         }
 
         // Now parse all the scripts
@@ -282,7 +236,7 @@ impl Compiler {
                 parameters: None
             };
 
-            self.create_function_parameters_for_node_from_tokens(&mut n, s.original_body_offset, &mut s.original_body_offset.clone(), &callable_functions, &callable_globals)?;
+            self.create_function_parameters_for_node_from_tokens(&mut n, &s.original_token, &s.original_token.children.as_ref().unwrap()[s.script_type.expression_offset()..], &callable_functions, &callable_globals)?;
             script_nodes.insert(s.get_name().to_owned(), n);
         }
 

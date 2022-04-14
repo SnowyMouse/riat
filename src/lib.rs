@@ -21,7 +21,8 @@ pub struct Compiler {
     tokens: Vec<Token>,
     files: Vec<String>,
 
-    target: CompileTarget
+    target: CompileTarget,
+    warnings: Vec<CompileError>
 }
 
 impl Compiler {
@@ -30,7 +31,8 @@ impl Compiler {
             tokens: Vec::new(),
             files: Vec::new(),
 
-            target: target
+            target: target,
+            warnings: Vec::new()
         }
     }
 

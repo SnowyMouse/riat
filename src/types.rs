@@ -51,10 +51,17 @@ pub enum ScriptType {
 }
 
 impl ScriptType {
+    /// Get whether or not the script type always returns void and does not have a type
     pub fn always_returns_void(&self) -> bool {
         *self != ScriptType::Static && *self != ScriptType::Stub
     }
 
+    /// Get the offset to the expression tokens
+    pub fn expression_offset(&self) -> usize {
+        3 + if self.always_returns_void() {0} else {1}
+    }
+
+    /// Get the script type from a string (as used in HSC)
     pub fn from_str(input: &str) -> Option<ScriptType> {
         match input {
             "static" => Some(ScriptType::Static),
@@ -66,6 +73,7 @@ impl ScriptType {
         }
     }
 
+    /// Convert the script type to string (as used in HSC)
     pub fn as_str(&self) -> &'static str {
         match *self {
             ScriptType::Static => "static",
@@ -82,8 +90,7 @@ pub(crate) struct Script {
     pub return_type: ValueType,
     pub script_type: ScriptType,
 
-    pub original_token_offset: usize,
-    pub original_body_offset: usize,
+    pub original_token: Token,
 
     pub node: Option<Node>
 }
@@ -106,8 +113,7 @@ pub(crate) struct Global {
     pub name: String,
     pub value_type: ValueType,
 
-    pub original_token_offset: usize,
-    pub original_body_offset: usize,
+    pub original_token: Token,
 
     pub node: Option<Node>
 }
