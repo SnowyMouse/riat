@@ -25,8 +25,8 @@ impl EngineAvailability {
 pub(crate) struct EngineFunctionParameter {
     value_type: ValueType,
     many: bool,
-    many_group: bool,
-    allow_uppercase: bool
+    allow_uppercase: bool,
+    optional: bool
 }
 
 pub(crate) struct EngineFunction {
@@ -46,8 +46,22 @@ impl CallableFunction for EngineFunction {
         self.return_type
     }
 
-    fn get_parameter_count(&self) -> usize {
+    fn get_total_parameter_count(&self) -> usize {
         self.parameters.len()
+    }
+
+    fn get_minimum_parameter_count(&self) -> usize {
+        let parameter_count = self.parameters.len();
+
+        for i in 0..parameter_count {
+            let parameter = &self.parameters[i];
+
+            if parameter.optional {
+                return i
+            }
+        }
+
+        parameter_count
     }
 
     fn get_type_of_parameter(&self, index: usize) -> Option<ValueType> {
@@ -63,17 +77,8 @@ impl CallableFunction for EngineFunction {
                 let last_parameter_index = n - 1;
                 let last_parameter = &self.parameters[last_parameter_index];
 
-                // Groups
-                if last_parameter.many_group {
-                    // Find the first parameter with many_group
-                    let first_parameter_many_group_index = self.parameters.iter().position(|x| { x.many_group }).unwrap();
-
-                    // Get the expected parameter
-                    Some(self.parameters[(index - first_parameter_many_group_index) % (last_parameter_index - first_parameter_many_group_index)].value_type)
-                }
-
                 // Repeat the last one
-                else if last_parameter.many {
+                if last_parameter.many {
                     Some(last_parameter.value_type)
                 }
 
@@ -91,6 +96,10 @@ impl CallableFunction for EngineFunction {
 
     fn supports_target(&self, target: CompileTarget) -> bool {
         self.availability.supports(target)
+    }
+
+    fn is_engine_function(&self) -> bool {
+        true
     }
 }
 
@@ -111,6 +120,10 @@ impl CallableGlobal for EngineGlobal {
 
     fn supports_target(&self, target: CompileTarget) -> bool {
         self.availability.supports(target)
+    }
+
+    fn is_engine_global(&self) -> bool {
+        true
     }
 }
 

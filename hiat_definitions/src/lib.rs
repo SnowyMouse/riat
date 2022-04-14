@@ -26,10 +26,10 @@ struct FunctionParameter {
     many: bool,
 
     #[serde(default = "default_value")]
-    many_group: bool,
+    allow_uppercase: bool,
 
     #[serde(default = "default_value")]
-    allow_uppercase: bool
+    optional: bool
 }
 
 #[allow(dead_code)]
@@ -133,9 +133,9 @@ pub fn generate_definitions(_: TokenStream) -> TokenStream {
         for p in &f.parameters {
             let parameter_type = snake_to_pascal(&p.r#type);
             let parameter_many = &p.many;
-            let parameter_many_group = &p.many_group;
             let parameter_allow_uppercase = &p.allow_uppercase;
-            function_parameters += &format!("EngineFunctionParameter {{ value_type: {parameter_type}, many: {parameter_many}, many_group: {parameter_many_group}, allow_uppercase: {parameter_allow_uppercase} }},")
+            let parameter_optional = &p.optional;
+            function_parameters += &format!("EngineFunctionParameter {{ value_type: {parameter_type}, many: {parameter_many}, allow_uppercase: {parameter_allow_uppercase}, optional: {parameter_optional} }},")
         }
 
         functions_list += &format!("EngineFunction {{ name: \"{function_name}\", return_type: {function_type}, availability: {function_availability}, number_passthrough: {function_number_passthrough}, parameters: &[{function_parameters}] }},");
