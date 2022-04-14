@@ -1,7 +1,7 @@
 use std::fmt;
 
 /// Error type for CompileError
-#[derive(Copy, Clone)]
+#[derive(Copy, Clone, Debug)]
 pub enum CompileErrorType {
     /// Warning, typically for potentially bad, but not technically invalid code
     Warning,
@@ -25,6 +25,7 @@ impl fmt::Display for CompileErrorType {
     }
 }
 
+#[derive(Debug, Clone)]
 pub struct CompileError {
     message: String,
     file: String,

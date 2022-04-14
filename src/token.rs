@@ -4,7 +4,9 @@ pub(crate) struct Token {
     pub line: usize,
     pub column: usize,
     pub file: usize,
-    pub string: String
+    pub string: String,
+
+    pub children: Option<Vec<Token>>
 }
 
 impl Compiler {
@@ -50,7 +52,8 @@ impl Compiler {
                     string: match std::str::from_utf8(&script[current_token_offset + if quoted { 1 } else { 0 }..i]) {
                         Ok(n) => n.to_owned(),
                         Err(e) => return Err(CompileError::from_message(filename, line, column, CompileErrorType::Error, &format!("failed to parse token - {e}")))
-                    }
+                    },
+                    children: None
                 });
 
                 // Done!
@@ -72,7 +75,8 @@ impl Compiler {
                         line: line,
                         column: column,
                         file: file,
-                        string: c.to_string()
+                        string: c.to_string(),
+                        children: None
                     });
                 }
             }
@@ -136,23 +140,55 @@ impl Compiler {
             return Err(CompileError::from_message(filename, line, column, CompileErrorType::Error, "unterminated token"));
         }
 
-        // Make sure # of "(" = ")" and that anything else is in a block
-        let mut depth : usize = 0;
-        for i in &tokens {
-            match i.string.as_str() {
-                "(" => depth = depth + 1,
-                ")" => depth = match depth.checked_sub(1) {
-                    Some(n) => n,
-                    None => return Err(CompileError::from_message(filename, line, column, CompileErrorType::Error, "unexpected right parenthesis"))
-                },
-                n => if depth == 0 {
+        // Make the tokens into a tree
+        let mut token_tree = Vec::<Token>::new();
+        let mut token_iter = tokens.into_iter();
+
+        loop {
+            let mut next_token = match token_iter.next() {
+                Some(n) => n,
+                None => break
+            };
+
+            match next_token.string.as_str() {
+                "(" => {
+                    fn recursively_add_token(token: &mut Token, token_iter: &mut std::vec::IntoIter<Token>, filename: &str) -> Result<(), CompileError> {
+                        let mut children = Vec::<Token>::new();
+                        loop {
+                            // Check if we have another token
+                            let mut next_token = match token_iter.next() {
+                                Some(n) => n,
+                                None => return Err(CompileError::from_message(filename, token.line, token.column, CompileErrorType::Error, &format!("unterminated block")))
+                            };
+
+                            // See if it's a parenthesis
+                            match next_token.string.as_str() {
+                                "(" => {
+                                    recursively_add_token(&mut next_token, token_iter, filename)?;
+                                },
+                                ")" => {
+                                    token.children = Some(children);
+                                    return Ok(())
+                                },
+                                _ => ()
+                            }
+
+                            // Okay, add it now
+                            children.push(next_token);
+                        }
+                    }
+                    recursively_add_token(&mut next_token, &mut token_iter, &filename)?;
+                    token_tree.push(next_token)
+                }
+
+                n => {
                     return Err(CompileError::from_message(filename, line, column, CompileErrorType::Error, &format!("expected left parenthesis, got {n} instead")))
                 }
             }
         }
 
         self.files.push(filename.to_owned());
-        self.tokens.extend(tokens);
+        self.tokens.extend(token_tree);
 
         Ok(())
     }
