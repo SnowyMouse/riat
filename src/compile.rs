@@ -46,28 +46,56 @@ impl Compiler {
         t
     }
 
-    fn create_node_from_tokens(&self,
+    fn create_node_from_tokens(&mut self,
                                token: &Token, 
                                available_functions: &BTreeMap<&str, &dyn CallableFunction>,
                                available_globals: &BTreeMap<&str, &dyn CallableGlobal>,
                                expected_type: ValueType) -> Result<Node, CompileError> {
+        let mut node : Node;
 
+        match token.children.as_ref() {
+            Some(ref children) => {
+                let function_name = self.lowercase_token(&children[0]);
+                node = self.create_function_parameters_for_node_from_tokens(function_name, token, &children[1..], available_functions, available_globals)?;
+            },
+            None => {
+                // Figure out if it's a global
+                if let Some(global) = available_globals.get(token.string.as_str()) {
+                    node = Node {
+                        value_type: global.get_value_type(),
+                        node_type: NodeType::Primitive(true),
+                        string_data: Some(token.string.clone()),
+                        data: NodeData::None,
+                        parameters: None
+                    }
+                }
 
+                // It's not? I guess it's a literal. We'll worry about parsing it later.
+                else {
+                    node = Node {
+                        value_type: expected_type,
+                        node_type: NodeType::Primitive(false),
+                        string_data: Some(token.string.clone()),
+                        data: NodeData::None,
+                        parameters: None
+                    }
+                }
+            }
+        }
 
-        todo!()
+        Ok(node)
     }
 
-    fn create_function_parameters_for_node_from_tokens(&self,
-                                                       node: &mut Node,
+    fn create_function_parameters_for_node_from_tokens(&mut self,
+                                                       function_name: String,
                                                        function_call_token: &Token,
                                                        tokens: &[Token],
                                                        available_functions: &BTreeMap<&str, &dyn CallableFunction>,
-                                                       available_globals: &BTreeMap<&str, &dyn CallableGlobal>) -> Result<(), CompileError> {
+                                                       available_globals: &BTreeMap<&str, &dyn CallableGlobal>) -> Result<Node, CompileError> {
         let mut parameters = Vec::<Node>::new();
 
         // Get the function
-        let function_name = node.string_data.as_ref().unwrap().as_str();
-        let function = match available_functions.get(function_name) {
+        let function = match available_functions.get(function_name.as_str()) {
             Some(n) => n,
             None => return_compile_error!(self, function_call_token, format!("function '{function_name}' is not defined"))
         };
@@ -94,10 +122,13 @@ impl Compiler {
         }
 
         // Set it
-        node.parameters = Some(parameters);
-
-        // Done!
-        Ok(())
+        Ok(Node {
+            value_type: function.get_return_type(),
+            node_type: NodeType::FunctionCall(function.is_engine_function()),
+            string_data: Some(function_name),
+            data: NodeData::None,
+            parameters: Some(parameters)
+        })
     }
 
     pub fn digest_tokens(&mut self) -> Result<(), CompileError> {
@@ -242,16 +273,7 @@ impl Compiler {
 
         // Now parse all the scripts
         for s in &scripts {
-            let mut n = Node {
-                value_type: s.return_type,
-                node_type: NodeType::FunctionCall(true),
-                string_data: Some("begin".to_owned()),
-                data: NodeData::None,
-                parameters: None
-            };
-
-            self.create_function_parameters_for_node_from_tokens(&mut n, &s.original_token, &s.original_token.children.as_ref().unwrap()[s.script_type.expression_offset()..], &callable_functions, &callable_globals)?;
-            script_nodes.insert(s.get_name().to_owned(), n);
+            script_nodes.insert(s.get_name().to_owned(), self.create_function_parameters_for_node_from_tokens("begin".to_owned(), &s.original_token, &s.original_token.children.as_ref().unwrap()[s.script_type.expression_offset()..], &callable_functions, &callable_globals)?);
         }
 
         // Move all the globals and scripts
