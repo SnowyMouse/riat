@@ -63,6 +63,7 @@ impl Compiler {
                                                        tokens: &[Token],
                                                        available_functions: &BTreeMap<&str, &dyn CallableFunction>,
                                                        available_globals: &BTreeMap<&str, &dyn CallableGlobal>) -> Result<(), CompileError> {
+        let mut parameters = Vec::<Node>::new();
 
         // Get the function
         let function_name = node.string_data.as_ref().unwrap().as_str();
@@ -80,6 +81,9 @@ impl Compiler {
                 None => return_compile_error!(self, token, format!("function '{function_name}' takes at most {} parameter(s) but extraneous parameter(s) were given", function.get_total_parameter_count()))
             };
 
+            // Add the parameter
+            parameters.push(self.create_node_from_tokens(token, available_functions, available_globals, expected_type)?);
+
             parameter_index += 1;
         }
 
@@ -88,6 +92,9 @@ impl Compiler {
         if parameter_index < minimum {
             return_compile_error!(self, function_call_token, format!("function '{function_name}' takes at least {minimum} parameter(s), got {parameter_index} instead"))
         }
+
+        // Set it
+        node.parameters = Some(parameters);
 
         // Done!
         Ok(())
@@ -166,7 +173,14 @@ impl Compiler {
                                 if !matches!(name_token.children, None) {
                                     return_compile_error!(self, name_token, format!("expected script name, got a block instead (note: function parameters are not supported prior to Halo 3)"))
                                 }
-                                self.lowercase_token(&name_token)
+
+                                let name = self.lowercase_token(&name_token);
+                                match name.as_str() {
+                                    "begin" | "if" | "cond" => return_compile_error!(self, name_token, format!("function '{name}' cannot be overridden by a script")),
+                                    _ => ()
+                                }
+
+                                name
                             },
                             return_type: if type_expected {
                                 let return_type_token = &children[2];
