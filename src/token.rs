@@ -163,13 +163,26 @@ impl Compiler {
 
                             // See if it's a parenthesis
                             match next_token.string.as_str() {
+                                // It's another block!
                                 "(" => {
                                     recursively_add_token(&mut next_token, token_iter, filename)?;
                                 },
+
+                                // We're closing the block
                                 ")" => {
+                                    // Error if a block is empty
+                                    if children.is_empty() {
+                                        return Err(CompileError::from_message(filename, token.line, token.column, CompileErrorType::Error, &format!("empty block")))
+                                    }
+
+                                    // Move the token
                                     token.children = Some(children);
+
+                                    // Done!
                                     return Ok(())
                                 },
+
+                                // Just an ordinary token with no children
                                 _ => ()
                             }
 
