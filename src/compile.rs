@@ -48,13 +48,14 @@ impl Compiler {
 
     fn create_node_from_tokens(&mut self,
                                token: &Token, 
+                               expected_type: ValueType,
                                available_functions: &BTreeMap<&str, &dyn CallableFunction>,
                                available_globals: &BTreeMap<&str, &dyn CallableGlobal>) -> Result<Node, CompileError> {
         let node = match token.children.as_ref() {
             Some(ref children) => {
                 let function_name = self.lowercase_token(&children[0]);
 
-                self.create_function_parameters_for_node_from_tokens(function_name, token, &children[1..], available_functions, available_globals)?
+                self.create_node_from_function(function_name, token, expected_type, &children[1..], available_functions, available_globals)?
             },
             None => {
                 // Figure out if it's a global
@@ -88,12 +89,13 @@ impl Compiler {
         Ok(node)
     }
 
-    fn create_function_parameters_for_node_from_tokens(&mut self,
-                                                       function_name: String,
-                                                       function_call_token: &Token,
-                                                       tokens: &[Token],
-                                                       available_functions: &BTreeMap<&str, &dyn CallableFunction>,
-                                                       available_globals: &BTreeMap<&str, &dyn CallableGlobal>) -> Result<Node, CompileError> {
+    fn create_node_from_function(&mut self,
+                                 function_name: String,
+                                 function_call_token: &Token,
+                                 expected_type: ValueType,
+                                 tokens: &[Token],
+                                 available_functions: &BTreeMap<&str, &dyn CallableFunction>,
+                                 available_globals: &BTreeMap<&str, &dyn CallableGlobal>) -> Result<Node, CompileError> {
         let mut parameters = Vec::<Node>::new();
 
         // Get the function
@@ -102,30 +104,33 @@ impl Compiler {
             None => return_compile_error!(self, function_call_token, format!("function '{function_name}' is not defined"))
         };
 
-        // Keep going until we have a )
-        let mut parameter_index : usize = 0;
-        for token in tokens {
+        // Do we have enough parameters?
+        let parameter_count = tokens.len();
+        let minimum = function.get_minimum_parameter_count();
+        if tokens.len() < minimum {
+            return_compile_error!(self, function_call_token, format!("function '{function_name}' takes at least {minimum} parameter(s), got {parameter_count} instead"))
+        }
+
+        // Go through each token
+        for parameter_index in 0..parameter_count {
+            let token = &tokens[parameter_index];
+
             // Get the next type. Or complain if this is impossible because we've hit the max number of parameters.
-            let expected_type = match function.get_type_of_parameter(parameter_index) {
+            let parameter_expected_type = match function.get_type_of_parameter(parameter_index) {
                 Some(n) => n,
                 None => return_compile_error!(self, token, format!("function '{function_name}' takes at most {} parameter(s) but extraneous parameter(s) were given", function.get_total_parameter_count()))
             };
 
+            // Make a node
+            let new_node = self.create_node_from_tokens(token, parameter_expected_type, available_functions, available_globals)?;
+
             // Add the parameter
-            parameters.push(self.create_node_from_tokens(token, available_functions, available_globals)?);
-
-            parameter_index += 1;
-        }
-
-        // Did we get enough parameters?
-        let minimum = function.get_minimum_parameter_count();
-        if parameter_index < minimum {
-            return_compile_error!(self, function_call_token, format!("function '{function_name}' takes at least {minimum} parameter(s), got {parameter_index} instead"))
+            parameters.push(new_node);
         }
 
         // Set it
         Ok(Node {
-            value_type: function.get_return_type(),
+            value_type: ValueType::Unparsed,
             node_type: NodeType::FunctionCall(function.is_engine_function()),
             string_data: Some(function_name),
             data: NodeData::None,
@@ -270,12 +275,12 @@ impl Compiler {
 
         // Parse all the globals
         for g in &globals {
-            global_nodes.insert(g.get_name().to_owned(), self.create_function_parameters_for_node_from_tokens("begin".to_owned(), &g.original_token, &g.original_token.children.as_ref().unwrap()[3..], &callable_functions, &callable_globals)?);
+            global_nodes.insert(g.get_name().to_owned(), self.create_node_from_function("begin".to_owned(), &g.original_token, g.value_type, &g.original_token.children.as_ref().unwrap()[3..], &callable_functions, &callable_globals)?);
         }
 
         // Now parse all the scripts
         for s in &scripts {
-            script_nodes.insert(s.get_name().to_owned(), self.create_function_parameters_for_node_from_tokens("begin".to_owned(), &s.original_token, &s.original_token.children.as_ref().unwrap()[s.script_type.expression_offset()..], &callable_functions, &callable_globals)?);
+            script_nodes.insert(s.get_name().to_owned(), self.create_node_from_function("begin".to_owned(), &s.original_token, s.return_type, &s.original_token.children.as_ref().unwrap()[s.script_type.expression_offset()..], &callable_functions, &callable_globals)?);
         }
 
         // Move all the globals and scripts
