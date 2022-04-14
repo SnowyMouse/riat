@@ -49,39 +49,41 @@ impl Compiler {
     fn create_node_from_tokens(&mut self,
                                token: &Token, 
                                available_functions: &BTreeMap<&str, &dyn CallableFunction>,
-                               available_globals: &BTreeMap<&str, &dyn CallableGlobal>,
-                               expected_type: ValueType) -> Result<Node, CompileError> {
-        let mut node : Node;
-
-        match token.children.as_ref() {
+                               available_globals: &BTreeMap<&str, &dyn CallableGlobal>) -> Result<Node, CompileError> {
+        let node = match token.children.as_ref() {
             Some(ref children) => {
                 let function_name = self.lowercase_token(&children[0]);
-                node = self.create_function_parameters_for_node_from_tokens(function_name, token, &children[1..], available_functions, available_globals)?;
+
+                self.create_function_parameters_for_node_from_tokens(function_name, token, &children[1..], available_functions, available_globals)?
             },
             None => {
                 // Figure out if it's a global
-                if let Some(global) = available_globals.get(token.string.as_str()) {
-                    node = Node {
-                        value_type: global.get_value_type(),
-                        node_type: NodeType::Primitive(true),
-                        string_data: Some(token.string.clone()),
-                        data: NodeData::None,
-                        parameters: None
-                    }
+                let mut literal = token.string.clone();
+                let mut literal_lowercase = literal.clone();
+                literal_lowercase.make_ascii_lowercase();
+
+                let is_global = if let Some(global) = available_globals.get(literal_lowercase.as_str()) {
+                    let value_type = global.get_value_type();
+                    literal = self.lowercase_token(token);
+
+                    // Great!
+                    true
                 }
 
                 // It's not? I guess it's a literal. We'll worry about parsing it later.
                 else {
-                    node = Node {
-                        value_type: expected_type,
-                        node_type: NodeType::Primitive(false),
-                        string_data: Some(token.string.clone()),
-                        data: NodeData::None,
-                        parameters: None
-                    }
+                    false
+                };
+
+                Node {
+                    value_type: ValueType::Unparsed,
+                    node_type: NodeType::Primitive(is_global),
+                    string_data: Some(literal),
+                    data: NodeData::None,
+                    parameters: None
                 }
             }
-        }
+        };
 
         Ok(node)
     }
@@ -110,7 +112,7 @@ impl Compiler {
             };
 
             // Add the parameter
-            parameters.push(self.create_node_from_tokens(token, available_functions, available_globals, expected_type)?);
+            parameters.push(self.create_node_from_tokens(token, available_functions, available_globals)?);
 
             parameter_index += 1;
         }
@@ -268,7 +270,7 @@ impl Compiler {
 
         // Parse all the globals
         for g in &globals {
-            global_nodes.insert(g.get_name().to_owned(), self.create_node_from_tokens(&g.original_token.children.as_ref().unwrap()[3], &callable_functions, &callable_globals, g.value_type)?);
+            global_nodes.insert(g.get_name().to_owned(), self.create_node_from_tokens(&g.original_token.children.as_ref().unwrap()[3], &callable_functions, &callable_globals)?);
         }
 
         // Now parse all the scripts
