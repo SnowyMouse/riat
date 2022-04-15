@@ -267,5 +267,14 @@ pub struct Node {
     pub data: Option<NodeData>,
 
     /// Parameters of the node (if a function call)
-    pub parameters: Option<Vec<Node>>
+    pub parameters: Option<Vec<Node>>,
+
+    /// File index the node is found on
+    pub file_index: usize,
+
+    /// Line the node is found on
+    pub file_line: usize,
+
+    /// Column the node is found on
+    pub file_column: usize
 }

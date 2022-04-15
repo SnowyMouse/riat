@@ -97,7 +97,11 @@ impl Compiler {
                     node_type: NodeType::Primitive(is_global),
                     string_data: Some(literal),
                     data: None,
-                    parameters: None
+                    parameters: None,
+
+                    file_index: token.file,
+                    file_line: token.line,
+                    file_column: token.column
                 }
             }
         };
@@ -405,11 +409,15 @@ impl Compiler {
             node_type: NodeType::FunctionCall(function.is_engine_function()),
             string_data: Some(function_name),
             data: None,
-            parameters: Some(parameters)
+            parameters: Some(parameters),
+
+            file_index: function_call_token.file,
+            file_line: function_call_token.line,
+            file_column: function_call_token.column
         })
     }
 
-    pub fn digest_tokens(&mut self) -> Result<(), CompileError> {
+    pub fn digest_tokens(&mut self) -> Result<CompiledScriptData, CompileError> {
         let (mut scripts, mut globals) = {
             let mut tokens : Vec<Token> = self.tokens.drain(..).collect();
 
@@ -681,6 +689,10 @@ impl Compiler {
             find_script_indices_for_node(s.node.as_mut().unwrap(), &scripts_by_index);
         }
 
+        for g in &mut globals {
+            find_script_indices_for_node(g.node.as_mut().unwrap(), &scripts_by_index);
+        }
+
         // We should NOT have any passthrough stuff remaining
         #[cfg(debug_assertions)]
         {
@@ -702,10 +714,12 @@ impl Compiler {
             }
         }
 
-        // Move all the scripts and globals to the compiler
-        self.scripts.append(&mut scripts);
-        self.globals.append(&mut globals);
-
-        Ok(())
+        // Done!
+        Ok(CompiledScriptData {
+            scripts: scripts,
+            globals: globals,
+            files: self.files.drain(..).collect(),
+            warnings: self.warnings.drain(..).collect()
+        })
     }
 }

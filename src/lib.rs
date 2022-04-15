@@ -21,10 +21,15 @@ pub struct Compiler {
     tokens: Vec<Token>,
     files: Vec<String>,
 
+    target: CompileTarget,
+    warnings: Vec<CompileError>
+}
+
+/// Result of a successful compilation
+pub struct CompiledScriptData {
     scripts: Vec<Script>,
     globals: Vec<Global>,
-
-    target: CompileTarget,
+    files: Vec<String>,
     warnings: Vec<CompileError>
 }
 
@@ -33,9 +38,6 @@ impl Compiler {
         Compiler { 
             tokens: Vec::new(),
             files: Vec::new(),
-
-            scripts: Vec::new(),
-            globals: Vec::new(),
 
             target: target,
             warnings: Vec::new()
@@ -51,12 +53,12 @@ impl Compiler {
         self.tokenize_script_data(filename, script)
     }
 
-    /// Parse all loaded tokens into a script and then clear the tokens if successful.
+    /// Parse all loaded tokens and then clear the tokens if successful.
     ///
     /// # Errors
     ///
     /// Errors if the script data is invalid.
-    pub fn compile_script_data(&mut self) -> Result<(), CompileError> {
+    pub fn compile_script_data(&mut self) -> Result<CompiledScriptData, CompileError> {
         self.digest_tokens()
     }
 }
