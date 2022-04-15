@@ -1,6 +1,6 @@
 use super::*;
 
-/// Result of a successful compilation
+/// Result of a successful compilation.
 pub struct CompiledScriptData {
     pub(super) scripts: Vec<CompiledScript>,
     pub(super) globals: Vec<CompiledGlobal>,
@@ -42,7 +42,11 @@ pub struct CompiledScript {
     pub(super) name: String,
     pub(super) value_type: ValueType,
     pub(super) script_type: ScriptType,
-    pub(super) first_node: usize
+    pub(super) first_node: usize,
+
+    pub(super) file: usize,
+    pub(super) line: usize,
+    pub(super) column: usize
 }
 
 impl CompiledScript {
@@ -65,6 +69,23 @@ impl CompiledScript {
     pub fn get_first_node_index(&self) -> usize {
         self.first_node
     }
+
+    /// Get the file index of the script, starting at 0.
+    ///
+    /// This corresponds to [`CompiledScriptData::get_files`].
+    pub fn get_file(&self) -> usize {
+        self.file
+    }
+
+    /// Get the line index of the script, starting at 1.
+    pub fn get_line(&self) -> usize {
+        self.line
+    }
+
+    /// Get the column index of the script, starting at 1.
+    pub fn get_column(&self) -> usize {
+        self.column
+    }
 }
 
 
@@ -72,7 +93,11 @@ impl CompiledScript {
 pub struct CompiledGlobal {
     pub(super) name: String,
     pub(super) value_type: ValueType,
-    pub(super) first_node: usize
+    pub(super) first_node: usize,
+
+    pub(super) file: usize,
+    pub(super) line: usize,
+    pub(super) column: usize
 }
 
 impl CompiledGlobal {
@@ -90,6 +115,23 @@ impl CompiledGlobal {
     pub fn get_first_node_index(&self) -> usize {
         self.first_node
     }
+
+    /// Get the file index of the global, starting at 0.
+    ///
+    /// This corresponds to [`CompiledScriptData::get_files`].
+    pub fn get_file(&self) -> usize {
+        self.file
+    }
+
+    /// Get the line index of the global, starting at 1.
+    pub fn get_line(&self) -> usize {
+        self.line
+    }
+
+    /// Get the column index of the global, starting at 1.
+    pub fn get_column(&self) -> usize {
+        self.column
+    }
 }
 
 
@@ -99,7 +141,11 @@ pub struct CompiledNode {
     pub(super) value_type: ValueType,
     pub(super) data: Option<NodeData>,
     pub(super) string_data: Option<String>,
-    pub(super) next_node: Option<usize>
+    pub(super) next_node: Option<usize>,
+
+    pub(super) file: usize,
+    pub(super) line: usize,
+    pub(super) column: usize
 }
 
 impl CompiledNode {
@@ -130,4 +176,50 @@ impl CompiledNode {
     pub fn get_next_node_index(&self) -> Option<usize> {
         self.next_node
     }
+
+    /// Get the file index of the node, starting at 0.
+    ///
+    /// This corresponds to [`CompiledScriptData::get_files`].
+    pub fn get_file(&self) -> usize {
+        self.file
+    }
+
+    /// Get the line index of the node, starting at 1.
+    pub fn get_line(&self) -> usize {
+        self.line
+    }
+
+    /// Get the column index of the node, starting at 1.
+    pub fn get_column(&self) -> usize {
+        self.column
+    }
+}
+
+
+/// Data unit used for scripts.
+#[derive(PartialEq, Clone, Debug, Default)]
+pub(crate) struct Node {
+    /// Value type
+    pub value_type: ValueType,
+
+    /// Node type
+    pub node_type: NodeType,
+
+    /// String data
+    pub string_data: Option<String>,
+
+    /// Node data
+    pub data: Option<NodeData>,
+
+    /// Parameters of the node (if a function call)
+    pub parameters: Option<Vec<Node>>,
+
+    /// File index the node is found on
+    pub file: usize,
+
+    /// Line the node is found on
+    pub line: usize,
+
+    /// Column the node is found on
+    pub column: usize
 }

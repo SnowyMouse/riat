@@ -272,31 +272,3 @@ impl NodeType {
         matches!(*self, NodeType::FunctionCall(_))
     }
 }
-
-/// Data unit used for scripts.
-#[derive(PartialEq, Clone, Debug, Default)]
-pub(crate) struct Node {
-    /// Value type
-    pub value_type: ValueType,
-
-    /// Node type
-    pub node_type: NodeType,
-
-    /// String data
-    pub string_data: Option<String>,
-
-    /// Node data
-    pub data: Option<NodeData>,
-
-    /// Parameters of the node (if a function call)
-    pub parameters: Option<Vec<Node>>,
-
-    /// File index the node is found on
-    pub file_index: usize,
-
-    /// Line the node is found on
-    pub file_line: usize,
-
-    /// Column the node is found on
-    pub file_column: usize
-}

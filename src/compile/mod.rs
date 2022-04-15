@@ -38,6 +38,7 @@ macro_rules! compile_warn {
 }
 
 impl Compiler {
+    /// Lowercase the token, warning if the result is different than the input.
     fn lowercase_token(&mut self, token: &Token) -> String {
         let mut t = token.string.clone();
         t.make_ascii_lowercase();
@@ -102,9 +103,9 @@ impl Compiler {
                     data: None,
                     parameters: None,
 
-                    file_index: token.file,
-                    file_line: token.line,
-                    file_column: token.column
+                    file: token.file,
+                    line: token.line,
+                    column: token.column
                 }
             }
         };
@@ -414,9 +415,9 @@ impl Compiler {
             data: None,
             parameters: Some(parameters),
 
-            file_index: function_call_token.file,
-            file_line: function_call_token.line,
-            file_column: function_call_token.column
+            file: function_call_token.file,
+            line: function_call_token.line,
+            column: function_call_token.column
         })
     }
 
@@ -669,7 +670,6 @@ impl Compiler {
             }
             sbi
         };
-
         fn find_script_indices_for_node(node: &mut Node, scripts: &BTreeMap::<String, i16>) {
             match node.node_type {
                 NodeType::Primitive(false) => {
@@ -685,13 +685,29 @@ impl Compiler {
                 }
             }
         }
-
         for s in &mut scripts {
             find_script_indices_for_node(&mut s.node, &scripts_by_index);
         }
 
-        for g in &mut globals {
-            find_script_indices_for_node(&mut g.node, &scripts_by_index);
+        // Detect uninitialized globals (and also find script indices)
+        fn find_uninitialzed_globals(node: &Node, globals: &[Global], compiler: &mut Compiler) {
+            match node.node_type {
+                NodeType::Primitive(true) => {
+                    let global_name = node.string_data.as_ref().unwrap().as_str();
+                    for g in globals {
+                        if g.name == global_name {
+                            compile_warn!(compiler, node, format!("use of uninitialized global '{}'", global_name));
+                            break;
+                        }
+                    }
+                },
+                NodeType::FunctionCall(_) => for c in node.parameters.as_ref().unwrap() { find_uninitialzed_globals(&c, globals, compiler); },
+                _ => ()
+            }
+        }
+        for i in 0..globals.len() {
+            find_script_indices_for_node(&mut globals[i].node, &scripts_by_index);
+            find_uninitialzed_globals(&globals[i].node, &globals[i+1..], self);
         }
 
         // We should NOT have any passthrough stuff remaining
@@ -735,7 +751,11 @@ impl Compiler {
                         value_type: node.value_type,
                         data: node.data,
                         string_data: node.string_data,
-                        next_node: None
+                        next_node: None,
+
+                        file: node.file,
+                        column: node.column,
+                        line: node.line
                     });
                     result
                 },
@@ -750,7 +770,11 @@ impl Compiler {
                         value_type: node.value_type,
                         data: Some(NodeData::NodeOffset(function_name_node)),
                         string_data: None,
-                        next_node: None
+                        next_node: None,
+
+                        file: node.file,
+                        column: node.column,
+                        line: node.line
                     });
 
                     // Next get the function name out of the way
@@ -759,7 +783,11 @@ impl Compiler {
                         value_type: ValueType::FunctionName,
                         data: node.data,
                         string_data: node.string_data,
-                        next_node: None
+                        next_node: None,
+
+                        file: node.file,
+                        column: node.column,
+                        line: node.line
                     });
 
                     // Let's get our parameters here now
@@ -782,7 +810,11 @@ impl Compiler {
                     name: s.name,
                     value_type: s.return_type,
                     script_type: s.script_type,
-                    first_node: make_compiled_node_from_node(s.node, &mut nodes)
+                    first_node: make_compiled_node_from_node(s.node, &mut nodes),
+
+                    file: s.original_token.file,
+                    column: s.original_token.column,
+                    line: s.original_token.line
                 }
             )
         }
@@ -791,7 +823,11 @@ impl Compiler {
                 CompiledGlobal {
                     name: g.name,
                     value_type: g.value_type,
-                    first_node: make_compiled_node_from_node(g.node, &mut nodes)
+                    first_node: make_compiled_node_from_node(g.node, &mut nodes),
+
+                    file: g.original_token.file,
+                    column: g.original_token.column,
+                    line: g.original_token.line
                 }
             )
         }
