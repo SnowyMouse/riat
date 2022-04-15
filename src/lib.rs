@@ -21,6 +21,9 @@ pub struct Compiler {
     tokens: Vec<Token>,
     files: Vec<String>,
 
+    scripts: Vec<Script>,
+    globals: Vec<Global>,
+
     target: CompileTarget,
     warnings: Vec<CompileError>
 }
@@ -30,6 +33,9 @@ impl Compiler {
         Compiler { 
             tokens: Vec::new(),
             files: Vec::new(),
+
+            scripts: Vec::new(),
+            globals: Vec::new(),
 
             target: target,
             warnings: Vec::new()

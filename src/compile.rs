@@ -205,7 +205,7 @@ impl Compiler {
                         clear_string_data = true;
                         match string_to_parse_str {
                             "0" | "false" | "off" => Some(NodeData::Boolean(false)),
-                            "1" | "true" | "on" => Some(NodeData::Boolean(false)),
+                            "1" | "true" | "on" => Some(NodeData::Boolean(true)),
                             _ => return_compile_error!(self, tokens[parameter_index], format!("cannot parse literal '{string_to_parse}' as a boolean (expected 0/1/false/true/off/on)"))
                         }
                     },
@@ -571,6 +571,10 @@ impl Compiler {
             find_script_indices_for_node(s.node.as_mut().unwrap(), &scripts_by_index);
         }
 
-        todo!()
+        // Move all the scripts and globals to the compiler
+        self.scripts.extend(scripts);
+        self.globals.extend(globals);
+
+        Ok(())
     }
 }
