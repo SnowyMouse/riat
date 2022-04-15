@@ -1,9 +1,9 @@
 use super::*;
 
-/// Compile target to use
+/// Compile target to use. This determines available features, such as functions.
 #[derive(Copy, Clone, PartialEq)]
 pub enum CompileTarget {
-    /// Halo: Combat Evolved Anniversary as released by 343 Industries on Windows.
+    /// Halo: Combat Evolved Anniversary as released by 343 Industries for Windows.
     HaloCEA,
 
     /// NTSC Xbox version is supported
@@ -211,7 +211,7 @@ pub(crate) trait CallableGlobal {
     }
 }
 
-/// Node data
+/// Data of the node.
 #[derive(PartialEq, Copy, Clone, Debug)]
 pub enum NodeData {
     Boolean(bool),
@@ -221,7 +221,7 @@ pub enum NodeData {
     NodeOffset(usize)
 }
 
-/// Node type
+/// Type of the node.
 #[derive(PartialEq, Copy, Clone, Debug)]
 pub enum NodeType {
     /// Node refers to a value.
