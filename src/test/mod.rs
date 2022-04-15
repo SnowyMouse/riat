@@ -20,3 +20,30 @@ fn test_compiler_hello_world() {
     // Compile script data
     compiler.compile_script_data().unwrap();
 }
+
+#[test]
+fn test_number_passthrough() {
+    let mut compiler = Compiler::new(CompileTarget::HaloCEA);
+    compiler.read_script_data("test_number_passthrough.hsc", include_bytes!("script/number_passthrough.hsc")).unwrap();
+
+    // Compile script data
+    compiler.compile_script_data().unwrap();
+
+    // Let's look at each global
+    assert_eq!(compiler.globals.len(), 3);
+
+    // Literal parameters passed to (+ <a> <b>) should be real
+    let eleven_node = compiler.globals[0].node.as_ref().unwrap();
+    assert_eq!(eleven_node.value_type, ValueType::Short);
+    assert_eq!(eleven_node.parameters.as_ref().unwrap()[0].value_type, ValueType::Real);
+
+    // Globals passed to (+ <a> <b>) should be real even if short
+    let zero_node = compiler.globals[1].node.as_ref().unwrap();
+    assert_eq!(zero_node.value_type, ValueType::Short);
+    assert_eq!(zero_node.parameters.as_ref().unwrap()[0].value_type, ValueType::Real);
+
+    // But parameters passed to (= <a> <b>) should match the input type
+    let eleven_is_greater_than_zero_node = compiler.globals[2].node.as_ref().unwrap();
+    assert_eq!(eleven_is_greater_than_zero_node.value_type, ValueType::Boolean);
+    assert_eq!(eleven_is_greater_than_zero_node.parameters.as_ref().unwrap()[0].value_type, ValueType::Short);
+}

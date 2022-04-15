@@ -223,15 +223,6 @@ impl Compiler {
             None
         };
 
-        // Are we doing passthrough number?
-        let is_number_passthrough = function.is_number_passthrough();
-        let mut passthrough_number_type : Option<ValueType> = if is_number_passthrough && function_return_type == ValueType::Real {
-            Some(function_return_type)
-        }
-        else {
-            None
-        };
-
 
         // Go through each token and load them as parameters
         let mut parameters = Vec::<Node>::new();
@@ -269,44 +260,23 @@ impl Compiler {
             // Make the node
             let new_node = self.create_node_from_tokens(token, parameter_expected_type, available_functions, available_globals)?;
 
-
             // Update passthrough if needed
             if parameter_is_passthrough && new_node.value_type != ValueType::Passthrough {
                 passthrough_type = Some(new_node.value_type); 
-            }
-
-
-            // Get the type
-            if is_number_passthrough && matches!(passthrough_number_type, None) {
-                match new_node.node_type {
-                    NodeType::Primitive(true) => passthrough_number_type = Some(available_globals.get(new_node.string_data.as_ref().unwrap().as_str()).unwrap().get_value_type()),
-                    NodeType::Primitive(false) => (),
-                    NodeType::FunctionCall(_) => passthrough_number_type = Some(available_functions.get(new_node.string_data.as_ref().unwrap().as_str()).unwrap().get_return_type())
-                }
             }
 
             // Add the parameter
             parameters.push(new_node);
         }
 
-        // If we do number passthrough, try converting types
-        if let Some(number_type) = passthrough_number_type {
-            for parameter_index in 0..parameter_count {
-                let parameter_node = &mut parameters[parameter_index];
 
-                // Verify
-                let actual_type = match parameter_node.node_type {
-                    NodeType::Primitive(true) => available_globals.get(parameter_node.string_data.as_ref().unwrap().as_str()).unwrap().get_value_type(),
-                    NodeType::Primitive(false) => number_type,
-                    NodeType::FunctionCall(_) => available_functions.get(parameter_node.string_data.as_ref().unwrap().as_str()).unwrap().get_return_type()
-                };
+        // If nothing was passed, treat everything passthrough as a real
+        let final_passthrough_type = passthrough_type.unwrap_or(ValueType::Real);
 
-                if !actual_type.can_convert_to(number_type) {
-                    return_compile_error!(self, tokens[parameter_index], format!("parameter #{parameter_index} changes to '{}' due to number passthrough, but it resolves to '{}' which cannot convert to the expected type", number_type.as_str(), actual_type.as_str()))
-                }
 
-                parameter_node.value_type = number_type;
-            }
+        // If we do number passthrough, make sure our passthrough type is numeric
+        if function.is_number_passthrough() && !final_passthrough_type.can_convert_to(ValueType::Real) {
+            return_compile_error!(self, function_call_token, format!("passthrough parameters resolve to '{}', but function '{function_name}' takes only numeric parameters", final_passthrough_type.as_str()))
         }
 
 
@@ -325,7 +295,7 @@ impl Compiler {
 
                 // Passthrough literals get converted into reals
                 if parameter_node.value_type == ValueType::Passthrough {
-                    parameter_node.value_type = *passthrough_type.as_ref().unwrap_or(&ValueType::Real);
+                    parameter_node.value_type = final_passthrough_type;
                 }
 
                 // Begin parsing

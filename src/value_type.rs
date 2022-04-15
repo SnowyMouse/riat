@@ -1,5 +1,5 @@
 /// Value type, used for typing for parameters, return types, and globals
-#[derive(Copy, Clone, PartialEq)]
+#[derive(Copy, Clone, PartialEq, Debug)]
 pub enum ValueType {
     Unparsed,
     SpecialForm,

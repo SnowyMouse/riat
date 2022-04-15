@@ -155,7 +155,7 @@ pub(crate) trait CallableFunction {
         None
     }
 
-    /// Get whether any 'real' function parameters can be converted to any other numerical type.
+    /// Get whether the passthrough type must be numerical.
     fn is_number_passthrough(&self) -> bool {
         false
     }
@@ -197,7 +197,7 @@ pub(crate) trait CallableGlobal {
 }
 
 /// Node data
-#[derive(PartialEq, Copy, Clone)]
+#[derive(PartialEq, Copy, Clone, Debug)]
 pub enum NodeData {
     Boolean(bool),
     Short(i16),
@@ -206,7 +206,7 @@ pub enum NodeData {
 }
 
 /// Node type
-#[derive(PartialEq, Copy, Clone)]
+#[derive(PartialEq, Copy, Clone, Debug)]
 pub enum NodeType {
     /// Node refers to a value.
     ///
@@ -252,7 +252,7 @@ impl NodeType {
 }
 
 /// Node stuff
-#[derive(PartialEq, Clone)]
+#[derive(PartialEq, Clone, Debug)]
 pub struct Node {
     /// Value type
     pub value_type: ValueType,

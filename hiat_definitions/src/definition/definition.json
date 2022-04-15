@@ -172,7 +172,6 @@
             "name": "+",
             "type": "real",
             "description": "returns the sum of all specified expressions.",
-            "number_passthrough": true,
             "parameters": [
                 {
                     "many": true,
@@ -191,7 +190,6 @@
             "name": "-",
             "type": "real",
             "description": "returns the difference of two expressions.",
-            "number_passthrough": true,
             "parameters": [
                 {
                     "type": "real"
@@ -212,7 +210,6 @@
             "name": "*",
             "type": "real",
             "description": "returns the product of all specified expressions.",
-            "number_passthrough": true,
             "parameters": [
                 {
                     "many": true,
@@ -231,7 +228,6 @@
             "name": "/",
             "type": "real",
             "description": "returns the quotient of two expressions.",
-            "number_passthrough": true,
             "parameters": [
                 {
                     "type": "real"
@@ -252,7 +248,6 @@
             "name": "min",
             "type": "real",
             "description": "returns the minimum of all specified expressions.",
-            "number_passthrough": true,
             "parameters": [
                 {
                     "many": true,
@@ -271,7 +266,6 @@
             "name": "max",
             "type": "real",
             "description": "returns the maximum of all specified expressions.",
-            "number_passthrough": true,
             "parameters": [
                 {
                     "many": true,
@@ -333,10 +327,10 @@
             "number_passthrough": true,
             "parameters": [
                 {
-                    "type": "real"
+                    "type": "passthrough"
                 },
                 {
-                    "type": "real"
+                    "type": "passthrough"
                 }
             ],
             "engines": {
@@ -354,10 +348,10 @@
             "number_passthrough": true,
             "parameters": [
                 {
-                    "type": "real"
+                    "type": "passthrough"
                 },
                 {
-                    "type": "real"
+                    "type": "passthrough"
                 }
             ],
             "engines": {
@@ -375,10 +369,10 @@
             "number_passthrough": true,
             "parameters": [
                 {
-                    "type": "real"
+                    "type": "passthrough"
                 },
                 {
-                    "type": "real"
+                    "type": "passthrough"
                 }
             ],
             "engines": {
@@ -396,10 +390,10 @@
             "number_passthrough": true,
             "parameters": [
                 {
-                    "type": "real"
+                    "type": "passthrough"
                 },
                 {
-                    "type": "real"
+                    "type": "passthrough"
                 }
             ],
             "engines": {
