@@ -101,6 +101,84 @@ impl Compiler {
                                  tokens: &[Token],
                                  available_functions: &BTreeMap<&str, &dyn CallableFunction>,
                                  available_globals: &BTreeMap<&str, &dyn CallableGlobal>) -> Result<Node, CompileError> {
+        
+        // Special handling for the cond function, turning (cond (condition1 expression1...) (condition2 expression2...)) into (if condition1 (begin expression1...) (if condition2 (begin expression2...) ...)
+        if function_name == "cond" {
+            // Make sure we have somewhere first
+            if tokens.is_empty() {
+                return_compile_error!(self, function_call_token, format!("cond requires at least one set of expressions"))
+            }
+
+            // Make our if statements
+            let mut if_tree = Vec::<Token>::new();
+            for token in tokens {
+                let fail = || {
+                    return_compile_error!(self, token, format!("cond requires each parameter to be (<condition> <expression(s)>)"))
+                };
+
+                let children = match token.children.as_ref() {
+                    None => return fail(),
+                    Some(n) if n.len() < 2 => return fail(),
+                    Some(n) => n
+                };
+
+                let condition = &children[0];
+                let expressions = &children[1..];
+
+                // Make the begin block (begin <expression(s)>)
+                let mut expressions_vec = Vec::<Token>::new();
+                expressions_vec.reserve(expressions.len() + 1); // +1 for begin
+                expressions_vec.push(Token {
+                    line: expressions[0].line,
+                    column: expressions[0].column,
+                    file: expressions[0].file,
+                    string: "begin".to_owned(),
+                    children: None
+                });
+                expressions_vec.extend_from_slice(expressions);
+                let begin_block = Token {
+                    line: expressions[0].line,
+                    column: expressions[0].column,
+                    file: expressions[0].file,
+                    string: String::new(),
+                    children: Some(expressions_vec)
+                };
+
+                // Make the if statement (if (condition) (begin whatever the heck))
+                let mut if_expressions = Vec::<Token>::new();
+                if_expressions.reserve(3 + 1); // +1 in case there's an else condition
+                if_expressions.push(Token {
+                    line: token.line,
+                    column: token.column,
+                    file: token.file,
+                    string: "if".to_owned(),
+                    children: None
+                });
+                if_expressions.push(condition.to_owned());
+                if_expressions.push(begin_block);
+                let if_block = Token {
+                    line: token.line,
+                    column: token.column,
+                    file: token.file,
+                    string: String::new(),
+                    children: Some(if_expressions)
+                };
+
+                if_tree.push(if_block);
+            }
+
+            // Make them into things
+            let tree_len = if_tree.len();
+            for i in (0..tree_len-1).rev() { // go in reverse, appending n+1 to n's children n = 0
+                let tail = if_tree.pop().unwrap(); // this will remove it from the end of the vector and do a move which should be pretty fast
+                if_tree[i].children.as_mut().unwrap().push(tail);
+            }
+            debug_assert_eq!(if_tree.len(), 1); // we should have 1 left, right??
+
+            // Now parse it
+            return self.create_node_from_tokens(&if_tree.pop().unwrap(), expected_type, available_functions, available_globals);
+        }
+
         let mut parameters = Vec::<Node>::new();
 
         // This should never be true. We will always have a type to convert to.
@@ -572,8 +650,8 @@ impl Compiler {
         }
 
         // Move all the scripts and globals to the compiler
-        self.scripts.extend(scripts);
-        self.globals.extend(globals);
+        self.scripts.append(&mut scripts);
+        self.globals.append(&mut globals);
 
         Ok(())
     }

@@ -1,5 +1,6 @@
 use super::*;
 
+#[derive(Clone)]
 pub(crate) struct Token {
     pub line: usize,
     pub column: usize,
