@@ -462,7 +462,7 @@ impl Compiler {
                                 }
                             },
                             original_token: token,
-                            node: None // we're going to parse this later
+                            node: Node::default() // we're going to parse this later
                         });
                     },
                     "script" => {
@@ -516,7 +516,7 @@ impl Compiler {
                             script_type: script_type,
                             original_token: token,
 
-                            node: None // we're going to parse this later
+                            node: Node::default() // we're going to parse this later
                         });
                     },
                     n => return_compile_error!(self, block_type, format!("expected 'global' or 'script', got '{n}' instead"))
@@ -566,12 +566,10 @@ impl Compiler {
 
         // Move all the globals and scripts
         for g in &mut globals {
-            g.node = global_nodes.remove(g.get_name());
-            debug_assert!(!matches!(g.node, None));
+            g.node = global_nodes.remove(g.get_name()).unwrap();
         }
         for s in &mut scripts {
-            s.node = script_nodes.remove(s.get_name());
-            debug_assert!(!matches!(s.node, None));
+            s.node = script_nodes.remove(s.get_name()).unwrap();
         }
 
         // Optimize 'begin' nodes with only one call
@@ -595,11 +593,11 @@ impl Compiler {
         }
 
         for g in &mut globals {
-            optimize_begin(g.node.as_mut().unwrap())
+            optimize_begin(&mut g.node)
         }
 
         for s in &mut scripts {
-            optimize_begin(s.node.as_mut().unwrap())
+            optimize_begin(&mut s.node)
         }
 
         // Remove stubbed scripts
@@ -686,11 +684,11 @@ impl Compiler {
         }
 
         for s in &mut scripts {
-            find_script_indices_for_node(s.node.as_mut().unwrap(), &scripts_by_index);
+            find_script_indices_for_node(&mut s.node, &scripts_by_index);
         }
 
         for g in &mut globals {
-            find_script_indices_for_node(g.node.as_mut().unwrap(), &scripts_by_index);
+            find_script_indices_for_node(&mut g.node, &scripts_by_index);
         }
 
         // We should NOT have any passthrough stuff remaining
@@ -698,6 +696,7 @@ impl Compiler {
         {
             fn no_passthrough(node: &Node) {
                 assert!(node.value_type != ValueType::Passthrough);
+                assert!(node.value_type != ValueType::Unparsed);
 
                 match node.parameters.as_ref() {
                     Some(n) => for i in n {
@@ -707,10 +706,10 @@ impl Compiler {
                 }
             }
             for s in &scripts {
-                no_passthrough(s.node.as_ref().unwrap());
+                no_passthrough(&s.node);
             }
             for g in &globals {
-                no_passthrough(g.node.as_ref().unwrap());
+                no_passthrough(&g.node);
             }
         }
 

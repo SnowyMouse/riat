@@ -46,17 +46,17 @@ fn test_number_passthrough() {
     assert_eq!(result.globals.len(), 3);
 
     // Literal parameters passed to (+ <a> <b>) should be real
-    let eleven_node = result.globals[0].node.as_ref().unwrap();
+    let eleven_node = &result.globals[0].node;
     assert_eq!(eleven_node.value_type, ValueType::Short);
     assert_eq!(eleven_node.parameters.as_ref().unwrap()[0].value_type, ValueType::Real);
 
     // Globals passed to (+ <a> <b>) should be real even if short
-    let zero_node = result.globals[1].node.as_ref().unwrap();
+    let zero_node = &result.globals[1].node;
     assert_eq!(zero_node.value_type, ValueType::Short);
     assert_eq!(zero_node.parameters.as_ref().unwrap()[0].value_type, ValueType::Real);
 
     // But parameters passed to (= <a> <b>) should match the input type
-    let eleven_is_greater_than_zero_node = result.globals[2].node.as_ref().unwrap();
+    let eleven_is_greater_than_zero_node = &result.globals[2].node;
     assert_eq!(eleven_is_greater_than_zero_node.value_type, ValueType::Boolean);
     assert_eq!(eleven_is_greater_than_zero_node.parameters.as_ref().unwrap()[0].value_type, ValueType::Short);
 }

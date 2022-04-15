@@ -100,7 +100,7 @@ pub struct Script {
     pub(crate) original_token: Token,
 
     /// Node of the script
-    pub node: Option<Node>
+    pub node: Node
 }
 
 impl CallableFunction for Script {
@@ -129,7 +129,7 @@ pub struct Global {
     pub(crate) original_token: Token,
 
     /// Node of the global
-    pub node: Option<Node>
+    pub node: Node
 }
 
 impl CallableGlobal for Global {
@@ -233,6 +233,12 @@ pub enum NodeType {
     FunctionCall(bool)
 }
 
+impl Default for NodeType {
+    fn default() -> Self {
+        Self::Primitive(false)
+    }
+}
+
 impl NodeType {
     /// Get whether or not the node type is a global.
     pub fn is_global(&self) -> bool {
@@ -266,7 +272,7 @@ impl NodeType {
 }
 
 /// Node stuff
-#[derive(PartialEq, Clone, Debug)]
+#[derive(PartialEq, Clone, Debug, Default)]
 pub struct Node {
     /// Value type
     pub value_type: ValueType,
