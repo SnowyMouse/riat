@@ -1,10 +1,10 @@
 #![allow(dead_code, unused_variables, unused_mut)] // for now, don't warn about these
 
 #[cfg(test)]
-mod test;
+mod test; // test module for unit testing
+
 mod definitions;
 mod value_type;
-
 mod error;
 pub use error::{CompileErrorType, CompileError};
 
