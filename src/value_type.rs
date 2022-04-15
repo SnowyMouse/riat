@@ -70,7 +70,7 @@ impl ValueType {
             // Anything matches itself
             n if n == to => true,
 
-            // Anything can convert into a void
+            // Anything can convert into a void or passthrough
             _ if to == ValueType::Void => true,
 
 

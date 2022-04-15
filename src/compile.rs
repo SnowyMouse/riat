@@ -63,11 +63,21 @@ impl Compiler {
                 let mut literal_lowercase = literal.clone();
                 literal_lowercase.make_ascii_lowercase();
 
+                let final_type;
+
                 let is_global = if let Some(global) = available_globals.get(literal_lowercase.as_str()) {
                     let value_type = global.get_value_type();
-                    if !value_type.can_convert_to(expected_type) {
-                        return_compile_error!(self, token, format!("global '{literal_lowercase}' is '{}' which cannot convert to '{}'", value_type.as_str(), expected_type.as_str()))
+
+                    // Handle global type if passthrough
+                    final_type = if expected_type == ValueType::Passthrough {
+                        value_type
                     }
+                    else {
+                        if !value_type.can_convert_to(expected_type) {
+                            return_compile_error!(self, token, format!("global '{literal_lowercase}' is '{}' which cannot convert to '{}'", value_type.as_str(), expected_type.as_str()))
+                        }
+                        expected_type
+                    };
 
                     // Use the global name as the string data
                     literal = self.lowercase_token(token);
@@ -78,11 +88,12 @@ impl Compiler {
 
                 // It's not? I guess it's a literal. We'll worry about parsing it later.
                 else {
+                    final_type = expected_type;
                     false
                 };
 
                 Node {
-                    value_type: expected_type,
+                    value_type: final_type,
                     node_type: NodeType::Primitive(is_global),
                     string_data: Some(literal),
                     data: None,
@@ -179,22 +190,12 @@ impl Compiler {
             return self.create_node_from_tokens(&if_tree.pop().unwrap(), expected_type, available_functions, available_globals);
         }
 
-        let mut parameters = Vec::<Node>::new();
-
-        // This should never be true. We will always have a type to convert to.
-        debug_assert!(expected_type != ValueType::Passthrough);
-
-        // Get the function
+        // Get function information
         let function = match available_functions.get(function_name.as_str()) {
             Some(n) => n,
             None => return_compile_error!(self, function_call_token, format!("function '{function_name}' is not defined"))
         };
-
-        // Can we convert the function type?
-        let function_return_type = function.get_return_type();
-        if !function_return_type.can_convert_to(expected_type) {
-            return_compile_error!(self, function_call_token, format!("function '{function_name}' returns '{}' which cannot convert to '{}'", function_return_type.as_str(), expected_type.as_str()))
-        }
+        let last_is_passthrough = function.is_passthrough_last();
 
         // Do we have enough parameters?
         let parameter_count = tokens.len();
@@ -203,31 +204,77 @@ impl Compiler {
             return_compile_error!(self, function_call_token, format!("function '{function_name}' takes at least {minimum} parameter(s), got {parameter_count} instead"))
         }
 
-        // Do we passthrough only the last parameter?
-        let last_is_passthrough = function.is_passthrough_last();
+
+        // If this function normally returns a passthrough, change it to expected_type (for now)
+        let function_return_type = function.get_return_type();
+        let mut final_type = if expected_type == ValueType::Passthrough {
+            function_return_type
+        }
+        else {
+            expected_type
+        };
+
+        // If the function returns a passthrough but the function return type was replaced, then all passthrough types should be replaced with our new return type
+        let mut passthrough_type : Option<ValueType> = if function_return_type == ValueType::Passthrough && final_type != function_return_type {
+            Some(final_type)
+        }
+        // ...otherwise we'll figure it out when we do the parameters
+        else {
+            None
+        };
 
         // Are we doing passthrough number?
         let is_number_passthrough = function.is_number_passthrough();
-        let mut passthrough_number_type : Option<ValueType> = None;
-
-        // If we return real, then we already know the type
-        if is_number_passthrough && function_return_type == ValueType::Real {
-            passthrough_number_type = Some(expected_type)
+        let mut passthrough_number_type : Option<ValueType> = if is_number_passthrough && function_return_type == ValueType::Real {
+            Some(function_return_type)
         }
+        else {
+            None
+        };
 
-        // Go through each token
+
+        // Go through each token and load them as parameters
+        let mut parameters = Vec::<Node>::new();
         for parameter_index in 0..parameter_count {
             let token = &tokens[parameter_index];
 
-            // Get the next type. Or complain if this is impossible because we've hit the max number of parameters.
+            // Get the type of this parameter. Or complain if this is impossible because we've hit the max number of parameters.
+            let parameter_is_passthrough;
             let parameter_expected_type = match function.get_type_of_parameter(parameter_index) {
-                Some(ValueType::Passthrough) => if last_is_passthrough && parameter_index + 1 != parameter_count { ValueType::Void } else { expected_type },
-                Some(n) => n,
+                // Function takes a passthrough.
+                Some(ValueType::Passthrough) => {
+                    // If it's not the last parameter and we only passthrough the last parameter, do void for now.
+                    if last_is_passthrough && parameter_index + 1 != parameter_count {
+                        parameter_is_passthrough = false;
+                        ValueType::Void
+                    }
+
+                    // Otherwise, it's a passthrough type, 
+                    else {
+                        match passthrough_type.as_ref() {
+                            Some(n) => { parameter_is_passthrough = false; *n }
+                            None => { parameter_is_passthrough = true; ValueType::Passthrough }
+                        }
+                    }
+                },
+
+                // Default
+                Some(n) => { parameter_is_passthrough = false; n },
+
+                // We exceeded the max number of parameters
                 None => return_compile_error!(self, token, format!("function '{function_name}' takes at most {} parameter(s) but extraneous parameter(s) were given", function.get_total_parameter_count()))
             };
 
-            // Make a node
+
+            // Make the node
             let new_node = self.create_node_from_tokens(token, parameter_expected_type, available_functions, available_globals)?;
+
+
+            // Update passthrough if needed
+            if parameter_is_passthrough && new_node.value_type != ValueType::Passthrough {
+                passthrough_type = Some(new_node.value_type); 
+            }
+
 
             // Get the type
             if is_number_passthrough && matches!(passthrough_number_type, None) {
@@ -262,7 +309,8 @@ impl Compiler {
             }
         }
 
-        // Parse the values now
+
+        // Parse the literals now
         for parameter_index in 0..parameter_count {
             let parameter_node = &mut parameters[parameter_index];
 
@@ -275,6 +323,12 @@ impl Compiler {
                     self.lowercase_token(&tokens[parameter_index])
                 };
 
+                // Passthrough literals get converted into reals
+                if parameter_node.value_type == ValueType::Passthrough {
+                    parameter_node.value_type = *passthrough_type.as_ref().unwrap_or(&ValueType::Real);
+                }
+
+                // Begin parsing
                 let string_to_parse_str = string_to_parse.as_str();
                 let clear_string_data;
 
@@ -350,7 +404,9 @@ impl Compiler {
                             None => return_compile_error!(self, tokens[parameter_index], format!("no script '{string_to_parse_str}' defined"))
                         };
                         None
-                    }
+                    },
+
+                    ValueType::Passthrough => unreachable!(),
 
                     _ => {
                         clear_string_data = false;
@@ -367,9 +423,15 @@ impl Compiler {
             }
         }
 
+        // Can we convert the function type?
+        if expected_type != ValueType::Passthrough && !final_type.can_convert_to(expected_type) {
+            return_compile_error!(self, function_call_token, format!("function '{function_name}' returns '{}' which cannot convert to '{}'", final_type.as_str(), expected_type.as_str()))
+        }
+
+
         // Set it
         Ok(Node {
-            value_type: expected_type,
+            value_type: final_type,
             node_type: NodeType::FunctionCall(function.is_engine_function()),
             string_data: Some(function_name),
             data: None,
