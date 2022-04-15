@@ -70,6 +70,9 @@ impl ValueType {
             // Anything matches itself
             n if n == to => true,
 
+            // Anything can convert into a void
+            _ if to == ValueType::Void => true,
+
 
             // Passthrough can become anything else
             ValueType::Passthrough => true,
@@ -91,10 +94,6 @@ impl ValueType {
 
             // Objects can be converted into object lists and objects
             ValueType::ObjectName | ValueType::Object | ValueType::Unit | ValueType::Weapon | ValueType::Scenery | ValueType::Vehicle | ValueType::Device => to == ValueType::Object || to == ValueType::ObjectList,
-
-
-            // Anything can convert into a void
-            _ if to == ValueType::Void => true,
 
 
             // Anything not covered is false

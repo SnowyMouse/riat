@@ -33,11 +33,11 @@
             "name": "begin",
             "type": "passthrough",
             "description": "returns the last expression in a sequence after evaluating the sequence in order.",
+            "passthrough_last": true,
             "parameters": [
                 {
                     "many": true,
-                    "type": "passthrough",
-                    "passthrough_last": true
+                    "type": "passthrough"
                 }
             ],
             "engines": {

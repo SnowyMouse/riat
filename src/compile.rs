@@ -221,7 +221,7 @@ impl Compiler {
 
             // Get the next type. Or complain if this is impossible because we've hit the max number of parameters.
             let parameter_expected_type = match function.get_type_of_parameter(parameter_index) {
-                Some(ValueType::Passthrough) => if last_is_passthrough { ValueType::Void } else { expected_type },
+                Some(ValueType::Passthrough) => if last_is_passthrough && parameter_index + 1 != parameter_count { ValueType::Void } else { expected_type },
                 Some(n) => n,
                 None => return_compile_error!(self, token, format!("function '{function_name}' takes at most {} parameter(s) but extraneous parameter(s) were given", function.get_total_parameter_count()))
             };
