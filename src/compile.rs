@@ -262,6 +262,18 @@ impl Compiler {
                         }
                     },
 
+                    ValueType::Script => {
+                        clear_string_data = false;
+                        match available_functions.get(string_to_parse_str) {
+                            Some(n) => match n.is_engine_function() {
+                                true => return_compile_error!(self, tokens[parameter_index], format!("no script '{string_to_parse_str}' defined (a function is defined by this name, but it cannot be used here)")),
+                                false => ()
+                            },
+                            None => return_compile_error!(self, tokens[parameter_index], format!("no script '{string_to_parse_str}' defined"))
+                        };
+                        None
+                    }
+
                     _ => {
                         clear_string_data = false;
                         None
@@ -523,6 +535,40 @@ impl Compiler {
                     return_compile_error!(self, globals[i].original_token, format!("multiple globals '{global_name}' defined"))
                 }
             }
+        }
+
+        // Do we exceed the maximum number of scripts?
+        if final_script_count > i16::MAX as usize {
+            return_compile_error!(self, scripts[i16::MAX as usize + 1].original_token, format!("maximum script limit of {} exceeded ({} / {})", i16::MAX, final_script_count, i16::MAX));
+        }
+
+        // Find the script indices
+        let scripts_by_index = {
+            let mut sbi = BTreeMap::<String, i16>::new();
+            for i in 0..final_script_count as usize {
+                sbi.insert(scripts[i].name.clone(), i as i16);
+            }
+            sbi
+        };
+
+        fn find_script_indices_for_node(node: &mut Node, scripts: &BTreeMap::<String, i16>) {
+            match node.node_type {
+                NodeType::Primitive(false) => {
+                    if node.value_type == ValueType::Script {
+                        node.data = Some(NodeData::Short(*scripts.get(node.string_data.as_ref().unwrap()).unwrap()));
+                    }
+                },
+                NodeType::Primitive(true) => (),
+                NodeType::FunctionCall(_) => {
+                    for p in node.parameters.as_mut().unwrap() {
+                        find_script_indices_for_node(p, &scripts);
+                    }
+                }
+            }
+        }
+
+        for s in &mut scripts {
+            find_script_indices_for_node(s.node.as_mut().unwrap(), &scripts_by_index);
         }
 
         todo!()
