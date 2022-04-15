@@ -43,20 +43,94 @@ fn test_number_passthrough() {
     let result = compiler.compile_script_data().unwrap();
 
     // Let's look at each global
-    assert_eq!(result.globals.len(), 3);
+    let globals = result.get_globals();
+    let nodes = result.get_nodes();
+    assert_eq!(globals.len(), 3);
+
+    
 
     // Literal parameters passed to (+ <a> <b>) should be real
-    let eleven_node = &result.globals[0].node;
-    assert_eq!(eleven_node.value_type, ValueType::Short);
-    assert_eq!(eleven_node.parameters.as_ref().unwrap()[0].value_type, ValueType::Real);
+    let eleven_node = &nodes[globals[0].get_first_node_index()];
+    assert_eq!(eleven_node.get_value_type(), ValueType::Short); // return type
 
-    // Globals passed to (+ <a> <b>) should be real even if short
-    let zero_node = &result.globals[1].node;
-    assert_eq!(zero_node.value_type, ValueType::Short);
-    assert_eq!(zero_node.parameters.as_ref().unwrap()[0].value_type, ValueType::Real);
+    // Function name
+    let eleven_node_function_name = match eleven_node.get_data() {
+        Some(NodeData::NodeOffset(n)) => &nodes[n],
+        _ => unreachable!()
+    };
+    assert_eq!(eleven_node_function_name.get_value_type(), ValueType::FunctionName); // function name
+    assert_eq!(eleven_node_function_name.get_string_data().unwrap(), "+");
+
+    // First parameter - 5
+    let eleven_node_1st_parameter = &nodes[eleven_node_function_name.get_next_node_index().unwrap()];
+    assert_eq!(eleven_node_1st_parameter.get_value_type(), ValueType::Real);
+    assert_eq!(eleven_node_1st_parameter.get_data(), Some(NodeData::Real(5.0)));
+    assert_eq!(eleven_node_1st_parameter.get_string_data(), None);
+
+    // Second parameter - 6
+    let eleven_node_2nd_parameter = &nodes[eleven_node_1st_parameter.get_next_node_index().unwrap()];
+    assert_eq!(eleven_node_2nd_parameter.get_value_type(), ValueType::Real);
+    assert_eq!(eleven_node_2nd_parameter.get_data(), Some(NodeData::Real(6.0)));
+    assert_eq!(eleven_node_2nd_parameter.get_string_data(), None);
+
+    // That's everything
+    assert_eq!(eleven_node_2nd_parameter.get_next_node_index(), None);
+
+    
+
+    // Globals passed to (- <a> <b>) should be real even if the globals, themselves, are short, as well as the return value
+    let zero_node = &nodes[globals[1].get_first_node_index()];
+    assert_eq!(zero_node.get_value_type(), ValueType::Short); // return type
+
+    // Function name
+    let zero_node_function_name = match zero_node.get_data() {
+        Some(NodeData::NodeOffset(n)) => &nodes[n],
+        _ => unreachable!()
+    };
+    assert_eq!(zero_node_function_name.get_value_type(), ValueType::FunctionName); // function name
+    assert_eq!(zero_node_function_name.get_string_data().unwrap(), "-");
+
+    // First parameter - 5
+    let zero_node_1st_parameter = &nodes[zero_node_function_name.get_next_node_index().unwrap()];
+    assert_eq!(zero_node_1st_parameter.get_value_type(), ValueType::Real);
+    assert_eq!(zero_node_1st_parameter.get_data(), None);
+    assert_eq!(zero_node_1st_parameter.get_string_data().unwrap(), "eleven");
+
+    // Second parameter - 6
+    let zero_node_2nd_parameter = &nodes[zero_node_1st_parameter.get_next_node_index().unwrap()];
+    assert_eq!(zero_node_2nd_parameter.get_value_type(), ValueType::Real);
+    assert_eq!(zero_node_2nd_parameter.get_data(), None);
+    assert_eq!(zero_node_2nd_parameter.get_string_data().unwrap(), "eleven");
+
+    // That's everything
+    assert_eq!(zero_node_2nd_parameter.get_next_node_index(), None);
+
+    
 
     // But parameters passed to (= <a> <b>) should match the input type
-    let eleven_is_greater_than_zero_node = &result.globals[2].node;
-    assert_eq!(eleven_is_greater_than_zero_node.value_type, ValueType::Boolean);
-    assert_eq!(eleven_is_greater_than_zero_node.parameters.as_ref().unwrap()[0].value_type, ValueType::Short);
+    let eleven_is_greater_than_zero = &nodes[globals[2].get_first_node_index()];
+    assert_eq!(eleven_is_greater_than_zero.get_value_type(), ValueType::Boolean); // return type
+
+    // Function name
+    let eleven_is_greater_than_zero_function_name = match eleven_is_greater_than_zero.get_data() {
+        Some(NodeData::NodeOffset(n)) => &nodes[n],
+        _ => unreachable!()
+    };
+    assert_eq!(eleven_is_greater_than_zero_function_name.get_value_type(), ValueType::FunctionName); // function name
+    assert_eq!(eleven_is_greater_than_zero_function_name.get_string_data().unwrap(), "=");
+
+    // First parameter - 5
+    let eleven_is_greater_than_zero_1st_parameter = &nodes[eleven_is_greater_than_zero_function_name.get_next_node_index().unwrap()];
+    assert_eq!(eleven_is_greater_than_zero_1st_parameter.get_value_type(), ValueType::Short);
+    assert_eq!(eleven_is_greater_than_zero_1st_parameter.get_data(), None);
+    assert_eq!(eleven_is_greater_than_zero_1st_parameter.get_string_data().unwrap(), "eleven");
+
+    // Second parameter - 6
+    let eleven_is_greater_than_zero_2nd_parameter = &nodes[eleven_is_greater_than_zero_1st_parameter.get_next_node_index().unwrap()];
+    assert_eq!(eleven_is_greater_than_zero_2nd_parameter.get_value_type(), ValueType::Short);
+    assert_eq!(eleven_is_greater_than_zero_2nd_parameter.get_data(), None);
+    assert_eq!(eleven_is_greater_than_zero_2nd_parameter.get_string_data().unwrap(), "zero");
+
+    // That's everything
+    assert_eq!(eleven_is_greater_than_zero_2nd_parameter.get_next_node_index(), None);
 }

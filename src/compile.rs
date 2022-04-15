@@ -713,12 +713,225 @@ impl Compiler {
             }
         }
 
+        // All right, let's make our thing
+        let mut compiled_scripts = Vec::new();
+        let mut compiled_globals = Vec::new();
+        let mut nodes = Vec::new();
+
+        fn make_compiled_node_from_node(node: Node, node_array: &mut Vec<CompiledNode>) -> usize {
+            // What type of node is it?
+            match node.node_type {
+                NodeType::Primitive(is_global) => {
+                    // Globals need to have no data set but have string data set
+                    debug_assert!(!is_global || matches!(node.data, None));
+                    debug_assert!(!is_global || !matches!(node.string_data, None));
+
+                    let result = node_array.len();
+                    node_array.push(CompiledNode {
+                        node_type: node.node_type,
+                        value_type: node.value_type,
+                        data: node.data,
+                        string_data: node.string_data,
+                        next_node: None
+                    });
+                    result
+                },
+                NodeType::FunctionCall(_) => {
+                    let parameters = node.parameters.unwrap();
+
+                    // First let's get this function call done and over with
+                    let function_call_node = node_array.len();
+                    let function_name_node = function_call_node + 1;
+                    node_array.push(CompiledNode {
+                        node_type: node.node_type,
+                        value_type: node.value_type,
+                        data: Some(NodeData::NodeOffset(function_name_node)),
+                        string_data: None,
+                        next_node: None
+                    });
+
+                    // Next get the function name out of the way
+                    node_array.push(CompiledNode {
+                        node_type: NodeType::Primitive(false),
+                        value_type: ValueType::FunctionName,
+                        data: node.data,
+                        string_data: node.string_data,
+                        next_node: None
+                    });
+
+                    // Let's get our parameters here now
+                    let mut previous_node = function_name_node;
+                    for p in parameters {
+                        let next_node = make_compiled_node_from_node(p, node_array);
+                        node_array[previous_node].next_node = Some(next_node);
+                        previous_node = next_node;
+                    }
+
+                    // Done
+                    function_call_node
+                }
+            }
+        }
+
+        for s in scripts {
+            compiled_scripts.push(
+                CompiledScript {
+                    name: s.name,
+                    value_type: s.return_type,
+                    script_type: s.script_type,
+                    first_node: make_compiled_node_from_node(s.node, &mut nodes)
+                }
+            )
+        }
+        for g in globals {
+            compiled_globals.push(
+                CompiledGlobal {
+                    name: g.name,
+                    value_type: g.value_type,
+                    first_node: make_compiled_node_from_node(g.node, &mut nodes)
+                }
+            )
+        }
+
         // Done!
         Ok(CompiledScriptData {
-            scripts: scripts,
-            globals: globals,
+            scripts: compiled_scripts,
+            globals: compiled_globals,
             files: self.files.drain(..).collect(),
-            warnings: self.warnings.drain(..).collect()
+            warnings: self.warnings.drain(..).collect(),
+            nodes: nodes
         })
+    }
+}
+
+
+/// Result of a successful compilation
+pub struct CompiledScriptData {
+    scripts: Vec<CompiledScript>,
+    globals: Vec<CompiledGlobal>,
+    files: Vec<String>,
+    warnings: Vec<CompileError>,
+    nodes: Vec<CompiledNode>
+}
+
+impl CompiledScriptData {
+    /// Get all scripts that were compiled.
+    pub fn get_scripts(&self) -> &[CompiledScript] {
+        &self.scripts
+    }
+
+    /// Get all globals that were compiled.
+    pub fn get_globals(&self) -> &[CompiledGlobal] {
+        &self.globals
+    }
+
+    /// Get all files that were compiled.
+    pub fn get_files(&self) -> &[String] {
+        &self.files
+    }
+
+    /// Get all warnings from compiling.
+    pub fn get_warning(&self) -> &[CompileError] {
+        &self.warnings
+    }
+
+    /// Get all compiled nodes
+    pub fn get_nodes(&self) -> &[CompiledNode] {
+        &self.nodes
+    }
+}
+
+
+/// Compiled script result.
+pub struct CompiledScript {
+    name: String,
+    value_type: ValueType,
+    script_type: ScriptType,
+    first_node: usize
+}
+
+impl CompiledScript {
+    /// Get the name of the script.
+    pub fn get_name(&self) -> &str {
+        self.name.as_str()
+    }
+
+    /// Get the return value type.
+    pub fn get_value_type(&self) -> ValueType {
+        self.value_type
+    }
+
+    /// Get the script type.
+    pub fn get_type(&self) -> ScriptType {
+        self.script_type
+    }
+
+    /// Get the index of the first node.
+    pub fn get_first_node_index(&self) -> usize {
+        self.first_node
+    }
+}
+
+
+/// Compiled global result.
+pub struct CompiledGlobal {
+    name: String,
+    value_type: ValueType,
+    first_node: usize
+}
+
+impl CompiledGlobal {
+    /// Get the name of the global.
+    pub fn get_name(&self) -> &str {
+        self.name.as_str()
+    }
+
+    /// Get the value type.
+    pub fn get_value_type(&self) -> ValueType {
+        self.value_type
+    }
+
+    /// Get the index of the first node.
+    pub fn get_first_node_index(&self) -> usize {
+        self.first_node
+    }
+}
+
+
+pub struct CompiledNode {
+    pub node_type: NodeType,
+    pub value_type: ValueType,
+    pub data: Option<NodeData>,
+    pub string_data: Option<String>,
+    pub next_node: Option<usize>
+}
+
+impl CompiledNode {
+    /// Get the type of node
+    pub fn get_type(&self) -> NodeType {
+        self.node_type
+    }
+
+    /// Get the return value type.
+    pub fn get_value_type(&self) -> ValueType {
+        self.value_type
+    }
+
+    /// Get the data of the node, if any.
+    pub fn get_data(&self) -> Option<NodeData> {
+        self.data
+    }
+
+    /// Get the string data of the node, if any.
+    pub fn get_string_data(&self) -> Option<&str> {
+        match self.string_data.as_ref() {
+            Some(n) => Some(n.as_str()),
+            None => None
+        }
+    }
+
+    /// Get the next node index, if any.
+    pub fn get_next_node_index(&self) -> Option<usize> {
+        self.next_node
     }
 }

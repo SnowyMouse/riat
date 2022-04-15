@@ -9,6 +9,8 @@ mod error;
 pub use error::{CompileErrorType, CompileError};
 
 mod compile;
+pub use compile::*;
+
 mod types;
 pub use types::*;
 
@@ -24,14 +26,6 @@ pub struct Compiler {
 
     target: CompileTarget,
     warnings: Vec<CompileError>
-}
-
-/// Result of a successful compilation.
-pub struct CompiledScriptData {
-    pub scripts: Vec<Script>,
-    pub globals: Vec<Global>,
-    pub files: Vec<String>,
-    pub warnings: Vec<CompileError>
 }
 
 impl Compiler {

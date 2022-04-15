@@ -86,7 +86,7 @@ impl ScriptType {
 }
 
 /// Scripts are custom functions that can be called by globals, other scripts, or sometimes automatically.
-pub struct Script {
+pub(crate) struct Script {
     /// Name of the script
     pub name: String,
 
@@ -118,7 +118,7 @@ impl CallableFunction for Script {
 }
 
 /// Globals are custom variables that can be used by other globals and scripts.
-pub struct Global {
+pub(crate) struct Global {
     /// Name of the global
     pub name: String,
 
@@ -216,7 +216,8 @@ pub enum NodeData {
     Boolean(bool),
     Short(i16),
     Long(i32),
-    Real(f32)
+    Real(f32),
+    NodeOffset(usize)
 }
 
 /// Node type
@@ -273,7 +274,7 @@ impl NodeType {
 
 /// Data unit used for scripts.
 #[derive(PartialEq, Clone, Debug, Default)]
-pub struct Node {
+pub(crate) struct Node {
     /// Value type
     pub value_type: ValueType,
 
