@@ -436,7 +436,7 @@ impl Compiler {
                             Some(n) => n,
                             None => return_compile_error!(self, script_type_token, format!("expected script type, got '{script_type_string}' instead"))
                         };
-                        let type_expected = script_type.always_returns_void();
+                        let type_expected = !script_type.always_returns_void();
 
                         // Do we have enough tokens?
                         let minimum_number_of_tokens = script_type.expression_offset() + 1;
@@ -467,7 +467,7 @@ impl Compiler {
                                 match ValueType::from_str_underscore(&return_type_token_string) {
                                     Some(ValueType::Passthrough) => return_compile_error!(self, return_type_token, format!("cannot define '{return_type_token_string}' scripts")),
                                     Some(n) => n,
-                                    None => return_compile_error!(self, return_type_token, format!("expected global return value type, got '{return_type_token_string}' instead"))
+                                    None => return_compile_error!(self, return_type_token, format!("expected script return value type, got '{return_type_token_string}' instead"))
                                 }
                             }
                             else {
