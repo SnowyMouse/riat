@@ -27,10 +27,10 @@ pub struct Compiler {
 
 /// Result of a successful compilation
 pub struct CompiledScriptData {
-    scripts: Vec<Script>,
-    globals: Vec<Global>,
-    files: Vec<String>,
-    warnings: Vec<CompileError>
+    pub scripts: Vec<Script>,
+    pub globals: Vec<Global>,
+    pub files: Vec<String>,
+    pub warnings: Vec<CompileError>
 }
 
 impl Compiler {

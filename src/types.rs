@@ -85,13 +85,21 @@ impl ScriptType {
     }
 }
 
-pub(crate) struct Script {
+/// Scripts are custom functions that can be called by globals, other scripts, or sometimes automatically such as with continuous scripts.
+pub struct Script {
+    /// Name of the script
     pub name: String,
+
+    /// Return type of the script
     pub return_type: ValueType,
+
+    /// Type of the script
     pub script_type: ScriptType,
 
-    pub original_token: Token,
+    /// Token of the script (internal only)
+    pub(crate) original_token: Token,
 
+    /// Node of the script
     pub node: Option<Node>
 }
 
@@ -109,12 +117,18 @@ impl CallableFunction for Script {
     }
 }
 
-pub(crate) struct Global {
+/// Globals are custom variables that can be used by other globals and scripts.
+pub struct Global {
+    /// Name of the global
     pub name: String,
+
+    /// Value type of the global
     pub value_type: ValueType,
 
-    pub original_token: Token,
+    /// Token of the global (internal only)
+    pub(crate) original_token: Token,
 
+    /// Node of the global
     pub node: Option<Node>
 }
 
