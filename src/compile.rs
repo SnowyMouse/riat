@@ -711,6 +711,27 @@ impl Compiler {
             find_script_indices_for_node(s.node.as_mut().unwrap(), &scripts_by_index);
         }
 
+        // We should NOT have any passthrough stuff remaining
+        #[cfg(debug_assertions)]
+        {
+            fn no_passthrough(node: &Node) {
+                assert!(node.value_type != ValueType::Passthrough);
+
+                match node.parameters.as_ref() {
+                    Some(n) => for i in n {
+                        no_passthrough(i);
+                    },
+                    None => ()
+                }
+            }
+            for s in &scripts {
+                no_passthrough(s.node.as_ref().unwrap());
+            }
+            for g in &globals {
+                no_passthrough(g.node.as_ref().unwrap());
+            }
+        }
+
         // Move all the scripts and globals to the compiler
         self.scripts.append(&mut scripts);
         self.globals.append(&mut globals);
