@@ -65,6 +65,11 @@ impl Compiler {
 
                 let is_global = if let Some(global) = available_globals.get(literal_lowercase.as_str()) {
                     let value_type = global.get_value_type();
+                    if !value_type.can_convert_to(expected_type) {
+                        return_compile_error!(self, token, format!("global '{literal_lowercase}' is '{}' which cannot convert to '{}'", value_type.as_str(), expected_type.as_str()))
+                    }
+
+                    // Use the global name as the string data
                     literal = self.lowercase_token(token);
 
                     // Great!
@@ -77,10 +82,10 @@ impl Compiler {
                 };
 
                 Node {
-                    value_type: ValueType::Unparsed,
+                    value_type: expected_type,
                     node_type: NodeType::Primitive(is_global),
                     string_data: Some(literal),
-                    data: NodeData::None,
+                    data: None,
                     parameters: None
                 }
             }
@@ -107,6 +112,12 @@ impl Compiler {
             None => return_compile_error!(self, function_call_token, format!("function '{function_name}' is not defined"))
         };
 
+        // Can we convert the function type?
+        let function_return_type = function.get_return_type();
+        if !function_return_type.can_convert_to(expected_type) {
+            return_compile_error!(self, function_call_token, format!("function '{function_name}' returns '{}' which cannot convert to '{}'", function_return_type.as_str(), expected_type.as_str()))
+        }
+
         // Do we have enough parameters?
         let parameter_count = tokens.len();
         let minimum = function.get_minimum_parameter_count();
@@ -114,12 +125,25 @@ impl Compiler {
             return_compile_error!(self, function_call_token, format!("function '{function_name}' takes at least {minimum} parameter(s), got {parameter_count} instead"))
         }
 
+        // Do we passthrough only the last parameter?
+        let last_is_passthrough = function.is_passthrough_last();
+
+        // Are we doing passthrough number?
+        let is_number_passthrough = function.is_number_passthrough();
+        let mut passthrough_number_type : Option<ValueType> = None;
+
+        // If we return real, then we already know the type
+        if is_number_passthrough && function_return_type == ValueType::Real {
+            passthrough_number_type = Some(expected_type)
+        }
+
         // Go through each token
         for parameter_index in 0..parameter_count {
             let token = &tokens[parameter_index];
 
             // Get the next type. Or complain if this is impossible because we've hit the max number of parameters.
-            let mut parameter_expected_type = match function.get_type_of_parameter(parameter_index) {
+            let parameter_expected_type = match function.get_type_of_parameter(parameter_index) {
+                Some(ValueType::Passthrough) => if last_is_passthrough { ValueType::Void } else { expected_type },
                 Some(n) => n,
                 None => return_compile_error!(self, token, format!("function '{function_name}' takes at most {} parameter(s) but extraneous parameter(s) were given", function.get_total_parameter_count()))
             };
@@ -127,16 +151,138 @@ impl Compiler {
             // Make a node
             let new_node = self.create_node_from_tokens(token, parameter_expected_type, available_functions, available_globals)?;
 
+            // Get the type
+            if is_number_passthrough && matches!(passthrough_number_type, None) {
+                match new_node.node_type {
+                    NodeType::Primitive(true) => passthrough_number_type = Some(available_globals.get(new_node.string_data.as_ref().unwrap().as_str()).unwrap().get_value_type()),
+                    NodeType::Primitive(false) => (),
+                    NodeType::FunctionCall(_) => passthrough_number_type = Some(available_functions.get(new_node.string_data.as_ref().unwrap().as_str()).unwrap().get_return_type())
+                }
+            }
+
             // Add the parameter
             parameters.push(new_node);
         }
 
+        // If we do number passthrough, try converting types
+        if let Some(number_type) = passthrough_number_type {
+            for parameter_index in 0..parameter_count {
+                let parameter_node = &mut parameters[parameter_index];
+
+                // Verify
+                let actual_type = match parameter_node.node_type {
+                    NodeType::Primitive(true) => available_globals.get(parameter_node.string_data.as_ref().unwrap().as_str()).unwrap().get_value_type(),
+                    NodeType::Primitive(false) => number_type,
+                    NodeType::FunctionCall(_) => available_functions.get(parameter_node.string_data.as_ref().unwrap().as_str()).unwrap().get_return_type()
+                };
+
+                if !actual_type.can_convert_to(number_type) {
+                    return_compile_error!(self, tokens[parameter_index], format!("parameter #{parameter_index} changes to '{}' due to number passthrough, but it resolves to '{}' which cannot convert to the expected type", number_type.as_str(), actual_type.as_str()))
+                }
+
+                parameter_node.value_type = number_type;
+            }
+        }
+
+        // Parse the values now
+        for parameter_index in 0..parameter_count {
+            let parameter_node = &mut parameters[parameter_index];
+
+            if matches!(parameter_node.node_type, NodeType::Primitive(false)) {
+                let parameter_token = &tokens[parameter_index];
+                let string_to_parse = if function.is_uppercase_allowed_for_parameter(parameter_index) {
+                    tokens[parameter_index].string.clone()
+                }
+                else {
+                    self.lowercase_token(&tokens[parameter_index])
+                };
+
+                let string_to_parse_str = string_to_parse.as_str();
+                let clear_string_data;
+
+                parameter_node.data = match parameter_node.value_type {
+                    ValueType::Boolean => {
+                        clear_string_data = true;
+                        match string_to_parse_str {
+                            "0" | "false" | "off" => Some(NodeData::Boolean(false)),
+                            "1" | "true" | "on" => Some(NodeData::Boolean(false)),
+                            _ => return_compile_error!(self, tokens[parameter_index], format!("cannot parse literal '{string_to_parse}' as a boolean (expected 0/1/false/true/off/on)"))
+                        }
+                    },
+
+                    ValueType::Short => {
+                        clear_string_data = true;
+                        match string_to_parse_str.parse::<i16>() {
+                            Ok(n) => Some(NodeData::Short(n)),
+                            Err(_) => return_compile_error!(self, tokens[parameter_index], format!("cannot parse literal '{string_to_parse}' as a short"))
+                        }
+                    },
+
+                    ValueType::Long => {
+                        clear_string_data = true;
+                        match string_to_parse_str.parse::<i32>() {
+                            Ok(n) => Some(NodeData::Long(n)),
+                            Err(_) => return_compile_error!(self, tokens[parameter_index], format!("cannot parse literal '{string_to_parse}' as a long"))
+                        }
+                    },
+
+                    ValueType::Real => {
+                        clear_string_data = true;
+                        match string_to_parse_str.parse::<f32>() {
+                            Ok(n) => Some(NodeData::Real(n)),
+                            Err(_) => return_compile_error!(self, tokens[parameter_index], format!("cannot parse literal '{string_to_parse}' as a real"))
+                        }
+                    },
+
+                    ValueType::GameDifficulty => {
+                        clear_string_data = false;
+                        match string_to_parse_str {
+                            "easy" => Some(NodeData::Short(0)),
+                            "normal" => Some(NodeData::Short(1)),
+                            "hard" => Some(NodeData::Short(2)),
+                            "impossible" => Some(NodeData::Short(3)),
+                            _ => return_compile_error!(self, tokens[parameter_index], format!("cannot parse literal '{string_to_parse}' as a game_difficulty (expected easy/normal/hard/impossible)"))
+                        }
+                    },
+
+                    ValueType::Team => {
+                        clear_string_data = false;
+                        match string_to_parse_str {
+                            // "none" => Some(NodeData::Short(0)), // none is not supported for some reason
+                            "player" => Some(NodeData::Short(1)),
+                            "human" => Some(NodeData::Short(2)),
+                            "covenant" => Some(NodeData::Short(3)),
+                            "flood" => Some(NodeData::Short(4)),
+                            "sentinel" => Some(NodeData::Short(5)),
+                            "unused6" => Some(NodeData::Short(6)),
+                            "unused7" => Some(NodeData::Short(7)),
+                            "unused8" => Some(NodeData::Short(8)),
+                            "unused9" => Some(NodeData::Short(9)),
+                            _ => return_compile_error!(self, tokens[parameter_index], format!("cannot parse literal '{string_to_parse}' as a team (expected player/human/covenant/flood/sentinel)"))
+                        }
+                    },
+
+                    _ => {
+                        clear_string_data = false;
+                        None
+                    }
+                };
+
+                parameter_node.string_data = if clear_string_data {
+                    None
+                }
+                else {
+                    Some(string_to_parse)
+                }
+            }
+        }
+
         // Set it
         Ok(Node {
-            value_type: ValueType::Unparsed,
+            value_type: expected_type,
             node_type: NodeType::FunctionCall(function.is_engine_function()),
             string_data: Some(function_name),
-            data: NodeData::None,
+            data: None,
             parameters: Some(parameters)
         })
     }

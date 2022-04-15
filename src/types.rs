@@ -168,6 +168,11 @@ pub(crate) trait CallableFunction {
     /// Get whether or not the target engine is supported
     fn supports_target(&self, target: CompileTarget) -> bool;
 
+    /// Get whether or not a parameter at a given index can use an uppercase literal
+    fn is_uppercase_allowed_for_parameter(&self, parameter_index: usize) -> bool {
+        false
+    }
+
     /// Get whether or not it's an engine function
     fn is_engine_function(&self) -> bool {
         false
@@ -194,7 +199,6 @@ pub(crate) trait CallableGlobal {
 /// Node data
 #[derive(PartialEq, Copy, Clone)]
 pub enum NodeData {
-    None,
     Boolean(bool),
     Short(i16),
     Long(i32),
@@ -260,7 +264,7 @@ pub struct Node {
     pub string_data: Option<String>,
 
     /// Node data
-    pub data: NodeData,
+    pub data: Option<NodeData>,
 
     /// Parameters of the node (if a function call)
     pub parameters: Option<Vec<Node>>

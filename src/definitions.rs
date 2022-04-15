@@ -106,6 +106,15 @@ impl CallableFunction for EngineFunction {
     fn is_passthrough_last(&self) -> bool {
         self.passthrough_last
     }
+
+    fn is_uppercase_allowed_for_parameter(&self, parameter_index: usize) -> bool {
+        if parameter_index < self.parameters.len() {
+            self.parameters[parameter_index].allow_uppercase
+        }
+        else {
+            false
+        }
+    }
 }
 
 pub(crate) struct EngineGlobal {
