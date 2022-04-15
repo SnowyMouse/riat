@@ -17,6 +17,7 @@ use token::Token;
 
 pub use value_type::ValueType;
 
+/// Compiler instance.
 pub struct Compiler {
     tokens: Vec<Token>,
     files: Vec<String>,
@@ -25,7 +26,7 @@ pub struct Compiler {
     warnings: Vec<CompileError>
 }
 
-/// Result of a successful compilation
+/// Result of a successful compilation.
 pub struct CompiledScriptData {
     pub scripts: Vec<Script>,
     pub globals: Vec<Global>,

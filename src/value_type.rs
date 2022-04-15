@@ -65,6 +65,7 @@ impl ToString for ValueType {
 }
 
 impl ValueType {
+    /// Return true if the type can convert to the supplied type.
     pub fn can_convert_to(&self, to: ValueType) -> bool {
         match *self {
             // Anything matches itself
@@ -101,6 +102,7 @@ impl ValueType {
         }
     }
 
+    /// Get the string representation of the value type.
     pub fn as_str(&self) -> &str {
         match *self {
             ValueType::Unparsed => "unparsed",
@@ -155,6 +157,9 @@ impl ValueType {
         }
     }
 
+    /// Convert a string to a ValueType.
+    ///
+    /// This will not match the result of [`as_str`](ValueType::as_str), as this is used for parsing HSC scripts where [`as_str`](ValueType::as_str) is used for diagnostic messages.
     pub fn from_str_underscore(string: &str) -> Option<ValueType> {
         Some(match string {
             "unparsed" => ValueType::Unparsed,
@@ -211,6 +216,7 @@ impl ValueType {
         })
     }
 
+    /// Get the numeric representation of the value type.
     pub fn as_int(&self) -> u16 {
         *self as u16
     }

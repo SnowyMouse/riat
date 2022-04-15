@@ -85,7 +85,7 @@ impl ScriptType {
     }
 }
 
-/// Scripts are custom functions that can be called by globals, other scripts, or sometimes automatically such as with continuous scripts.
+/// Scripts are custom functions that can be called by globals, other scripts, or sometimes automatically.
 pub struct Script {
     /// Name of the script
     pub name: String,
@@ -224,12 +224,12 @@ pub enum NodeData {
 pub enum NodeType {
     /// Node refers to a value.
     ///
-    /// If the boolean is true, then string_data will be set to the global name.
+    /// If the boolean is `true`, then string_data will be set to the global name.
     Primitive(bool),
 
     /// Node is a function call.
     ///
-    /// If the boolean is true, then the function is a script.
+    /// If the boolean is `true`, then the function is a script.
     FunctionCall(bool)
 }
 
@@ -271,7 +271,7 @@ impl NodeType {
     }
 }
 
-/// Node stuff
+/// Data unit used for scripts.
 #[derive(PartialEq, Clone, Debug, Default)]
 pub struct Node {
     /// Value type

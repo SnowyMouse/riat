@@ -1,6 +1,6 @@
 use std::fmt;
 
-/// Error type for CompileError
+/// Error type for CompileError.
 #[derive(Copy, Clone, Debug)]
 pub enum CompileErrorType {
     /// Warning, typically for potentially bad, but not technically invalid code
@@ -25,6 +25,7 @@ impl fmt::Display for CompileErrorType {
     }
 }
 
+/// Diagnostic message generated on warning or error.
 #[derive(Debug, Clone)]
 pub struct CompileError {
     message: String,
