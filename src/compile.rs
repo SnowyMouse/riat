@@ -468,6 +468,63 @@ impl Compiler {
             optimize_begin(g.node.as_mut().unwrap())
         }
 
+        for s in &mut scripts {
+            optimize_begin(s.node.as_mut().unwrap())
+        }
+
+        // Remove stubbed scripts
+        'remove_stubs_loop: loop {
+            let script_count = scripts.len();
+            for i in 0..script_count {
+                if scripts[i].script_type == ScriptType::Stub {
+                    for j in 0..script_count {
+                        if j == i || scripts[i].name != scripts[j].name { // ignore self and scripts that don't have the same name as self
+                            continue
+                        }
+                        
+                        // Is the script a static script?
+                        if scripts[j].script_type != ScriptType::Static {
+                            return_compile_error!(self, scripts[i].original_token, format!("cannot replace stub script '{}' with non-static script", scripts[i].name))
+                        }
+                        
+                        // Does the type match?
+                        if scripts[j].return_type != scripts[i].return_type {
+                            return_compile_error!(self, scripts[i].original_token, format!("cannot replace stub script '{}' that returns '{}' with static script which returns '{}'", scripts[i].return_type.as_str(), scripts[i].name, scripts[j].return_type.as_str()))
+                        }
+
+                        // Okay, we can remove it
+                        scripts.remove(i);
+
+                        // Done
+                        continue 'remove_stubs_loop;
+                    }
+                }
+            }
+            break;
+        }
+
+        // Ensure there are no duplicate scripts or globals
+        let final_script_count = scripts.len();
+        let final_global_count = globals.len();
+
+        for i in 0..final_script_count {
+            let script_name = &scripts[i].name;
+            for j in i+1..final_script_count {
+                if script_name == &scripts[j].name {
+                    return_compile_error!(self, scripts[i].original_token, format!("multiple scripts '{script_name}' defined"))
+                }
+            }
+        }
+
+        for i in 0..final_global_count {
+            let global_name = &globals[i].name;
+            for j in i+1..final_global_count {
+                if global_name == &globals[j].name {
+                    return_compile_error!(self, globals[i].original_token, format!("multiple globals '{global_name}' defined"))
+                }
+            }
+        }
+
         todo!()
     }
 }
