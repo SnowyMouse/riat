@@ -141,12 +141,13 @@ impl CallableGlobal for Global {
         self.value_type
     }
 
-    fn supports_target(&self, target: CompileTarget) -> bool {
+    fn supports_target(&self, _target: CompileTarget) -> bool {
         true
     }
 }
 
 /// Function that can be called in a script
+#[allow(unused_variables)]
 pub(crate) trait CallableFunction {
     /// Get the function name.
     fn get_name(&self) -> &str;

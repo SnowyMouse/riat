@@ -211,7 +211,7 @@ impl Compiler {
 
         // If this function normally returns a passthrough, change it to expected_type (for now)
         let function_return_type = function.get_return_type();
-        let mut final_type = if expected_type == ValueType::Passthrough {
+        let final_type = if expected_type == ValueType::Passthrough {
             function_return_type
         }
         else {
@@ -291,10 +291,10 @@ impl Compiler {
             if matches!(parameter_node.node_type, NodeType::Primitive(false)) {
                 let parameter_token = &tokens[parameter_index];
                 let string_to_parse = if function.is_uppercase_allowed_for_parameter(parameter_index) {
-                    tokens[parameter_index].string.clone()
+                    parameter_token.string.clone()
                 }
                 else {
-                    self.lowercase_token(&tokens[parameter_index])
+                    self.lowercase_token(parameter_token)
                 };
 
                 // Passthrough literals get converted into reals
@@ -419,7 +419,7 @@ impl Compiler {
 
     pub fn digest_tokens(&mut self) -> Result<CompiledScriptData, CompileError> {
         let (mut scripts, mut globals) = {
-            let mut tokens : Vec<Token> = self.tokens.drain(..).collect();
+            let tokens : Vec<Token> = self.tokens.drain(..).collect();
 
             let mut scripts = Vec::<Script>::new();
             let mut globals = Vec::<Global>::new();
@@ -575,7 +575,7 @@ impl Compiler {
         // Optimize 'begin' nodes with only one call
         fn optimize_begin(node_to_optimize: &mut Node) {
             while matches!(node_to_optimize.node_type, NodeType::FunctionCall(true)) && node_to_optimize.string_data.as_ref().unwrap() == "begin" {
-                let mut parameters = node_to_optimize.parameters.as_mut().unwrap();
+                let parameters = node_to_optimize.parameters.as_mut().unwrap();
                 if parameters.len() == 1 {
                     *node_to_optimize = parameters.pop().unwrap();
                 }

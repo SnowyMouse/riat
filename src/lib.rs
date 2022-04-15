@@ -1,5 +1,3 @@
-#![allow(dead_code, unused_variables, unused_mut)] // for now, don't warn about these
-
 #[cfg(test)]
 mod test; // test module for unit testing
 
