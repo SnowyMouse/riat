@@ -93,6 +93,10 @@ impl ValueType {
             ValueType::ObjectName | ValueType::Object | ValueType::Unit | ValueType::Weapon | ValueType::Scenery | ValueType::Vehicle | ValueType::Device => to == ValueType::Object || to == ValueType::ObjectList,
 
 
+            // Anything can convert into a void
+            _ if to == ValueType::Void => true,
+
+
             // Anything not covered is false
             _ => false
         }
