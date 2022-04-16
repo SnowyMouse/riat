@@ -429,14 +429,18 @@
             "name": "sleep_until",
             "type": "void",
             "description": "pauses execution of this script until the specified condition is true, checking once per second unless a different number of ticks is specified.",
+            "comment": "The third 'long' argument is undocumented and determines the maximum number of attempts to check the condition. Additional arguments are allowed by the script compiler, but they either do not do anything or cause errors in Sapien's script compiler such as \"you need to recompile scripts\"",
             "parameters": [
                 {
                     "type": "boolean"
                 },
                 {
                     "optional": true,
-                    "many": true,
                     "type": "short"
+                },
+                {
+                    "optional": true,
+                    "type": "long"
                 }
             ],
             "engines": {
