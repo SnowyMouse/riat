@@ -1,5 +1,6 @@
 /// Value type, used for typing for parameters, return types, and globals
 #[derive(Copy, Clone, PartialEq, Debug)]
+#[repr(C)]
 pub enum ValueType {
     Unparsed,
     SpecialForm,
@@ -217,7 +218,7 @@ impl ValueType {
     }
 
     /// Get the numeric representation of the value type.
-    pub fn as_int(&self) -> u16 {
+    pub fn as_u16(&self) -> u16 {
         *self as u16
     }
 }

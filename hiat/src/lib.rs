@@ -27,6 +27,7 @@ pub struct Compiler {
 }
 
 impl Compiler {
+    /// Instantiate a new compiler instance with the given compile target.
     pub fn new(target: CompileTarget) -> Compiler {
         Compiler { 
             tokens: Vec::new(),

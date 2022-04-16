@@ -52,7 +52,7 @@ impl Compiler {
                     file: file,
                     string: match std::str::from_utf8(&script[current_token_offset + if quoted { 1 } else { 0 }..i]) {
                         Ok(n) => n.to_owned(),
-                        Err(e) => return Err(CompileError::from_message(filename, line, column, CompileErrorType::Error, format!("failed to parse token - {e}")))
+                        Err(e) => return Err(CompileError::from_message(filename, line, column, CompileErrorType::Error, &format!("failed to parse token - {e}")))
                     },
                     children: None
                 });
@@ -138,7 +138,7 @@ impl Compiler {
 
         // Did the token end prematurely?
         if let CurrentlyIn::Token(_) = currently_in {
-            return Err(CompileError::from_message(filename, line, column, CompileErrorType::Error, "unterminated token".to_owned()));
+            return Err(CompileError::from_message(filename, line, column, CompileErrorType::Error, "unterminated token"));
         }
 
         // Make the tokens into a tree
@@ -159,7 +159,7 @@ impl Compiler {
                             // Check if we have another token
                             let mut next_token = match token_iter.next() {
                                 Some(n) => n,
-                                None => return Err(CompileError::from_message(filename, token.line, token.column, CompileErrorType::Error, "unterminated block".to_owned()))
+                                None => return Err(CompileError::from_message(filename, token.line, token.column, CompileErrorType::Error, "unterminated block"))
                             };
 
                             // See if it's a parenthesis
@@ -173,7 +173,7 @@ impl Compiler {
                                 ")" => {
                                     // Error if a block is empty
                                     if children.is_empty() {
-                                        return Err(CompileError::from_message(filename, token.line, token.column, CompileErrorType::Error, "empty block".to_owned()))
+                                        return Err(CompileError::from_message(filename, token.line, token.column, CompileErrorType::Error, "empty block"))
                                     }
 
                                     // Move the token
@@ -196,7 +196,7 @@ impl Compiler {
                 }
 
                 n => {
-                    return Err(CompileError::from_message(filename, line, column, CompileErrorType::Error, format!("expected left parenthesis, got {n} instead")))
+                    return Err(CompileError::from_message(filename, line, column, CompileErrorType::Error, &format!("expected left parenthesis, got {n} instead")))
                 }
             }
         }

@@ -1,18 +1,5 @@
-[package]
-name = "hamster-in-a-tube"
-description = "Halo: Combat Evolved Script Compiler"
-version = "0.1.0"
-authors = ["Snowy Mouse"]
-license = "GPL-3.0-only"
-
-[lib]
-name = "hiat"
-crate-type = ["lib", "staticlib", "cdylib"]
-
 [workspace]
 members = [
-    "hiat_definitions"
+    "hiat",
+    "hiat-definitions"
 ]
-
-[dependencies]
-hiat_definitions = { path = "hiat_definitions" }

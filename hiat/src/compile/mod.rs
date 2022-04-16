@@ -3,6 +3,8 @@ use super::definitions::{ALL_GLOBALS, ALL_FUNCTIONS, EngineFunction, EngineGloba
 
 use std::collections::BTreeMap;
 
+use std::ffi::{CString, CStr};
+
 mod types;
 pub use self::types::*;
 
@@ -27,13 +29,13 @@ fn all_functions_and_globals_for_target(target: CompileTarget) -> (Vec<&'static 
 
 macro_rules! return_compile_error {
     ($compiler: expr, $token: expr, $message: expr) => {
-        return Err(CompileError::from_message(&$compiler.files[$token.file], $token.line, $token.column, CompileErrorType::Error, $message))
+        return Err(CompileError::from_message($compiler.files[$token.file].as_str(), $token.line, $token.column, CompileErrorType::Error, $message.as_str()))
     };
 }
 
 macro_rules! compile_warn {
     ($compiler: expr, $token: expr, $message: expr) => {
-        $compiler.warnings.push(CompileError::from_message(&$compiler.files[$token.file], $token.line, $token.column, CompileErrorType::Warning, $message))
+        $compiler.warnings.push(CompileError::from_message($compiler.files[$token.file].as_str(), $token.line, $token.column, CompileErrorType::Warning, $message.as_str()))
     };
 }
 
@@ -750,7 +752,7 @@ impl Compiler {
                         node_type: node.node_type,
                         value_type: node.value_type,
                         data: node.data,
-                        string_data: node.string_data,
+                        string_data: match node.string_data { Some(n) => Some(CString::new(n).unwrap()), None => None },
                         next_node: None,
 
                         file: node.file,
@@ -782,7 +784,7 @@ impl Compiler {
                         node_type: NodeType::Primitive(false),
                         value_type: ValueType::FunctionName,
                         data: node.data,
-                        string_data: node.string_data,
+                        string_data: match node.string_data { Some(n) => Some(CString::new(n).unwrap()), None => None },
                         next_node: None,
 
                         file: node.file,
@@ -807,7 +809,7 @@ impl Compiler {
         for s in scripts {
             compiled_scripts.push(
                 CompiledScript {
-                    name: s.name,
+                    name: CString::new(s.name).unwrap(),
                     value_type: s.return_type,
                     script_type: s.script_type,
                     first_node: make_compiled_node_from_node(s.node, &mut nodes),
@@ -821,7 +823,7 @@ impl Compiler {
         for g in globals {
             compiled_globals.push(
                 CompiledGlobal {
-                    name: g.name,
+                    name: CString::new(g.name).unwrap(),
                     value_type: g.value_type,
                     first_node: make_compiled_node_from_node(g.node, &mut nodes),
 
@@ -832,11 +834,17 @@ impl Compiler {
             )
         }
 
+        // Make the files
+        let mut files = Vec::<CString>::new();
+        for i in self.files.drain(..) {
+            files.push(CString::new(i).unwrap());
+        }
+
         // Done!
         Ok(CompiledScriptData {
             scripts: compiled_scripts,
             globals: compiled_globals,
-            files: self.files.drain(..).collect(),
+            files: files,
             warnings: self.warnings.drain(..).collect(),
             nodes: nodes
         })

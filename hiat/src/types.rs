@@ -2,6 +2,7 @@ use super::*;
 
 /// Compile target to use. This determines available features, such as functions.
 #[derive(Copy, Clone, PartialEq)]
+#[repr(C)]
 pub enum CompileTarget {
     /// Halo: Combat Evolved Anniversary as released by 343 Industries for Windows.
     HaloCEA,
@@ -27,27 +28,28 @@ pub enum CompileTarget {
 
 /// Script type which determines how a script is run and parsed.
 #[derive(PartialEq, Copy, Clone)]
+#[repr(C)]
 pub enum ScriptType {
-    /// Script which can be called manually.
-    Static,
-
-    /// Static script that can be replaced by a non-stub script later.
-    Stub,
-
-    /// Script called every tick.
+    /// Script called on startup.
     ///
     /// This script always returns void.
-    Continuous,
+    Startup,
 
     /// Continuous script that can be awoken later.
     ///
     /// This script always returns void.
     Dormant,
 
-    /// Script called on startup.
+    /// Script called every tick.
     ///
     /// This script always returns void.
-    Startup
+    Continuous,
+
+    /// Script which can be called manually.
+    Static,
+
+    /// Static script that can be replaced by a non-stub script later.
+    Stub
 }
 
 impl ScriptType {

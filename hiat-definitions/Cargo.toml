@@ -1,7 +1,9 @@
 [package]
-name = "hiat_definitions"
+name = "hiat-definitions"
 description = "hiat script compiler definition generator"
 version = "0.1.0"
+authors = ["Snowy Mouse"]
+license = "GPL-3.0-only"
 
 [lib]
 proc-macro = true

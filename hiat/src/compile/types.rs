@@ -4,7 +4,7 @@ use super::*;
 pub struct CompiledScriptData {
     pub(super) scripts: Vec<CompiledScript>,
     pub(super) globals: Vec<CompiledGlobal>,
-    pub(super) files: Vec<String>,
+    pub(super) files: Vec<CString>,
     pub(super) warnings: Vec<CompileError>,
     pub(super) nodes: Vec<CompiledNode>
 }
@@ -21,7 +21,7 @@ impl CompiledScriptData {
     }
 
     /// Get all files that were compiled.
-    pub fn get_files(&self) -> &[String] {
+    pub fn get_files(&self) -> &[CString] {
         &self.files
     }
 
@@ -39,7 +39,7 @@ impl CompiledScriptData {
 
 /// Compiled script result.
 pub struct CompiledScript {
-    pub(super) name: String,
+    pub(super) name: CString,
     pub(super) value_type: ValueType,
     pub(super) script_type: ScriptType,
     pub(super) first_node: usize,
@@ -52,7 +52,12 @@ pub struct CompiledScript {
 impl CompiledScript {
     /// Get the name of the script.
     pub fn get_name(&self) -> &str {
-        self.name.as_str()
+        self.name.to_str().unwrap()
+    }
+
+    /// Get the name of the global as a null terminated C string.
+    pub fn get_name_cstr(&self) -> &CStr {
+        &self.name
     }
 
     /// Get the return value type.
@@ -91,7 +96,7 @@ impl CompiledScript {
 
 /// Compiled global result.
 pub struct CompiledGlobal {
-    pub(super) name: String,
+    pub(super) name: CString,
     pub(super) value_type: ValueType,
     pub(super) first_node: usize,
 
@@ -103,7 +108,12 @@ pub struct CompiledGlobal {
 impl CompiledGlobal {
     /// Get the name of the global.
     pub fn get_name(&self) -> &str {
-        self.name.as_str()
+        self.name.to_str().unwrap()
+    }
+
+    /// Get the name of the global as a null terminated C string.
+    pub fn get_name_cstr(&self) -> &CStr {
+        &self.name
     }
 
     /// Get the value type.
@@ -140,7 +150,7 @@ pub struct CompiledNode {
     pub(super) node_type: NodeType,
     pub(super) value_type: ValueType,
     pub(super) data: Option<NodeData>,
-    pub(super) string_data: Option<String>,
+    pub(super) string_data: Option<CString>,
     pub(super) next_node: Option<usize>,
 
     pub(super) file: usize,
@@ -167,7 +177,15 @@ impl CompiledNode {
     /// Get the string data of the node, if any.
     pub fn get_string_data(&self) -> Option<&str> {
         match self.string_data.as_ref() {
-            Some(n) => Some(n.as_str()),
+            Some(n) => Some(n.to_str().unwrap()),
+            None => None
+        }
+    }
+
+    /// Get the string data of the node, if any, as a null terminated C string.
+    pub fn get_string_data_cstr(&self) -> Option<&CStr> {
+        match self.string_data.as_ref() {
+            Some(n) => Some(n),
             None => None
         }
     }

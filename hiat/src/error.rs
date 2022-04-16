@@ -1,4 +1,5 @@
 use std::fmt;
+use std::ffi::{CStr, CString};
 
 /// Error type for CompileError.
 #[derive(Copy, Clone, Debug)]
@@ -28,8 +29,8 @@ impl fmt::Display for CompileErrorType {
 /// Diagnostic message generated on warning or error.
 #[derive(Debug, Clone)]
 pub struct CompileError {
-    message: String,
-    file: String,
+    message: CString,
+    file: CString,
     error_type: CompileErrorType,
     line: usize,
     column: usize
@@ -37,17 +38,27 @@ pub struct CompileError {
 
 impl CompileError {
     /// Create a `CompileError` from the given parameters.
-    pub(crate) fn from_message(file: &str, line: usize, column: usize, error_type: CompileErrorType, message: String) -> CompileError {
-        CompileError { line: line, column: column, error_type: error_type, file: file.to_owned(), message: message }
+    pub(crate) fn from_message(file: &str, line: usize, column: usize, error_type: CompileErrorType, message: &str) -> CompileError {
+        CompileError { line: line, column: column, error_type: error_type, file: CString::new(file).unwrap(), message: CString::new(message).unwrap() }
     }
 
     /// Get the message of the error.
     pub fn get_message(&self) -> &str {
-        &self.message
+        self.message.to_str().unwrap()
     }
 
     /// Get the filename.
     pub fn get_file(&self) -> &str {
+        self.file.to_str().unwrap()
+    }
+
+    /// Get the message of the error.
+    pub fn get_message_cstr(&self) -> &CStr {
+        &self.message
+    }
+
+    /// Get the filename.
+    pub fn get_file_cstr(&self) -> &CStr {
         &self.file
     }
 
@@ -64,6 +75,6 @@ impl CompileError {
 
 impl fmt::Display for CompileError {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
-        write!(f, "{}:{}:{}: {}: {}", self.file, self.line, self.column, self.error_type, self.message)
+        write!(f, "{}:{}:{}: {}: {}", self.file.to_str().unwrap(), self.line, self.column, self.error_type, self.message.to_str().unwrap())
     }
 }
