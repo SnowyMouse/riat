@@ -835,7 +835,7 @@ impl Compiler {
                     node_array.push(CompiledNode {
                         node_type: NodeType::Primitive(false),
                         value_type: ValueType::FunctionName,
-                        data: node.data,
+                        data: Some(NodeData::Long(0)),
                         string_data: match node.string_data { Some(n) => Some(CString::new(n).unwrap()), None => None },
                         next_node: None,
                         index: node.index,
