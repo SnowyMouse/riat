@@ -1,0 +1,7 @@
+Copyright (c) 2022 Snowy Mouse
+
+This software is licensed under version 3 the GNU General Public License (and no
+later).
+
+This software is not licensed under any other license (INCLUDING later versions
+of the GNU GPL) EXCEPT under the discretion of Snowy.
