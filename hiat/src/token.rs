@@ -33,8 +33,10 @@ impl Compiler {
 
         const ASTERISK : u8 = '*' as u8;
 
+        let script_file_length = script.len();
+
         // Go through every character
-        for i in 0..script.len() {
+        for i in 0..script_file_length {
             // Increment the column
             column = column + 1;
 
@@ -63,6 +65,16 @@ impl Compiler {
 
             // Get the character
             let c = script[i] as char;
+
+            // Is it a null terminator?
+            if c == 0 as char {
+                if i + 1 == script_file_length {
+                    break
+                }
+                else {
+                    return Err(CompileError::from_message(filename, line, column, CompileErrorType::Error, "unexpected null terminator"))
+                }
+            }
 
             // If it's a special character, we take it
             if c == '(' || c == ')' {

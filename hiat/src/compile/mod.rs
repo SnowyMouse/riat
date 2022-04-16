@@ -104,6 +104,7 @@ impl Compiler {
                     string_data: Some(literal),
                     data: None,
                     parameters: None,
+                    index: None,
 
                     file: token.file,
                     line: token.line,
@@ -416,6 +417,7 @@ impl Compiler {
             string_data: Some(function_name),
             data: None,
             parameters: Some(parameters),
+            index: None,
 
             file: function_call_token.file,
             line: function_call_token.line,
@@ -562,11 +564,17 @@ impl Compiler {
 
         // Parse all the globals
         for g in &globals {
+            if g.name.len() > 31 {
+                return_compile_error!(self, g.original_token, format!("global name '{}' exceeds 31 characters in length", g.name));
+            }
             global_nodes.insert(g.get_name().to_owned(), self.create_node_from_function("begin".to_owned(), &g.original_token, g.value_type, &g.original_token.children.as_ref().unwrap()[3..], &callable_functions, &callable_globals)?);
         }
 
         // Now parse all the scripts
         for s in &scripts {
+            if s.name.len() > 31 {
+                return_compile_error!(self, s.original_token, format!("script name '{}' exceeds 31 characters in length", s.name));
+            }
             script_nodes.insert(s.get_name().to_owned(), self.create_node_from_function("begin".to_owned(), &s.original_token, s.return_type, &s.original_token.children.as_ref().unwrap()[s.script_type.expression_offset()..], &callable_functions, &callable_globals)?);
         }
 
@@ -664,7 +672,7 @@ impl Compiler {
             return_compile_error!(self, scripts[i16::MAX as usize + 1].original_token, format!("maximum script limit of {} exceeded ({} / {})", i16::MAX, final_script_count, i16::MAX));
         }
 
-        // Find the script indices
+        // Find the script and global indices
         let scripts_by_index = {
             let mut sbi = BTreeMap::<String, i16>::new();
             for i in 0..final_script_count as usize {
@@ -672,23 +680,42 @@ impl Compiler {
             }
             sbi
         };
-        fn find_script_indices_for_node(node: &mut Node, scripts: &BTreeMap::<String, i16>) {
+        let globals_by_index = {
+            let mut gbi = BTreeMap::<String, i32>::new();
+            for i in 0..final_global_count as usize {
+                gbi.insert(globals[i].name.clone(), i as i32);
+            }
+            gbi
+        };
+
+        fn find_global_script_indices_for_node(node: &mut Node, scripts: &BTreeMap::<String, i16>, globals: &BTreeMap::<String, i32>) {
             match node.node_type {
                 NodeType::Primitive(false) => {
                     if node.value_type == ValueType::Script {
                         node.data = Some(NodeData::Short(*scripts.get(node.string_data.as_ref().unwrap()).unwrap()));
                     }
                 },
-                NodeType::Primitive(true) => (),
-                NodeType::FunctionCall(_) => {
+                NodeType::Primitive(true) => {
+                    match globals.get(node.string_data.as_ref().unwrap()) {
+                        Some(n) => node.data = Some(NodeData::Long(*n)),
+                        None => ()
+                    }
+                },
+                NodeType::FunctionCall(is_engine_function) => {
+                    // If it's not an engine function, the node gets this index value.
+                    if !is_engine_function {
+                        let index = *scripts.get(node.string_data.as_ref().unwrap()).unwrap();
+                        node.index = Some(index as u16);
+                    }
+
                     for p in node.parameters.as_mut().unwrap() {
-                        find_script_indices_for_node(p, &scripts);
+                        find_global_script_indices_for_node(p, scripts, globals);
                     }
                 }
             }
         }
         for s in &mut scripts {
-            find_script_indices_for_node(&mut s.node, &scripts_by_index);
+            find_global_script_indices_for_node(&mut s.node, &scripts_by_index, &globals_by_index);
         }
 
         // Detect uninitialized globals (and also find script indices)
@@ -708,7 +735,7 @@ impl Compiler {
             }
         }
         for i in 0..globals.len() {
-            find_script_indices_for_node(&mut globals[i].node, &scripts_by_index);
+            find_global_script_indices_for_node(&mut globals[i].node, &scripts_by_index, &globals_by_index);
             find_uninitialzed_globals(&globals[i].node, &globals[i+1..], self);
         }
 
@@ -743,8 +770,7 @@ impl Compiler {
             // What type of node is it?
             match node.node_type {
                 NodeType::Primitive(is_global) => {
-                    // Globals need to have no data set but have string data set
-                    debug_assert!(!is_global || matches!(node.data, None));
+                    // Globals need to have string data set
                     debug_assert!(!is_global || !matches!(node.string_data, None));
 
                     let result = node_array.len();
@@ -754,6 +780,7 @@ impl Compiler {
                         data: node.data,
                         string_data: match node.string_data { Some(n) => Some(CString::new(n).unwrap()), None => None },
                         next_node: None,
+                        index: node.index,
 
                         file: node.file,
                         column: node.column,
@@ -773,6 +800,7 @@ impl Compiler {
                         data: Some(NodeData::NodeOffset(function_name_node)),
                         string_data: None,
                         next_node: None,
+                        index: node.index,
 
                         file: node.file,
                         column: node.column,
@@ -786,6 +814,7 @@ impl Compiler {
                         data: node.data,
                         string_data: match node.string_data { Some(n) => Some(CString::new(n).unwrap()), None => None },
                         next_node: None,
+                        index: node.index,
 
                         file: node.file,
                         column: node.column,

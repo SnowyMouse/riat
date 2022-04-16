@@ -93,13 +93,13 @@ fn test_number_passthrough() {
     // First parameter - 5
     let zero_node_1st_parameter = &nodes[zero_node_function_name.get_next_node_index().unwrap()];
     assert_eq!(zero_node_1st_parameter.get_value_type(), ValueType::Real);
-    assert_eq!(zero_node_1st_parameter.get_data(), None);
+    assert_eq!(zero_node_1st_parameter.get_data(), Some(NodeData::Long(0)));
     assert_eq!(zero_node_1st_parameter.get_string_data().unwrap(), "eleven");
 
     // Second parameter - 6
     let zero_node_2nd_parameter = &nodes[zero_node_1st_parameter.get_next_node_index().unwrap()];
     assert_eq!(zero_node_2nd_parameter.get_value_type(), ValueType::Real);
-    assert_eq!(zero_node_2nd_parameter.get_data(), None);
+    assert_eq!(zero_node_2nd_parameter.get_data(), Some(NodeData::Long(0)));
     assert_eq!(zero_node_2nd_parameter.get_string_data().unwrap(), "eleven");
 
     // That's everything
@@ -122,13 +122,13 @@ fn test_number_passthrough() {
     // First parameter - 5
     let eleven_is_greater_than_zero_1st_parameter = &nodes[eleven_is_greater_than_zero_function_name.get_next_node_index().unwrap()];
     assert_eq!(eleven_is_greater_than_zero_1st_parameter.get_value_type(), ValueType::Short);
-    assert_eq!(eleven_is_greater_than_zero_1st_parameter.get_data(), None);
+    assert_eq!(eleven_is_greater_than_zero_1st_parameter.get_data(), Some(NodeData::Long(0)));
     assert_eq!(eleven_is_greater_than_zero_1st_parameter.get_string_data().unwrap(), "eleven");
 
     // Second parameter - 6
     let eleven_is_greater_than_zero_2nd_parameter = &nodes[eleven_is_greater_than_zero_1st_parameter.get_next_node_index().unwrap()];
     assert_eq!(eleven_is_greater_than_zero_2nd_parameter.get_value_type(), ValueType::Short);
-    assert_eq!(eleven_is_greater_than_zero_2nd_parameter.get_data(), None);
+    assert_eq!(eleven_is_greater_than_zero_2nd_parameter.get_data(), Some(NodeData::Long(1)));
     assert_eq!(eleven_is_greater_than_zero_2nd_parameter.get_string_data().unwrap(), "zero");
 
     // That's everything

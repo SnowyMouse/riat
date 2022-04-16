@@ -26,7 +26,7 @@ impl CompiledScriptData {
     }
 
     /// Get all warnings from compiling.
-    pub fn get_warning(&self) -> &[CompileError] {
+    pub fn get_warnings(&self) -> &[CompileError] {
         &self.warnings
     }
 
@@ -152,6 +152,7 @@ pub struct CompiledNode {
     pub(super) data: Option<NodeData>,
     pub(super) string_data: Option<CString>,
     pub(super) next_node: Option<usize>,
+    pub(super) index: Option<u16>,
 
     pub(super) file: usize,
     pub(super) line: usize,
@@ -195,6 +196,11 @@ impl CompiledNode {
         self.next_node
     }
 
+    /// Get the index value, if any.
+    pub fn get_index(&self) -> Option<u16> {
+        self.index
+    }
+
     /// Get the file index of the node, starting at 0.
     ///
     /// This corresponds to [`CompiledScriptData::get_files`].
@@ -228,6 +234,9 @@ pub(crate) struct Node {
 
     /// Node data
     pub data: Option<NodeData>,
+
+    /// Index union
+    pub index: Option<u16>,
 
     /// Parameters of the node (if a function call)
     pub parameters: Option<Vec<Node>>,

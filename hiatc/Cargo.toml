@@ -1,0 +1,13 @@
+[package]
+name = "hiatc"
+description = "C and C++ bindings for Hamster in a Tube"
+version = "0.1.0"
+authors = ["Snowy Mouse"]
+license = "GPL-3.0-only"
+
+[dependencies]
+hiat = { path = "../hiat" }
+
+[lib]
+name = "hiatc"
+crate-type = ["lib", "staticlib", "cdylib"]
