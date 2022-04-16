@@ -225,13 +225,30 @@ impl Compiler {
             expected_type
         };
 
-        // If the function returns a passthrough but the function return type was replaced, then all passthrough types should be replaced with our new return type
-        let mut passthrough_type : Option<ValueType> = if function_return_type == ValueType::Passthrough && final_type != function_return_type {
-            Some(final_type)
-        }
-        // ...otherwise we'll figure it out when we do the parameters
-        else {
-            None
+        // Determine the passthrough parameter type
+        let mut passthrough_type : Option<ValueType> = {
+            // If this is the "set" function, the passthrough type should be the global type.
+            if function_name == "set" {
+                let fn_token = &tokens[0];
+                if !matches!(fn_token.children, None) {
+                    return_compile_error!(self, function_call_token, "function 'set' cannot take a block as the variable name".to_owned())
+                }
+                let string_data = fn_token.string.as_str();
+                match available_globals.get(string_data) {
+                    Some(n) => Some(n.get_value_type()),
+                    None => return_compile_error!(self, function_call_token, format!("parameter '{string_data}' is not a global variable name"))
+                }
+            }
+
+            // Otherwise, if the function returns a passthrough but the function return type was replaced, then all passthrough types should be replaced with our new return type
+            else if function_return_type == ValueType::Passthrough && final_type != function_return_type {
+                Some(final_type)
+            }
+
+            // ...otherwise we'll figure it out when we do the parameters
+            else {
+                None
+            }
         };
 
 
@@ -278,6 +295,13 @@ impl Compiler {
 
             // Add the parameter
             parameters.push(new_node);
+        }
+
+
+        // Set the index union to 0xFFFF for globals if set
+        if function_name == "set" {
+            debug_assert_eq!(parameters[0].node_type, NodeType::Primitive(true));
+            parameters[0].index = Some(0xFFFF);
         }
 
 
@@ -719,7 +743,7 @@ impl Compiler {
         }
 
         // Detect uninitialized globals (and also find script indices)
-        fn find_uninitialzed_globals(node: &Node, globals: &[Global], compiler: &mut Compiler) {
+        fn find_uninitialized_globals(node: &Node, globals: &[Global], compiler: &mut Compiler) {
             match node.node_type {
                 NodeType::Primitive(true) => {
                     let global_name = node.string_data.as_ref().unwrap().as_str();
@@ -730,13 +754,13 @@ impl Compiler {
                         }
                     }
                 },
-                NodeType::FunctionCall(_) => for c in node.parameters.as_ref().unwrap() { find_uninitialzed_globals(&c, globals, compiler); },
+                NodeType::FunctionCall(_) => for c in node.parameters.as_ref().unwrap() { find_uninitialized_globals(&c, globals, compiler); },
                 _ => ()
             }
         }
         for i in 0..globals.len() {
             find_global_script_indices_for_node(&mut globals[i].node, &scripts_by_index, &globals_by_index);
-            find_uninitialzed_globals(&globals[i].node, &globals[i+1..], self);
+            find_uninitialized_globals(&globals[i].node, &globals[i+1..], self);
         }
 
         // We should NOT have any passthrough stuff remaining
