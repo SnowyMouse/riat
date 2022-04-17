@@ -4,7 +4,7 @@ const HELLO_WORLD_HSC : &'static [u8] = include_bytes!("script/hello_world.hsc")
 
 #[test]
 fn test_tokenizer_hello_world() {
-    let mut compiler = Compiler::new(CompileTarget::HaloCEA);
+    let mut compiler = Compiler::new(CompileTarget::HaloCEA, CompileEncoding::Windows1252);
     compiler.read_script_data("hello_world.hsc", HELLO_WORLD_HSC).unwrap();
 
     assert_eq!(compiler.tokens.len(), 1); // 1 script
@@ -14,7 +14,7 @@ fn test_tokenizer_hello_world() {
 
 #[test]
 fn test_compiler_hello_world() {
-    let mut compiler = Compiler::new(CompileTarget::HaloCEA);
+    let mut compiler = Compiler::new(CompileTarget::HaloCEA, CompileEncoding::Windows1252);
     compiler.read_script_data("hello_world.hsc", HELLO_WORLD_HSC).unwrap();
 
     // Compile script data
@@ -25,18 +25,18 @@ fn test_compiler_hello_world() {
 fn test_compatibility() {
     let test_compatibility_gbx_only_hsc = include_bytes!("script/test_compatibility_gbx_only.hsc");
 
-    let mut compiler_cea = Compiler::new(CompileTarget::HaloCEA);
+    let mut compiler_cea = Compiler::new(CompileTarget::HaloCEA, CompileEncoding::Windows1252);
     compiler_cea.read_script_data("test_compatibility_gbx_only_hsc.hsc", test_compatibility_gbx_only_hsc).unwrap();
     assert!(matches!(compiler_cea.compile_script_data(), Err(_))); // this needs to fail
 
-    let mut compiler_gbx = Compiler::new(CompileTarget::HaloCustomEdition);
+    let mut compiler_gbx = Compiler::new(CompileTarget::HaloCustomEdition, CompileEncoding::Windows1252);
     compiler_gbx.read_script_data("test_compatibility_gbx_only_hsc.hsc", test_compatibility_gbx_only_hsc).unwrap();
     assert!(matches!(compiler_gbx.compile_script_data(), Ok(_))); // this needs to pass
 }
 
 #[test]
 fn test_number_passthrough() {
-    let mut compiler = Compiler::new(CompileTarget::HaloCEA);
+    let mut compiler = Compiler::new(CompileTarget::HaloCEA, CompileEncoding::Windows1252);
     compiler.read_script_data("test_number_passthrough.hsc", include_bytes!("script/number_passthrough.hsc")).unwrap();
 
     // Compile script data
