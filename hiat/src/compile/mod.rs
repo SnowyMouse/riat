@@ -583,15 +583,15 @@ impl Compiler {
             (callable_functions, callable_globals)
         };
 
-        let mut global_nodes = BTreeMap::<String, Node>::new();
-        let mut script_nodes = BTreeMap::<String, Node>::new();
+        let mut global_nodes = std::collections::VecDeque::<Node>::new();
+        let mut script_nodes = std::collections::VecDeque::<Node>::new();
 
         // Parse all the globals
         for g in &globals {
             if g.name.len() > 31 {
                 return_compile_error!(self, g.original_token, format!("global name '{}' exceeds 31 characters in length", g.name));
             }
-            global_nodes.insert(g.get_name().to_owned(), self.create_node_from_function("begin".to_owned(), &g.original_token, g.value_type, &g.original_token.children.as_ref().unwrap()[3..], &callable_functions, &callable_globals)?);
+            global_nodes.push_back(self.create_node_from_function("begin".to_owned(), &g.original_token, g.value_type, &g.original_token.children.as_ref().unwrap()[3..], &callable_functions, &callable_globals)?);
         }
 
         // Now parse all the scripts
@@ -599,15 +599,15 @@ impl Compiler {
             if s.name.len() > 31 {
                 return_compile_error!(self, s.original_token, format!("script name '{}' exceeds 31 characters in length", s.name));
             }
-            script_nodes.insert(s.get_name().to_owned(), self.create_node_from_function("begin".to_owned(), &s.original_token, s.return_type, &s.original_token.children.as_ref().unwrap()[s.script_type.expression_offset()..], &callable_functions, &callable_globals)?);
+            script_nodes.push_back(self.create_node_from_function("begin".to_owned(), &s.original_token, s.return_type, &s.original_token.children.as_ref().unwrap()[s.script_type.expression_offset()..], &callable_functions, &callable_globals)?);
         }
 
         // Move all the globals and scripts
         for g in &mut globals {
-            g.node = global_nodes.remove(g.get_name()).unwrap();
+            g.node = global_nodes.pop_front().unwrap();
         }
         for s in &mut scripts {
-            s.node = script_nodes.remove(s.get_name()).unwrap();
+            s.node = script_nodes.pop_front().unwrap();
         }
 
         // Optimize 'begin' nodes with only one call
