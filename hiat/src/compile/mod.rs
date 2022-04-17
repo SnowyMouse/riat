@@ -233,8 +233,8 @@ impl Compiler {
                 if !matches!(fn_token.children, None) {
                     return_compile_error!(self, function_call_token, "function 'set' cannot take a block as the variable name".to_owned())
                 }
-                let string_data = fn_token.string.as_str();
-                match available_globals.get(string_data) {
+                let string_data = self.lowercase_token(fn_token);
+                match available_globals.get(string_data.as_str()) {
                     Some(n) => Some(n.get_value_type()),
                     None => return_compile_error!(self, function_call_token, format!("parameter '{string_data}' is not a global variable name"))
                 }
