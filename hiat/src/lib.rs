@@ -19,6 +19,7 @@ pub use value_type::ValueType;
 
 /// Compiler instance.
 pub struct Compiler {
+    encoding: CompileEncoding,
     tokens: Vec<Token>,
     files: Vec<String>,
 
@@ -28,8 +29,9 @@ pub struct Compiler {
 
 impl Compiler {
     /// Instantiate a new compiler instance with the given compile target.
-    pub fn new(target: CompileTarget) -> Compiler {
-        Compiler { 
+    pub fn new(target: CompileTarget, encoding: CompileEncoding) -> Compiler {
+        Compiler {
+            encoding: encoding,
             tokens: Vec::new(),
             files: Vec::new(),
 
@@ -38,11 +40,11 @@ impl Compiler {
         }
     }
 
-    /// Read the tokens from a u8 slice containing UTF-8 data.
+    /// Read the tokens from a u8 slice containing string data.
     ///
     /// # Errors
     ///
-    /// Errors if the script contains non-UTF8, if non-parenthesis tokens exist outside of a block, or if any parenthesis are unmatched.
+    /// Errors if the script contains data that could not be decoded, if non-parenthesis tokens exist outside of a block, or if any parenthesis are unmatched.
     pub fn read_script_data(&mut self, filename: &str, script: &[u8]) -> Result<(), CompileError> {
         self.tokenize_script_data(filename, script)
     }
@@ -54,5 +56,10 @@ impl Compiler {
     /// Errors if the script data is invalid.
     pub fn compile_script_data(&mut self) -> Result<CompiledScriptData, CompileError> {
         self.digest_tokens()
+    }
+
+    /// Get the set encoding.
+    pub fn get_encoder(&self) -> CompileEncoding {
+        self.encoding
     }
 }

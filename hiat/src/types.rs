@@ -274,3 +274,64 @@ impl NodeType {
         matches!(*self, NodeType::FunctionCall(_))
     }
 }
+
+extern crate encoding;
+use self::encoding::{Encoding, DecoderTrap, EncoderTrap};
+use self::encoding::all::WINDOWS_1252;
+use std::ffi::{CString, CStr};
+
+/// Encoding type used.
+#[derive(Copy, Clone, PartialEq)]
+#[repr(C)]
+pub enum CompileEncoding {
+    /// UTF-8 is natively supported by Rust and is the fastest.
+    UTF8,
+
+    /// Windows-1252 is the encoding used by Halo: Combat Evolved.
+    Windows1252
+}
+
+impl CompileEncoding {
+    /// Encode to a null-terminated C string.
+    pub fn encode_to_cstring(&self, string: &str) -> CString {
+        match *self {
+            CompileEncoding::UTF8 => {
+                CString::new(string).unwrap()
+            },
+            CompileEncoding::Windows1252 => {
+                CString::new(WINDOWS_1252.encode(string, EncoderTrap::Replace).unwrap()).unwrap()
+            }
+        }
+    }
+
+    /// Decode the string from a C string.
+    ///
+    /// # Errors
+    ///
+    /// Errors if an error occurred on decoding.
+    pub fn decode_from_cstring(&self, string: &CStr) -> Result<String, String> {
+        self.decode_from_bytes(string.to_bytes())
+    }
+
+    /// Decode the string from an array of bytes.
+    ///
+    /// # Errors
+    ///
+    /// Errors if an error occurred on decoding.
+    pub fn decode_from_bytes(&self, string: &[u8]) -> Result<String, String> {
+        match *self {
+            CompileEncoding::UTF8 => {
+                match std::str::from_utf8(string) {
+                    Ok(n) => Ok(n.to_owned()),
+                    Err(e) => Err(format!("{e:?}"))
+                }
+            },
+            CompileEncoding::Windows1252 => {
+                match WINDOWS_1252.decode(string, DecoderTrap::Replace) {
+                    Ok(n) => Ok(n),
+                    Err(e) => Err(format!("{e:?}"))
+                }
+            }
+        }
+    }
+}

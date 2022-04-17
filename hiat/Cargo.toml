@@ -11,3 +11,4 @@ crate-type = ["lib", "staticlib", "cdylib"]
 
 [dependencies]
 hiat-definitions = { path = "../hiat-definitions" }
+encoding = "0.2"

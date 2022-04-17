@@ -38,8 +38,8 @@ pub struct CompileError {
 
 impl CompileError {
     /// Create a `CompileError` from the given parameters.
-    pub(crate) fn from_message(file: &str, line: usize, column: usize, error_type: CompileErrorType, message: &str) -> CompileError {
-        CompileError { line: line, column: column, error_type: error_type, file: CString::new(file).unwrap(), message: CString::new(message).unwrap() }
+    pub(crate) fn from_message(compiler: &super::Compiler, file: &str, line: usize, column: usize, error_type: CompileErrorType, message: &str) -> CompileError {
+        CompileError { line: line, column: column, error_type: error_type, file: compiler.encoding.encode_to_cstring(file), message: compiler.encoding.encode_to_cstring(message) }
     }
 
     /// Get the message of the error.

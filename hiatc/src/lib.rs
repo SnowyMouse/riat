@@ -64,8 +64,8 @@ impl CompileErrorC {
 ///
 /// The target must be a valid [`CompileTarget`] enum or else **undefined behavior** will occur.
 #[no_mangle]
-pub extern "C" fn hiat_compiler_new(target: CompileTarget) -> *mut Compiler {
-    Box::into_raw(Box::<Compiler>::new(Compiler::new(target)))
+pub extern "C" fn hiat_compiler_new(target: CompileTarget, encoding: CompileEncoding) -> *mut Compiler {
+    Box::into_raw(Box::<Compiler>::new(Compiler::new(target, encoding)))
 }
 
 /// Free a Compiler instance.
@@ -109,16 +109,16 @@ pub unsafe extern "C" fn hiat_error_free(error: *mut CompileErrorC) {
 /// If an error is returned, the resulting error must be freed with [`hiat_error_free`] or else a memory leak will occur.
 ///
 /// If any of these requirements are not met, **undefined behavior** will occur:
-/// * `input_filename` must be valid, null-terminated UTF-8 string.
-/// * `input_data` must point to a region of size `input_data_length` (it does not need to be null-terminated)
-/// * `error` must either be null or point to a writable region large enough to hold a pointer
+/// * `input_filename` must be valid, null-terminated string in the correct encoding or else a panic will occur which may result in UB.
+/// * `input_data` must point to a region of size `input_data_length` (it does not need to be null-terminated).
+/// * `error` must either be null or point to a writable region large enough to hold a pointer.
 #[no_mangle]
 pub unsafe extern "C" fn hiat_compiler_read_script_data(compiler: *mut Compiler, input_filename: *const c_char, input_data: *const u8, input_data_length: usize, error: *mut CompileErrorC) -> c_int {
-    let filename = CStr::from_ptr(input_filename).to_str().unwrap();
-    let input_data_slice = std::slice::from_raw_parts(input_data, input_data_length);
     let compiler_ref = &mut *compiler;
+    let filename = compiler_ref.get_encoder().decode_from_cstring(CStr::from_ptr(input_filename)).unwrap();
+    let input_data_slice = std::slice::from_raw_parts(input_data, input_data_length);
 
-    match compiler_ref.read_script_data(filename, input_data_slice) {
+    match compiler_ref.read_script_data(filename.as_str(), input_data_slice) {
         Ok(()) => 0,
         Err(e) => {
             if !error.is_null() {

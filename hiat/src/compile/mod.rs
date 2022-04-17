@@ -29,13 +29,13 @@ fn all_functions_and_globals_for_target(target: CompileTarget) -> (Vec<&'static 
 
 macro_rules! return_compile_error {
     ($compiler: expr, $token: expr, $message: expr) => {
-        return Err(CompileError::from_message($compiler.files[$token.file].as_str(), $token.line, $token.column, CompileErrorType::Error, $message.as_str()))
+        return Err(CompileError::from_message($compiler, $compiler.files[$token.file].as_str(), $token.line, $token.column, CompileErrorType::Error, $message.as_str()))
     };
 }
 
 macro_rules! compile_warn {
     ($compiler: expr, $token: expr, $message: expr) => {
-        $compiler.warnings.push(CompileError::from_message($compiler.files[$token.file].as_str(), $token.line, $token.column, CompileErrorType::Warning, $message.as_str()))
+        $compiler.warnings.push(CompileError::from_message($compiler, $compiler.files[$token.file].as_str(), $token.line, $token.column, CompileErrorType::Warning, $message.as_str()))
     };
 }
 
@@ -790,7 +790,7 @@ impl Compiler {
         let mut compiled_globals = Vec::new();
         let mut nodes = Vec::new();
 
-        fn make_compiled_node_from_node(node: Node, node_array: &mut Vec<CompiledNode>) -> usize {
+        fn make_compiled_node_from_node(compiler: &Compiler, node: Node, node_array: &mut Vec<CompiledNode>) -> usize {
             // What type of node is it?
             match node.node_type {
                 NodeType::Primitive(is_global) => {
@@ -802,7 +802,7 @@ impl Compiler {
                         node_type: node.node_type,
                         value_type: node.value_type,
                         data: node.data,
-                        string_data: match node.string_data { Some(n) => Some(CString::new(n).unwrap()), None => None },
+                        string_data: match node.string_data { Some(n) => Some(compiler.encoding.encode_to_cstring(n.as_str())), None => None },
                         next_node: None,
                         index: node.index,
 
@@ -836,7 +836,7 @@ impl Compiler {
                         node_type: NodeType::Primitive(false),
                         value_type: ValueType::FunctionName,
                         data: Some(NodeData::Long(0)),
-                        string_data: match node.string_data { Some(n) => Some(CString::new(n).unwrap()), None => None },
+                        string_data: match node.string_data { Some(n) => Some(compiler.encoding.encode_to_cstring(n.as_str())), None => None },
                         next_node: None,
                         index: node.index,
 
@@ -848,7 +848,7 @@ impl Compiler {
                     // Let's get our parameters here now
                     let mut previous_node = function_name_node;
                     for p in parameters {
-                        let next_node = make_compiled_node_from_node(p, node_array);
+                        let next_node = make_compiled_node_from_node(compiler, p, node_array);
                         node_array[previous_node].next_node = Some(next_node);
                         previous_node = next_node;
                     }
@@ -862,10 +862,10 @@ impl Compiler {
         for s in scripts {
             compiled_scripts.push(
                 CompiledScript {
-                    name: CString::new(s.name).unwrap(),
+                    name: self.encoding.encode_to_cstring(s.name.as_str()),
                     value_type: s.return_type,
                     script_type: s.script_type,
-                    first_node: make_compiled_node_from_node(s.node, &mut nodes),
+                    first_node: make_compiled_node_from_node(self, s.node, &mut nodes),
 
                     file: s.original_token.file,
                     column: s.original_token.column,
@@ -876,9 +876,9 @@ impl Compiler {
         for g in globals {
             compiled_globals.push(
                 CompiledGlobal {
-                    name: CString::new(g.name).unwrap(),
+                    name: self.encoding.encode_to_cstring(g.name.as_str()),
                     value_type: g.value_type,
-                    first_node: make_compiled_node_from_node(g.node, &mut nodes),
+                    first_node: make_compiled_node_from_node(self, g.node, &mut nodes),
 
                     file: g.original_token.file,
                     column: g.original_token.column,
@@ -890,7 +890,7 @@ impl Compiler {
         // Make the files
         let mut files = Vec::<CString>::new();
         for i in self.files.drain(..) {
-            files.push(CString::new(i).unwrap());
+            files.push(self.encoding.encode_to_cstring(i.as_str()));
         }
 
         // Done!

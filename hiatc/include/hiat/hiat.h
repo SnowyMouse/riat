@@ -31,8 +31,12 @@ typedef struct HIATCompileErrorC {
     void *_reserved;
 } HIATCompileErrorC;
 
+typedef enum HIATCompileEncoding {
+    HIAT_UTF8,
+    HIAT_Windows1252
+} HIATCompileEncoding;
 
-HIATCompiler *hiat_compiler_new(HIATCompileTarget target);
+HIATCompiler *hiat_compiler_new(HIATCompileTarget target, HIATCompileEncoding encoding);
 int hiat_compiler_read_script_data(HIATCompiler *compiler, const char *input_filename, const uint8_t *input_data, size_t input_size, HIATCompileErrorC *error);
 HIATCompiledScriptData *hiat_compiler_compile_script_data(HIATCompiler *compiler, HIATCompileErrorC *error);
 void hiat_compiler_free(HIATCompiler *compiler);

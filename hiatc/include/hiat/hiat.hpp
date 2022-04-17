@@ -156,7 +156,13 @@ namespace HIAT {
             return this->instance.get();
         }
 
-        Compiler(HIATCompileTarget target) : instance(::hiat_compiler_new(target), ::hiat_compiler_free) {
+        /**
+         * Instantiate a compiler instance
+         * 
+         * @param target   target engine
+         * @param encoding target encoding (by default use Windows-1252)
+         */
+        Compiler(HIATCompileTarget target, HIATCompileEncoding encoding = HIATCompileEncoding::HIAT_Windows1252) : instance(::hiat_compiler_new(target, encoding), ::hiat_compiler_free) {
             if(this->instance.get() == nullptr) {
                 throw std::exception();
             }
