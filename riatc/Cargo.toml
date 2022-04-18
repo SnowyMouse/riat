@@ -1,13 +1,13 @@
 [package]
-name = "hiatc"
-description = "C and C++ bindings for Hamster in a Tube"
+name = "riatc"
+description = "C and C++ bindings for Rat in a Tube"
 version = "0.1.0"
 authors = ["Snowy Mouse"]
 license = "GPL-3.0-only"
 
 [dependencies]
-hiat = { path = "../hiat" }
+riat = { path = "../riat" }
 
 [lib]
-name = "hiatc"
+name = "riatc"
 crate-type = ["lib", "staticlib", "cdylib"]

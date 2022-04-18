@@ -1,14 +1,14 @@
 [package]
-name = "hiat"
+name = "riat"
 description = "Halo: Combat Evolved Script Compiler"
 version = "0.1.0"
 authors = ["Snowy Mouse"]
 license = "GPL-3.0-only"
 
 [lib]
-name = "hiat"
+name = "riat"
 crate-type = ["lib", "staticlib", "cdylib"]
 
 [dependencies]
-hiat-definitions = { path = "../hiat-definitions" }
+riat-definitions = { path = "../riat-definitions" }
 encoding = "0.2"

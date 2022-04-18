@@ -1,9 +1,9 @@
-// For documentation, refer to hiatc's documentation.
+// For documentation, refer to riatc's documentation.
 
-#ifndef HAMSTER_IN_A_TUBE_HPP
-#define HAMSTER_IN_A_TUBE_HPP
+#ifndef RAT_IN_A_TUBE_HPP
+#define RAT_IN_A_TUBE_HPP
 
-#include "hiat.h"
+#include "riat.h"
 
 #include <cstdio>
 #include <string>
@@ -12,10 +12,10 @@
 #include <vector>
 #include <optional>
 
-namespace HIAT {
+namespace RIAT {
     class CompileError : public std::exception {
     public:
-        CompileError(const HIATCompileErrorC &error, const char *type) noexcept {
+        CompileError(const RIATCompileErrorC &error, const char *type) noexcept {
             this->reason = error.message;
             this->file = error.file;
             this->line = error.line;
@@ -58,13 +58,13 @@ namespace HIAT {
          * @param script_source_length length of the script source data
          * @param file_name            name of the file (for error reporting)
          * 
-         * @throws HIAT::CompileError on failure
+         * @throws RIAT::CompileError on failure
          */
         void read_script_data(const std::uint8_t *script_source_data, std::size_t script_source_length, const char *file_name) {
-            HIATCompileErrorC error;
-            if(::hiat_compiler_read_script_data(this->get_instance(), file_name, script_source_data, script_source_length, &error) != 0) {
+            RIATCompileErrorC error;
+            if(::riat_compiler_read_script_data(this->get_instance(), file_name, script_source_data, script_source_length, &error) != 0) {
                 auto exception = CompileError(error, "error");
-                ::hiat_error_free(&error);
+                ::riat_error_free(&error);
                 throw exception;
             }
         }
@@ -72,14 +72,14 @@ namespace HIAT {
         /**
          * Compile the given script and, if successful, clear all loaded scripts.
          * 
-         * @throws HIAT::CompileError on failure
+         * @throws RIAT::CompileError on failure
          */
         void compile_scripts() {
-            HIATCompileErrorC error;
-            auto new_compiled_data = std::unique_ptr<HIATCompiledScriptData, void(*)(HIATCompiledScriptData*)>(::hiat_compiler_compile_script_data(this->get_instance(), &error), ::hiat_script_data_free);
+            RIATCompileErrorC error;
+            auto new_compiled_data = std::unique_ptr<RIATCompiledScriptData, void(*)(RIATCompiledScriptData*)>(::riat_compiler_compile_script_data(this->get_instance(), &error), ::riat_script_data_free);
             if(new_compiled_data.get() == nullptr) {
                 auto exception = CompileError(error, "error");
-                ::hiat_error_free(&error);
+                ::riat_error_free(&error);
                 throw exception;
             }
             this->script_data = std::move(new_compiled_data);
@@ -88,13 +88,13 @@ namespace HIAT {
         /**
          * Get all scripts compiled from the last call to compile_scripts.
          */
-        std::vector<HIATScriptC> get_scripts() {
-            std::vector<HIATScriptC> r;
+        std::vector<RIATScriptC> get_scripts() {
+            std::vector<RIATScriptC> r;
             if(this->script_data.has_value()) {
                 auto *script_data = (*this->script_data).get();
-                auto script_count = ::hiat_script_data_get_scripts(script_data, nullptr);
+                auto script_count = ::riat_script_data_get_scripts(script_data, nullptr);
                 r.resize(script_count);
-                ::hiat_script_data_get_scripts(script_data, r.data());
+                ::riat_script_data_get_scripts(script_data, r.data());
             }
             return r;
         }
@@ -102,13 +102,13 @@ namespace HIAT {
         /**
          * Get all globals compiled from the last call to compile_scripts.
          */
-        std::vector<HIATGlobalC> get_globals() {
-            std::vector<HIATGlobalC> r;
+        std::vector<RIATGlobalC> get_globals() {
+            std::vector<RIATGlobalC> r;
             if(this->script_data.has_value()) {
                 auto *script_data = (*this->script_data).get();
-                auto global_count = ::hiat_script_data_get_globals(script_data, nullptr);
+                auto global_count = ::riat_script_data_get_globals(script_data, nullptr);
                 r.resize(global_count);
-                ::hiat_script_data_get_globals(script_data, r.data());
+                ::riat_script_data_get_globals(script_data, r.data());
             }
             return r;
         }
@@ -116,13 +116,13 @@ namespace HIAT {
         /**
          * Get all nodes compiled from the last call to compile_scripts.
          */
-        std::vector<HIATScriptNodeC> get_nodes() {
-            std::vector<HIATScriptNodeC> r;
+        std::vector<RIATScriptNodeC> get_nodes() {
+            std::vector<RIATScriptNodeC> r;
             if(this->script_data.has_value()) {
                 auto *script_data = (*this->script_data).get();
-                auto node_count = ::hiat_script_data_get_nodes(script_data, nullptr);
+                auto node_count = ::riat_script_data_get_nodes(script_data, nullptr);
                 r.resize(node_count);
-                ::hiat_script_data_get_nodes(script_data, r.data());
+                ::riat_script_data_get_nodes(script_data, r.data());
             }
             return r;
         }
@@ -134,12 +134,12 @@ namespace HIAT {
             std::vector<CompileError> r;
             if(this->script_data.has_value()) {
                 auto *script_data = (*this->script_data).get();
-                auto warning_count = ::hiat_script_data_get_warnings(script_data, nullptr);
+                auto warning_count = ::riat_script_data_get_warnings(script_data, nullptr);
                 r.reserve(warning_count);
 
-                std::vector<HIATCompileErrorC> errors;
+                std::vector<RIATCompileErrorC> errors;
                 errors.resize(warning_count);
-                ::hiat_script_data_get_warnings(script_data, errors.data());
+                ::riat_script_data_get_warnings(script_data, errors.data());
 
                 for(auto &e : errors) {
                     r.emplace_back(e, "warning");
@@ -153,7 +153,7 @@ namespace HIAT {
          * 
          * @return instance
          */
-        HIATCompiler *get_instance() noexcept {
+        RIATCompiler *get_instance() noexcept {
             return this->instance.get();
         }
 
@@ -163,14 +163,14 @@ namespace HIAT {
          * @param target   target engine
          * @param encoding target encoding (by default use Windows-1252)
          */
-        Compiler(HIATCompileTarget target, HIATCompileEncoding encoding = HIATCompileEncoding::HIAT_Windows1252) : instance(::hiat_compiler_new(target, encoding), ::hiat_compiler_free) {
+        Compiler(RIATCompileTarget target, RIATCompileEncoding encoding = RIATCompileEncoding::RIAT_Windows1252) : instance(::riat_compiler_new(target, encoding), ::riat_compiler_free) {
             if(this->instance.get() == nullptr) {
                 throw std::exception();
             }
         }
     private:
-        std::unique_ptr<HIATCompiler, void(*)(HIATCompiler*)> instance;
-        std::optional<std::unique_ptr<HIATCompiledScriptData, void(*)(HIATCompiledScriptData*)>> script_data;
+        std::unique_ptr<RIATCompiler, void(*)(RIATCompiler*)> instance;
+        std::optional<std::unique_ptr<RIATCompiledScriptData, void(*)(RIATCompiledScriptData*)>> script_data;
     };
 }
 

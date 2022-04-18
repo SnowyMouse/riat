@@ -1,5 +1,5 @@
-extern crate hiat;
-use hiat::*;
+extern crate riat;
+use riat::*;
 
 use std::os::raw::*;
 use std::ffi::CStr;
@@ -60,11 +60,11 @@ impl CompileErrorC {
 ///
 /// # Requirements
 ///
-/// The resulting pointer must be freed with [`hiat_compiler_free`] or else a memory leak will occur.
+/// The resulting pointer must be freed with [`riat_compiler_free`] or else a memory leak will occur.
 ///
 /// The target must be a valid [`CompileTarget`] enum or else **undefined behavior** will occur.
 #[no_mangle]
-pub extern "C" fn hiat_compiler_new(target: CompileTarget, encoding: CompileEncoding) -> *mut Compiler {
+pub extern "C" fn riat_compiler_new(target: CompileTarget, encoding: CompileEncoding) -> *mut Compiler {
     Box::into_raw(Box::<Compiler>::new(Compiler::new(target, encoding)))
 }
 
@@ -76,7 +76,7 @@ pub extern "C" fn hiat_compiler_new(target: CompileTarget, encoding: CompileEnco
 /// * The `compiler` parameter must point to a valid [`Compiler`] or be null.
 /// * If non-null, make sure the function you got the pointer from states that this function needs to be used to clean it up.
 #[no_mangle]
-pub unsafe extern "C" fn hiat_compiler_free(compiler: *mut Compiler) {
+pub unsafe extern "C" fn riat_compiler_free(compiler: *mut Compiler) {
     if !compiler.is_null() {
         Box::from_raw(compiler);
     }
@@ -92,7 +92,7 @@ pub unsafe extern "C" fn hiat_compiler_free(compiler: *mut Compiler) {
 /// * The `CompileErrorC` pointed to must be initialized.
 /// * The function that initialized the `CompileErrorC` must state that this function needs to be used to clean it up.
 #[no_mangle]
-pub unsafe extern "C" fn hiat_error_free(error: *mut CompileErrorC) {
+pub unsafe extern "C" fn riat_error_free(error: *mut CompileErrorC) {
     (*error).free()
 }
 
@@ -106,14 +106,14 @@ pub unsafe extern "C" fn hiat_error_free(error: *mut CompileErrorC) {
 ///
 /// # Requirements
 ///
-/// If an error is returned, the resulting error must be freed with [`hiat_error_free`] or else a memory leak will occur.
+/// If an error is returned, the resulting error must be freed with [`riat_error_free`] or else a memory leak will occur.
 ///
 /// If any of these requirements are not met, **undefined behavior** will occur:
 /// * `input_filename` must be valid, null-terminated string in the correct encoding or else a panic will occur which may result in UB.
 /// * `input_data` must point to a region of size `input_data_length` (it does not need to be null-terminated).
 /// * `error` must either be null or point to a writable region large enough to hold a pointer.
 #[no_mangle]
-pub unsafe extern "C" fn hiat_compiler_read_script_data(compiler: *mut Compiler, input_filename: *const c_char, input_data: *const u8, input_data_length: usize, error: *mut CompileErrorC) -> c_int {
+pub unsafe extern "C" fn riat_compiler_read_script_data(compiler: *mut Compiler, input_filename: *const c_char, input_data: *const u8, input_data_length: usize, error: *mut CompileErrorC) -> c_int {
     let compiler_ref = &mut *compiler;
     let filename = compiler_ref.get_encoder().decode_from_cstring(CStr::from_ptr(input_filename)).unwrap();
     let input_data_slice = std::slice::from_raw_parts(input_data, input_data_length);
@@ -139,11 +139,11 @@ pub unsafe extern "C" fn hiat_compiler_read_script_data(compiler: *mut Compiler,
 ///
 /// # Requirements
 ///
-/// If the function succeeds, the resulting pointer must be freed with [`hiat_script_data_free`] or else a memory leak will occur.
+/// If the function succeeds, the resulting pointer must be freed with [`riat_script_data_free`] or else a memory leak will occur.
 ///
-/// If an error is returned, the resulting error must be freed with [`hiat_error_free`] or else a memory leak will occur.
+/// If an error is returned, the resulting error must be freed with [`riat_error_free`] or else a memory leak will occur.
 #[no_mangle]
-pub unsafe extern "C" fn hiat_compiler_compile_script_data(compiler: *mut Compiler, error: *mut CompileErrorC) -> *mut CompiledScriptData {
+pub unsafe extern "C" fn riat_compiler_compile_script_data(compiler: *mut Compiler, error: *mut CompileErrorC) -> *mut CompiledScriptData {
     match (*compiler).compile_script_data() {
         Ok(n) => Box::into_raw(Box::new(n)),
         Err(e) => {
@@ -163,7 +163,7 @@ pub unsafe extern "C" fn hiat_compiler_compile_script_data(compiler: *mut Compil
 /// * The `script_data` parameter must point to a valid [`CompiledScriptData`].
 /// * If non-null, make sure the function you got the pointer from states that this function needs to be used to clean it up.
 #[no_mangle]
-pub unsafe extern "C" fn hiat_script_data_free(script_data: *mut CompiledScriptData) {
+pub unsafe extern "C" fn riat_script_data_free(script_data: *mut CompiledScriptData) {
     if !script_data.is_null() {
         Box::from_raw(script_data);
     }
@@ -174,16 +174,16 @@ pub unsafe extern "C" fn hiat_script_data_free(script_data: *mut CompiledScriptD
 ///
 /// Return the number of warnings. Write this many warnings to an array pointed to by `warnings` if `warnings` is non-null.
 ///
-/// These warnings must NOT be freed with [`hiat_error_free`], as the resources are owned by the [`CompiledScriptData`], not the [`CompileErrorC`] struct.
+/// These warnings must NOT be freed with [`riat_error_free`], as the resources are owned by the [`CompiledScriptData`], not the [`CompileErrorC`] struct.
 ///
 /// # Requirements
 ///
 /// If any of these requirements are not met, **undefined behavior** will occur:
 /// * The `script_data` parameter must point to a valid [`CompiledScriptData`].
 /// * The `warnings` parameter must point to a valid array of [`CompileErrorC`] long enough to hold the result of this function or be null. To query the number of warnings, run this function with this parameter set to null.
-/// * If [`hiat_script_data_free`] is called, the resulting warnings will no longer be valid, thus no pointers may be dereferenced after this.
+/// * If [`riat_script_data_free`] is called, the resulting warnings will no longer be valid, thus no pointers may be dereferenced after this.
 #[no_mangle]
-pub unsafe extern "C" fn hiat_script_data_get_warnings(script_data: *const CompiledScriptData, warnings: *mut CompileErrorC) -> usize {
+pub unsafe extern "C" fn riat_script_data_get_warnings(script_data: *const CompiledScriptData, warnings: *mut CompileErrorC) -> usize {
     let all_warnings = (*script_data).get_warnings();
     let count = all_warnings.len();
 
@@ -270,9 +270,9 @@ pub struct ScriptNodeC {
 /// If any of these requirements are not met, **undefined behavior** will occur:
 /// * The `script_data` parameter must point to a valid [`CompiledScriptData`].
 /// * The `nodes` parameter must point to a valid array of [`ScriptNodeC`] long enough to hold the result of this function or be null. To query the number of warnings, run this function with this parameter set to null.
-/// * If [`hiat_script_data_free`] is called, the resulting nodes will no longer be valid, thus no pointers may be dereferenced after this.
+/// * If [`riat_script_data_free`] is called, the resulting nodes will no longer be valid, thus no pointers may be dereferenced after this.
 #[no_mangle]
-pub unsafe extern "C" fn hiat_script_data_get_nodes(script_data: *const CompiledScriptData, nodes: *mut ScriptNodeC) -> usize {
+pub unsafe extern "C" fn riat_script_data_get_nodes(script_data: *const CompiledScriptData, nodes: *mut ScriptNodeC) -> usize {
     let all_nodes = (*script_data).get_nodes();
     let all_files = (*script_data).get_files();
     let count = all_nodes.len();
@@ -313,7 +313,7 @@ pub unsafe extern "C" fn hiat_script_data_get_nodes(script_data: *const Compiled
 /// Global C struct.
 #[repr(C)]
 #[derive(Copy, Clone)]
-pub struct HIATGlobalC {
+pub struct RIATGlobalC {
     /// Name of the global
     pub name: *const c_char,
 
@@ -336,7 +336,7 @@ pub struct HIATGlobalC {
 /// Script C struct.
 #[repr(C)]
 #[derive(Copy, Clone)]
-pub struct HIATScriptC {
+pub struct RIATScriptC {
     /// Name of the script
     pub name: *const c_char,
 
@@ -367,10 +367,10 @@ pub struct HIATScriptC {
 ///
 /// If any of these requirements are not met, **undefined behavior** will occur:
 /// * The `script_data` parameter must point to a valid [`CompiledScriptData`].
-/// * The `scripts` parameter must point to a valid array of [`HIATScriptC`] long enough to hold the result of this function or be null. To query the number of warnings, run this function with this parameter set to null.
-/// * If [`hiat_script_data_free`] is called, the resulting scripts will no longer be valid, thus no pointers may be dereferenced after this.
+/// * The `scripts` parameter must point to a valid array of [`RIATScriptC`] long enough to hold the result of this function or be null. To query the number of warnings, run this function with this parameter set to null.
+/// * If [`riat_script_data_free`] is called, the resulting scripts will no longer be valid, thus no pointers may be dereferenced after this.
 #[no_mangle]
-pub unsafe extern "C" fn hiat_script_data_get_scripts(script_data: *const CompiledScriptData, scripts: *mut HIATScriptC) -> usize {
+pub unsafe extern "C" fn riat_script_data_get_scripts(script_data: *const CompiledScriptData, scripts: *mut RIATScriptC) -> usize {
     let all_scripts = (*script_data).get_scripts();
     let all_files = (*script_data).get_files();
     let count = all_scripts.len();
@@ -401,10 +401,10 @@ pub unsafe extern "C" fn hiat_script_data_get_scripts(script_data: *const Compil
 ///
 /// If any of these requirements are not met, **undefined behavior** will occur:
 /// * The `global_data` parameter must point to a valid [`CompiledScriptData`].
-/// * The `globals` parameter must point to a valid array of [`HIATScriptC`] long enough to hold the result of this function or be null. To query the number of warnings, run this function with this parameter set to null.
-/// * If [`hiat_script_data_free`] is called, the resulting globals will no longer be valid, thus no pointers may be dereferenced after this.
+/// * The `globals` parameter must point to a valid array of [`RIATScriptC`] long enough to hold the result of this function or be null. To query the number of warnings, run this function with this parameter set to null.
+/// * If [`riat_script_data_free`] is called, the resulting globals will no longer be valid, thus no pointers may be dereferenced after this.
 #[no_mangle]
-pub unsafe extern "C" fn hiat_script_data_get_globals(global_data: *const CompiledScriptData, globals: *mut HIATGlobalC) -> usize {
+pub unsafe extern "C" fn riat_script_data_get_globals(global_data: *const CompiledScriptData, globals: *mut RIATGlobalC) -> usize {
     let all_globals = (*global_data).get_globals();
     let all_files = (*global_data).get_files();
     let count = all_globals.len();

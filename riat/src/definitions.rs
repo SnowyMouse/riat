@@ -1,5 +1,5 @@
-extern crate hiat_definitions;
-use self::hiat_definitions::generate_definitions;
+extern crate riat_definitions;
+use self::riat_definitions::generate_definitions;
 use super::{ValueType, CallableGlobal, CallableFunction, CompileTarget};
 
 pub(crate) struct EngineAvailability {

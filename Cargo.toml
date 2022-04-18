@@ -1,6 +1,6 @@
 [workspace]
 members = [
-    "hiat",
-    "hiat-definitions",
-    "hiatc"
+    "riat",
+    "riat-definitions",
+    "riatc"
 ]
