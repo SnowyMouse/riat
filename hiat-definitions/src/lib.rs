@@ -96,7 +96,14 @@ pub fn generate_definitions(_: TokenStream) -> TokenStream {
             if let Some(n) = t.get(from) {
                 match n {
                     Value::Null => s += &format!("{to}: Some(u16::MAX),"),
-                    Value::Number(n) => s += &format!("{to}: {n}"),
+                    Value::Number(n) => {
+                        // Indices must be <= 65535
+                        let v = n.as_u64().unwrap();
+                        assert!(v <= u16::MAX as u64);
+
+                        // Here we go
+                        s += &format!("{to}: Some({v}),")
+                    },
                     _ => unreachable!()
                 }
             }
@@ -106,7 +113,7 @@ pub fn generate_definitions(_: TokenStream) -> TokenStream {
         };
 
         modify_thing("mcc-cea", "mcc_cea");
-        modify_thing("xbox-ntsc", "xbox_ntsc");
+        modify_thing("xbox", "xbox");
         modify_thing("gbx-custom", "gbx_custom");
         modify_thing("gbx-retail", "gbx_retail");
         modify_thing("gbx-demo", "gbx_demo");

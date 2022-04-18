@@ -7,14 +7,14 @@ pub(crate) struct EngineAvailability {
     pub gbx_retail: Option<u16>,
     pub gbx_custom: Option<u16>,
     pub gbx_demo: Option<u16>,
-    pub xbox_ntsc: Option<u16>
+    pub xbox: Option<u16>
 }
 
 impl EngineAvailability {
     fn supports(&self, target: CompileTarget) -> bool {
         match target {
             CompileTarget::HaloCEA => !matches!(self.mcc_cea, None),
-            CompileTarget::HaloCEXboxNTSC => !matches!(self.xbox_ntsc, None),
+            CompileTarget::HaloCEXboxNTSC => !matches!(self.xbox, None),
             CompileTarget::HaloCEGBX => !matches!(self.gbx_retail, None),
             CompileTarget::HaloCEGBXDemo => !matches!(self.gbx_demo, None),
             CompileTarget::HaloCustomEdition => !matches!(self.gbx_custom, None),
