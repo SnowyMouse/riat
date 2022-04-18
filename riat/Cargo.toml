@@ -7,7 +7,6 @@ license = "GPL-3.0-only"
 
 [lib]
 name = "riat"
-crate-type = ["lib", "staticlib", "cdylib"]
 
 [dependencies]
 riat-definitions = { path = "../riat-definitions" }

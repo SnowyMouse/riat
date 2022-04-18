@@ -10,4 +10,4 @@ riat = { path = "../riat" }
 
 [lib]
 name = "riatc"
-crate-type = ["lib", "staticlib", "cdylib"]
+crate-type = ["staticlib"] # static only because packaging is easier with it
