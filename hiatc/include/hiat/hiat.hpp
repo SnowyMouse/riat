@@ -138,6 +138,7 @@ namespace HIAT {
                 r.reserve(warning_count);
 
                 std::vector<HIATCompileErrorC> errors;
+                errors.resize(warning_count);
                 ::hiat_script_data_get_warnings(script_data, errors.data());
 
                 for(auto &e : errors) {
