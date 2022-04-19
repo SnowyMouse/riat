@@ -760,7 +760,7 @@ impl Compiler {
         }
         for i in 0..globals.len() {
             find_global_script_indices_for_node(&mut globals[i].node, &scripts_by_index, &globals_by_index);
-            find_uninitialized_globals(&globals[i].node, &globals[i+1..], self);
+            find_uninitialized_globals(&globals[i].node, &globals[i..], self);
         }
 
         // We should NOT have any passthrough stuff remaining
