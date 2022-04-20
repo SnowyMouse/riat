@@ -410,7 +410,7 @@ impl Compiler {
                             "unused7" => Some(NodeData::Short(7)),
                             "unused8" => Some(NodeData::Short(8)),
                             "unused9" => Some(NodeData::Short(9)),
-                            _ => complain!("player/human/covenant/flood/sentinel")
+                            _ => complain!("player/human/covenant/flood/sentinel/unused6/unused7/unused8/unused9")
                         }
                     },
 
