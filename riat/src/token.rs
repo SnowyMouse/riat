@@ -208,7 +208,7 @@ impl Compiler {
                 }
 
                 n => {
-                    return Err(CompileError::from_message(self, filename, line, column, CompileErrorType::Error, &format!("expected left parenthesis, got {n} instead")))
+                    return Err(CompileError::from_message(self, filename, next_token.line, next_token.column, CompileErrorType::Error, &format!("expected left parenthesis, got {n} instead")))
                 }
             }
         }
