@@ -337,13 +337,28 @@ impl Compiler {
                 let string_to_parse_str = string_to_parse.as_str();
                 let clear_string_data;
 
+                // If we error due to failing to parse a type, here.
+                macro_rules! complain {
+                    ($allowed_values: expr) => {{
+                        let value_type_name = parameter_node.value_type.as_str();
+
+                        match available_functions.get(string_to_parse_str) {
+                            // If we have a function by this name, tell the user that such a function exists
+                            Some(_) => return_compile_error!(self, tokens[parameter_index], format!("cannot parse token '{string_to_parse_str}' as {value_type_name} and no global of this name defined; did you mean to call '({string_to_parse_str})' as a function?")),
+                            
+                            // Otherwise we have no global or anything like that, so here
+                            None => return_compile_error!(self, tokens[parameter_index], format!("cannot parse token '{string_to_parse_str}' as {value_type_name} and no global of this name defined (expected {})", $allowed_values))
+                        };
+                    }};
+                }
+
                 parameter_node.data = match parameter_node.value_type {
                     ValueType::Boolean => {
                         clear_string_data = true;
                         match string_to_parse_str {
                             "0" | "false" | "off" => Some(NodeData::Boolean(false)),
                             "1" | "true" | "on" => Some(NodeData::Boolean(true)),
-                            _ => return_compile_error!(self, tokens[parameter_index], format!("cannot parse literal '{string_to_parse}' as a boolean (expected 0/1/false/true/off/on)"))
+                            _ => complain!("0/1/false/true/off/on")
                         }
                     },
 
@@ -351,7 +366,7 @@ impl Compiler {
                         clear_string_data = true;
                         match string_to_parse_str.parse::<i16>() {
                             Ok(n) => Some(NodeData::Short(n)),
-                            Err(_) => return_compile_error!(self, tokens[parameter_index], format!("cannot parse literal '{string_to_parse}' as a short"))
+                            Err(_) => complain!("integer between [-32768,32767]")
                         }
                     },
 
@@ -359,7 +374,7 @@ impl Compiler {
                         clear_string_data = true;
                         match string_to_parse_str.parse::<i32>() {
                             Ok(n) => Some(NodeData::Long(n)),
-                            Err(_) => return_compile_error!(self, tokens[parameter_index], format!("cannot parse literal '{string_to_parse}' as a long"))
+                            Err(_) => complain!("integer between [-2147483648,2147483647]")
                         }
                     },
 
@@ -367,7 +382,7 @@ impl Compiler {
                         clear_string_data = true;
                         match string_to_parse_str.parse::<f32>() {
                             Ok(n) => Some(NodeData::Real(n)),
-                            Err(_) => return_compile_error!(self, tokens[parameter_index], format!("cannot parse literal '{string_to_parse}' as a real"))
+                            Err(_) => complain!("numeric value")
                         }
                     },
 
@@ -378,7 +393,7 @@ impl Compiler {
                             "normal" => Some(NodeData::Short(1)),
                             "hard" => Some(NodeData::Short(2)),
                             "impossible" => Some(NodeData::Short(3)),
-                            _ => return_compile_error!(self, tokens[parameter_index], format!("cannot parse literal '{string_to_parse}' as a game_difficulty (expected easy/normal/hard/impossible)"))
+                            _ => complain!("easy/normal/hard/impossible")
                         }
                     },
 
@@ -395,7 +410,7 @@ impl Compiler {
                             "unused7" => Some(NodeData::Short(7)),
                             "unused8" => Some(NodeData::Short(8)),
                             "unused9" => Some(NodeData::Short(9)),
-                            _ => return_compile_error!(self, tokens[parameter_index], format!("cannot parse literal '{string_to_parse}' as a team (expected player/human/covenant/flood/sentinel)"))
+                            _ => complain!("player/human/covenant/flood/sentinel")
                         }
                     },
 
@@ -406,12 +421,14 @@ impl Compiler {
                                 true => return_compile_error!(self, tokens[parameter_index], format!("no script '{string_to_parse_str}' defined (a function is defined by this name, but it cannot be used here)")),
                                 false => ()
                             },
-                            None => return_compile_error!(self, tokens[parameter_index], format!("no script '{string_to_parse_str}' defined"))
+                            None => complain!("script name")
                         };
                         None
                     },
 
-                    ValueType::Passthrough => unreachable!(),
+                    ValueType::Void => complain!("function call or global"),
+
+                    ValueType::Passthrough | ValueType::SpecialForm => unreachable!("Tried to parse {} literal. This is a bug! Please report it (with whatever HSC caused this please!)", parameter_node.value_type.as_str()),
 
                     _ => {
                         clear_string_data = false;
