@@ -11,13 +11,16 @@ pub(crate) struct EngineAvailability {
 }
 
 impl EngineAvailability {
-    fn supports(&self, target: CompileTarget) -> bool {
+    pub(crate) fn supports_target(&self, target: CompileTarget) -> bool {
+        self.index_for_target(target) != None
+    }
+    pub(crate) fn index_for_target(&self, target: CompileTarget) -> Option<u16> {
         match target {
-            CompileTarget::HaloCEA => !matches!(self.mcc_cea, None),
-            CompileTarget::HaloCEXboxNTSC => !matches!(self.xbox, None),
-            CompileTarget::HaloCEGBX => !matches!(self.gbx_retail, None),
-            CompileTarget::HaloCEGBXDemo => !matches!(self.gbx_demo, None),
-            CompileTarget::HaloCustomEdition => !matches!(self.gbx_custom, None),
+            CompileTarget::HaloCEA => self.mcc_cea,
+            CompileTarget::HaloCEXboxNTSC => self.xbox,
+            CompileTarget::HaloCEGBX => self.gbx_retail,
+            CompileTarget::HaloCEGBXDemo => self.gbx_demo,
+            CompileTarget::HaloCustomEdition => self.gbx_custom
         }
     }
 }
@@ -96,7 +99,7 @@ impl CallableFunction for EngineFunction {
     }
 
     fn supports_target(&self, target: CompileTarget) -> bool {
-        self.availability.supports(target)
+        self.availability.supports_target(target)
     }
 
     fn is_engine_function(&self) -> bool {
@@ -133,7 +136,7 @@ impl CallableGlobal for EngineGlobal {
     }
 
     fn supports_target(&self, target: CompileTarget) -> bool {
-        self.availability.supports(target)
+        self.availability.supports_target(target)
     }
 
     fn is_engine_global(&self) -> bool {

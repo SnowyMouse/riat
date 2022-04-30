@@ -576,11 +576,12 @@ impl Compiler {
         };
 
         // Get all the things we can use
+        let target = self.target;
         let (callable_functions, callable_globals) = {
             let mut callable_functions = BTreeMap::<&str, &dyn CallableFunction>::new();
             let mut callable_globals = BTreeMap::<&str, &dyn CallableGlobal>::new();
 
-            let (targeted_functions, targeted_globals) = all_functions_and_globals_for_target(self.target);
+            let (targeted_functions, targeted_globals) = all_functions_and_globals_for_target(target);
 
             // Add everything
             for f in targeted_functions {
@@ -729,7 +730,7 @@ impl Compiler {
             gbi
         };
 
-        fn find_global_script_indices_for_node(node: &mut Node, scripts: &BTreeMap::<String, i16>, globals: &BTreeMap::<String, i32>) {
+        fn find_global_script_indices_for_node(node: &mut Node, scripts: &BTreeMap::<String, i16>, globals: &BTreeMap::<String, i32>, target: CompileTarget) {
             match node.node_type {
                 NodeType::Primitive(false) => {
                     if node.value_type == ValueType::Script {
@@ -743,20 +744,33 @@ impl Compiler {
                     }
                 },
                 NodeType::FunctionCall(is_engine_function) => {
-                    // If it's not an engine function, the node gets this index value.
-                    if !is_engine_function {
-                        let index = *scripts.get(node.string_data.as_ref().unwrap()).unwrap();
+                    let name = node.string_data.as_ref().unwrap();
+
+                    // If it's an engine function, the node gets the index of the function
+                    if is_engine_function {
+                        for i in ALL_FUNCTIONS {
+                            if i.name == name {
+                                node.index = i.availability.index_for_target(target);
+                                break;
+                            }
+                        }
+
+                        debug_assert!(node.index != None)
+                    }
+                    // If it's not an engine function, the node gets the index of the script then
+                    else {
+                        let index = *scripts.get(name).unwrap();
                         node.index = Some(index as u16);
                     }
 
                     for p in node.parameters.as_mut().unwrap() {
-                        find_global_script_indices_for_node(p, scripts, globals);
+                        find_global_script_indices_for_node(p, scripts, globals, target);
                     }
                 }
             }
         }
         for s in &mut scripts {
-            find_global_script_indices_for_node(&mut s.node, &scripts_by_index, &globals_by_index);
+            find_global_script_indices_for_node(&mut s.node, &scripts_by_index, &globals_by_index, target);
         }
 
         // Detect uninitialized globals (and also find script indices)
@@ -776,7 +790,7 @@ impl Compiler {
             }
         }
         for i in 0..globals.len() {
-            find_global_script_indices_for_node(&mut globals[i].node, &scripts_by_index, &globals_by_index);
+            find_global_script_indices_for_node(&mut globals[i].node, &scripts_by_index, &globals_by_index, target);
             find_uninitialized_globals(&globals[i].node, &globals[i..], self);
         }
 
