@@ -46,12 +46,14 @@ impl CompileErrorC {
     }
 
     unsafe fn free(&mut self) {
-        Box::from_raw(self.base);
-        self.base = std::ptr::null_mut();
-        self.file = std::ptr::null();
-        self.message = std::ptr::null();
-        self.line = 0;
-        self.column = 0;
+        if !self.base.is_null() {
+            Box::from_raw(self.base);
+            self.base = std::ptr::null_mut();
+            self.file = std::ptr::null();
+            self.message = std::ptr::null();
+            self.line = 0;
+            self.column = 0;
+        }
     }
 }
 
@@ -89,7 +91,7 @@ pub unsafe extern "C" fn riat_compiler_free(compiler: *mut Compiler) {
 /// # Requirements
 ///
 /// If any of these requirements are not met, **undefined behavior** will occur:
-/// * The `CompileErrorC` pointed to must be initialized.
+/// * The `CompileErrorC` pointed to must be initialized either as a zeroed-out struct or from a riatc function.
 /// * The function that initialized the `CompileErrorC` must state that this function needs to be used to clean it up.
 #[no_mangle]
 pub unsafe extern "C" fn riat_error_free(error: *mut CompileErrorC) {
@@ -160,7 +162,7 @@ pub unsafe extern "C" fn riat_compiler_compile_script_data(compiler: *mut Compil
 /// # Requirements
 ///
 /// If any of these requirements are not met, **undefined behavior** will occur:
-/// * The `script_data` parameter must point to a valid [`CompiledScriptData`].
+/// * The `script_data` parameter must point to a valid [`CompiledScriptData`] or be null.
 /// * If non-null, make sure the function you got the pointer from states that this function needs to be used to clean it up.
 #[no_mangle]
 pub unsafe extern "C" fn riat_script_data_free(script_data: *mut CompiledScriptData) {
