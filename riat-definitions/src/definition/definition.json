@@ -43,7 +43,7 @@
             "engines": {
                 "mcc-cea": null,
                 "xbox": 0,
-                "gbx-retail": null,
+                "gbx-retail": 0,
                 "gbx-demo": 0,
                 "gbx-custom": 0
             }
