@@ -41,7 +41,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 0,
                 "xbox": 0,
                 "gbx-retail": 0,
                 "gbx-demo": 0,
@@ -59,7 +59,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 1,
                 "xbox": 1,
                 "gbx-retail": 1,
                 "gbx-demo": 1,
@@ -105,7 +105,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 2,
                 "xbox": 2,
                 "gbx-retail": 2,
                 "gbx-demo": 2,
@@ -125,7 +125,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 4,
                 "xbox": 4,
                 "gbx-retail": 4,
                 "gbx-demo": 4,
@@ -143,7 +143,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 5,
                 "xbox": 5,
                 "gbx-retail": 5,
                 "gbx-demo": 5,
@@ -161,7 +161,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 6,
                 "xbox": 6,
                 "gbx-retail": 6,
                 "gbx-demo": 6,
@@ -179,7 +179,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 7,
                 "xbox": 7,
                 "gbx-retail": 7,
                 "gbx-demo": 7,
@@ -199,7 +199,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 8,
                 "xbox": 8,
                 "gbx-retail": 8,
                 "gbx-demo": 8,
@@ -217,7 +217,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 9,
                 "xbox": 9,
                 "gbx-retail": 9,
                 "gbx-demo": 9,
@@ -237,7 +237,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 10,
                 "xbox": 10,
                 "gbx-retail": 10,
                 "gbx-demo": 10,
@@ -255,7 +255,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 11,
                 "xbox": 11,
                 "gbx-retail": 11,
                 "gbx-demo": 11,
@@ -273,7 +273,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 12,
                 "xbox": 12,
                 "gbx-retail": 12,
                 "gbx-demo": 12,
@@ -293,7 +293,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 13,
                 "xbox": 13,
                 "gbx-retail": 13,
                 "gbx-demo": 13,
@@ -313,7 +313,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 14,
                 "xbox": 14,
                 "gbx-retail": 14,
                 "gbx-demo": 14,
@@ -334,7 +334,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 15,
                 "xbox": 15,
                 "gbx-retail": 15,
                 "gbx-demo": 15,
@@ -355,7 +355,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 16,
                 "xbox": 16,
                 "gbx-retail": 16,
                 "gbx-demo": 16,
@@ -376,7 +376,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 17,
                 "xbox": 17,
                 "gbx-retail": 17,
                 "gbx-demo": 17,
@@ -397,7 +397,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 18,
                 "xbox": 18,
                 "gbx-retail": 18,
                 "gbx-demo": 18,
@@ -418,7 +418,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 19,
                 "xbox": 19,
                 "gbx-retail": 19,
                 "gbx-demo": 19,
@@ -444,7 +444,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 21,
                 "xbox": 20,
                 "gbx-retail": 20,
                 "gbx-demo": 20,
@@ -461,7 +461,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 22,
                 "xbox": 21,
                 "gbx-retail": 21,
                 "gbx-demo": 21,
@@ -478,7 +478,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 23,
                 "xbox": 22,
                 "gbx-retail": 22,
                 "gbx-demo": 22,
@@ -495,7 +495,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 24,
                 "xbox": 23,
                 "gbx-retail": 23,
                 "gbx-demo": 23,
@@ -513,7 +513,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 25,
                 "xbox": 24,
                 "gbx-retail": 24,
                 "gbx-demo": 24,
@@ -531,7 +531,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 26,
                 "xbox": 25,
                 "gbx-retail": 25,
                 "gbx-demo": 25,
@@ -549,7 +549,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 27,
                 "xbox": 26,
                 "gbx-retail": 26,
                 "gbx-demo": 26,
@@ -566,7 +566,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 28,
                 "xbox": 27,
                 "gbx-retail": 27,
                 "gbx-demo": 27,
@@ -589,7 +589,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null
+                "mcc-cea": 29
             }
         },
         {
@@ -602,7 +602,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null
+                "mcc-cea": 38
             }
         },
         {
@@ -615,7 +615,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null
+                "mcc-cea": 39
             }
         },
         {
@@ -631,7 +631,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null
+                "mcc-cea": 40
             }
         },
         {
@@ -647,7 +647,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null
+                "mcc-cea": 41
             }
         },
         {
@@ -663,7 +663,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null
+                "mcc-cea": 42
             }
         },
         {
@@ -679,7 +679,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null
+                "mcc-cea": 43
             }
         },
         {
@@ -695,7 +695,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null
+                "mcc-cea": 44
             }
         },
         {
@@ -711,7 +711,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null
+                "mcc-cea": 45
             }
         },
         {
@@ -730,7 +730,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null
+                "mcc-cea": 46
             }
         },
         {
@@ -749,7 +749,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null
+                "mcc-cea": 47
             }
         },
         {
@@ -763,7 +763,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 48,
                 "xbox": 28,
                 "gbx-retail": 28,
                 "gbx-demo": 28,
@@ -784,7 +784,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null
+                "mcc-cea": 49
             }
         },
         {
@@ -798,7 +798,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null
+                "mcc-cea": 50
             }
         },
         {
@@ -806,7 +806,7 @@
             "type": "object_list",
             "description": "returns a list of the living player units on the local machine",
             "engines": {
-                "mcc-cea": null
+                "mcc-cea": 51
             }
         },
         {
@@ -814,7 +814,7 @@
             "type": "object_list",
             "description": "returns a list of the players",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 52,
                 "xbox": 29,
                 "gbx-retail": 29,
                 "gbx-demo": 29,
@@ -831,7 +831,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null
+                "mcc-cea": 53
             }
         },
         {
@@ -847,7 +847,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 54,
                 "xbox": 30,
                 "gbx-retail": 30,
                 "gbx-demo": 30,
@@ -867,7 +867,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 55,
                 "xbox": 31,
                 "gbx-retail": 31,
                 "gbx-demo": 31,
@@ -887,7 +887,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 56,
                 "xbox": 32,
                 "gbx-retail": 32,
                 "gbx-demo": 32,
@@ -907,7 +907,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 57,
                 "xbox": 33,
                 "gbx-retail": 33,
                 "gbx-demo": 33,
@@ -927,7 +927,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 58,
                 "xbox": 34,
                 "gbx-retail": 34,
                 "gbx-demo": 34,
@@ -947,7 +947,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 59,
                 "xbox": 35,
                 "gbx-retail": 35,
                 "gbx-demo": 35,
@@ -967,7 +967,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 60,
                 "xbox": 36,
                 "gbx-retail": 36,
                 "gbx-demo": 36,
@@ -990,7 +990,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 61,
                 "xbox": 37,
                 "gbx-retail": 37,
                 "gbx-demo": 37,
@@ -1007,7 +1007,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 62,
                 "xbox": 38,
                 "gbx-retail": 38,
                 "gbx-demo": 38,
@@ -1024,7 +1024,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 63,
                 "xbox": 39,
                 "gbx-retail": 39,
                 "gbx-demo": 39,
@@ -1041,7 +1041,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 64,
                 "xbox": 40,
                 "gbx-retail": 40,
                 "gbx-demo": 40,
@@ -1058,7 +1058,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 65,
                 "xbox": 41,
                 "gbx-retail": 41,
                 "gbx-demo": 41,
@@ -1075,7 +1075,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 66,
                 "xbox": 42,
                 "gbx-retail": 42,
                 "gbx-demo": 42,
@@ -1092,7 +1092,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 67,
                 "xbox": 43,
                 "gbx-retail": 43,
                 "gbx-demo": 43,
@@ -1104,7 +1104,7 @@
             "type": "void",
             "description": "destroys all non player objects.",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 68,
                 "xbox": 44,
                 "gbx-retail": 44,
                 "gbx-demo": 44,
@@ -1121,7 +1121,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 69,
                 "xbox": 53,
                 "gbx-retail": 53,
                 "gbx-demo": 53,
@@ -1141,7 +1141,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 70,
                 "xbox": 45,
                 "gbx-retail": 45,
                 "gbx-demo": 45,
@@ -1158,7 +1158,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 71,
                 "xbox": 46,
                 "gbx-retail": 46,
                 "gbx-demo": 46,
@@ -1175,7 +1175,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null
+                "mcc-cea": 72
             }
         },
         {
@@ -1191,7 +1191,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 73,
                 "xbox": 47,
                 "gbx-retail": 47,
                 "gbx-demo": 47,
@@ -1214,7 +1214,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 74,
                 "xbox": 48,
                 "gbx-retail": 48,
                 "gbx-demo": 48,
@@ -1234,7 +1234,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 75,
                 "xbox": 49,
                 "gbx-retail": 49,
                 "gbx-demo": 49,
@@ -1254,7 +1254,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 76,
                 "xbox": 50,
                 "gbx-retail": 50,
                 "gbx-demo": 50,
@@ -1277,7 +1277,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 77,
                 "xbox": 51,
                 "gbx-retail": 51,
                 "gbx-demo": 51,
@@ -1300,7 +1300,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 78,
                 "xbox": 52,
                 "gbx-retail": 52,
                 "gbx-demo": 52,
@@ -1320,7 +1320,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null
+                "mcc-cea": 79
             }
         },
         {
@@ -1336,7 +1336,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null
+                "mcc-cea": 80
             }
         },
         {
@@ -1352,7 +1352,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 81,
                 "xbox": 54,
                 "gbx-retail": 54,
                 "gbx-demo": 54,
@@ -1369,7 +1369,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 82,
                 "xbox": 55,
                 "gbx-retail": 55,
                 "gbx-demo": 55,
@@ -1381,7 +1381,7 @@
             "type": "void",
             "description": "recompiles scripts.",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 83,
                 "xbox": 56,
                 "gbx-retail": 56,
                 "gbx-demo": 56,
@@ -1393,7 +1393,7 @@
             "type": "void",
             "description": "saves a file called hs_doc.txt with parameters for all script commands.",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 84,
                 "xbox": 57,
                 "gbx-retail": 57,
                 "gbx-demo": 57,
@@ -1410,7 +1410,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 85,
                 "xbox": 58,
                 "gbx-retail": 58,
                 "gbx-demo": 58,
@@ -1430,7 +1430,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 86,
                 "xbox": 59,
                 "gbx-retail": 59,
                 "gbx-demo": 59,
@@ -1450,7 +1450,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 87,
                 "xbox": 60,
                 "gbx-retail": 60,
                 "gbx-demo": 60,
@@ -1462,7 +1462,7 @@
             "type": "void",
             "description": "resets all physics constants to earthly values",
             "engines": {
-                "mcc-cea": null
+                "mcc-cea": 88
             }
         },
         {
@@ -1475,7 +1475,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null
+                "mcc-cea": 89
             }
         },
         {
@@ -1483,7 +1483,7 @@
             "type": "real",
             "description": "get the current global gravity acceleration relative to halo standard gravity",
             "engines": {
-                "mcc-cea": null
+                "mcc-cea": 90
             }
         },
         {
@@ -1499,7 +1499,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 91,
                 "xbox": 61,
                 "gbx-retail": 61,
                 "gbx-demo": 61,
@@ -1516,7 +1516,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 92,
                 "xbox": 62,
                 "gbx-retail": 62,
                 "gbx-demo": 62,
@@ -1527,7 +1527,7 @@
             "name": "numeric_countdown_timer_stop",
             "type": "void",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 93,
                 "xbox": 63,
                 "gbx-retail": 63,
                 "gbx-demo": 63,
@@ -1538,7 +1538,7 @@
             "name": "numeric_countdown_timer_restart",
             "type": "void",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 94,
                 "xbox": 64,
                 "gbx-retail": 64,
                 "gbx-demo": 64,
@@ -1555,7 +1555,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 95,
                 "xbox": 65,
                 "gbx-retail": 65,
                 "gbx-demo": 65,
@@ -1575,7 +1575,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 96,
                 "xbox": 66,
                 "gbx-retail": 66,
                 "gbx-demo": 66,
@@ -1595,7 +1595,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 97,
                 "xbox": 67,
                 "gbx-retail": 67,
                 "gbx-demo": 67,
@@ -1615,7 +1615,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 98,
                 "xbox": 68,
                 "gbx-retail": 68,
                 "gbx-demo": 68,
@@ -1632,7 +1632,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 99,
                 "xbox": 69,
                 "gbx-retail": 69,
                 "gbx-demo": 69,
@@ -1649,7 +1649,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 100,
                 "xbox": 70,
                 "gbx-retail": 70,
                 "gbx-demo": 70,
@@ -1669,7 +1669,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 101,
                 "xbox": 71,
                 "gbx-retail": 71,
                 "gbx-demo": 71,
@@ -1689,7 +1689,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 102,
                 "xbox": 72,
                 "gbx-retail": 72,
                 "gbx-demo": 72,
@@ -1701,7 +1701,7 @@
             "type": "void",
             "description": "debugs object memory usage",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 103,
                 "xbox": 73,
                 "gbx-retail": 73,
                 "gbx-demo": 73,
@@ -1721,7 +1721,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 104,
                 "xbox": 74,
                 "gbx-retail": 74,
                 "gbx-demo": 74,
@@ -1744,7 +1744,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 105,
                 "xbox": 75,
                 "gbx-retail": 75,
                 "gbx-demo": 75,
@@ -1770,7 +1770,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 106,
                 "xbox": 76,
                 "gbx-retail": 76,
                 "gbx-demo": 76,
@@ -1790,7 +1790,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 107,
                 "xbox": 77,
                 "gbx-retail": 77,
                 "gbx-demo": 77,
@@ -1802,7 +1802,7 @@
             "type": "void",
             "description": "causes all garbage objects except those visible to a player to be collected immediately",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 108,
                 "xbox": 78,
                 "gbx-retail": 78,
                 "gbx-demo": 78,
@@ -1819,7 +1819,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 109,
                 "xbox": 79,
                 "gbx-retail": 79,
                 "gbx-demo": 79,
@@ -1836,7 +1836,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 110,
                 "xbox": 80,
                 "gbx-retail": 80,
                 "gbx-demo": 80,
@@ -1856,7 +1856,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 111,
                 "xbox": 81,
                 "gbx-retail": 81,
                 "gbx-demo": 81,
@@ -1873,7 +1873,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 112,
                 "xbox": 82,
                 "gbx-retail": 82,
                 "gbx-demo": 82,
@@ -1890,7 +1890,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 113,
                 "xbox": 83,
                 "gbx-retail": 83,
                 "gbx-demo": 83,
@@ -1907,7 +1907,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 114,
                 "xbox": 84,
                 "gbx-retail": 84,
                 "gbx-demo": 84,
@@ -1924,7 +1924,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 115,
                 "xbox": 85,
                 "gbx-retail": 85,
                 "gbx-demo": 85,
@@ -1941,7 +1941,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 116,
                 "xbox": 86,
                 "gbx-retail": 86,
                 "gbx-demo": 86,
@@ -1953,7 +1953,7 @@
             "type": "void",
             "description": "removes the special place that activates everything it sees.",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 117,
                 "xbox": 87,
                 "gbx-retail": 87,
                 "gbx-demo": 87,
@@ -1970,7 +1970,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 118,
                 "xbox": 88,
                 "gbx-retail": 88,
                 "gbx-demo": 88,
@@ -1987,7 +1987,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 119,
                 "xbox": 89,
                 "gbx-retail": 89,
                 "gbx-demo": 89,
@@ -2010,7 +2010,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 120,
                 "xbox": 90,
                 "gbx-retail": 90,
                 "gbx-demo": 90,
@@ -2036,7 +2036,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 121,
                 "xbox": 91,
                 "gbx-retail": 91,
                 "gbx-demo": 91,
@@ -2052,7 +2052,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 122,
                 "xbox": 92,
                 "gbx-retail": 92,
                 "gbx-demo": 92,
@@ -2072,7 +2072,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 123,
                 "xbox": 93,
                 "gbx-retail": 93,
                 "gbx-demo": 93,
@@ -2089,7 +2089,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 124,
                 "xbox": 94,
                 "gbx-retail": 94,
                 "gbx-demo": 94,
@@ -2106,7 +2106,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 125,
                 "xbox": 95,
                 "gbx-retail": 95,
                 "gbx-demo": 95,
@@ -2123,7 +2123,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 126,
                 "xbox": 96,
                 "gbx-retail": 96,
                 "gbx-demo": 96,
@@ -2140,7 +2140,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 127,
                 "xbox": 97,
                 "gbx-retail": 97,
                 "gbx-demo": 97,
@@ -2157,7 +2157,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 128,
                 "xbox": 98,
                 "gbx-retail": 98,
                 "gbx-demo": 98,
@@ -2174,7 +2174,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 129,
                 "xbox": 99,
                 "gbx-retail": 99,
                 "gbx-demo": 99,
@@ -2203,7 +2203,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 130,
                 "xbox": 100,
                 "gbx-retail": 100,
                 "gbx-demo": 100,
@@ -2229,7 +2229,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 131,
                 "xbox": 101,
                 "gbx-retail": 101,
                 "gbx-demo": 101,
@@ -2255,7 +2255,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 132,
                 "xbox": 102,
                 "gbx-retail": 102,
                 "gbx-demo": 102,
@@ -2272,7 +2272,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 133,
                 "xbox": 103,
                 "gbx-retail": 103,
                 "gbx-demo": 103,
@@ -2292,7 +2292,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 134,
                 "xbox": 104,
                 "gbx-retail": 104,
                 "gbx-demo": 104,
@@ -2312,7 +2312,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 135,
                 "xbox": 105,
                 "gbx-retail": 105,
                 "gbx-demo": 105,
@@ -2332,7 +2332,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 136,
                 "xbox": 106,
                 "gbx-retail": 106,
                 "gbx-demo": 106,
@@ -2355,7 +2355,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 137,
                 "xbox": 107,
                 "gbx-retail": 107,
                 "gbx-demo": 107,
@@ -2378,7 +2378,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 138,
                 "xbox": 108,
                 "gbx-retail": 108,
                 "gbx-demo": 108,
@@ -2401,7 +2401,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 139,
                 "xbox": 109,
                 "gbx-retail": 109,
                 "gbx-demo": 109,
@@ -2421,7 +2421,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 140,
                 "xbox": 110,
                 "gbx-retail": 110,
                 "gbx-demo": 110,
@@ -2438,7 +2438,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 141,
                 "xbox": 111,
                 "gbx-retail": 111,
                 "gbx-demo": 111,
@@ -2461,7 +2461,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 142,
                 "xbox": 112,
                 "gbx-retail": 112,
                 "gbx-demo": 112,
@@ -2484,7 +2484,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 143,
                 "xbox": 113,
                 "gbx-retail": 113,
                 "gbx-demo": 113,
@@ -2507,7 +2507,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 144,
                 "xbox": 114,
                 "gbx-retail": 114,
                 "gbx-demo": 114,
@@ -2530,7 +2530,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 145,
                 "xbox": 115,
                 "gbx-retail": 115,
                 "gbx-demo": 115,
@@ -2553,7 +2553,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 146,
                 "xbox": 116,
                 "gbx-retail": 116,
                 "gbx-demo": 116,
@@ -2573,7 +2573,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 147,
                 "xbox": 117,
                 "gbx-retail": 117,
                 "gbx-demo": 117,
@@ -2590,7 +2590,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 148,
                 "xbox": 118,
                 "gbx-retail": 118,
                 "gbx-demo": 118,
@@ -2610,7 +2610,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 149,
                 "xbox": 119,
                 "gbx-retail": 119,
                 "gbx-demo": 119,
@@ -2622,7 +2622,7 @@
             "type": "void",
             "description": "causes player's unit to start a melee attack",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 150,
                 "xbox": 120,
                 "gbx-retail": 120,
                 "gbx-demo": 120,
@@ -2639,7 +2639,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 151,
                 "xbox": 121,
                 "gbx-retail": 121,
                 "gbx-demo": 121,
@@ -2656,7 +2656,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 152,
                 "xbox": 122,
                 "gbx-retail": 122,
                 "gbx-demo": 122,
@@ -2673,7 +2673,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 153,
                 "xbox": 123,
                 "gbx-retail": 123,
                 "gbx-demo": 123,
@@ -2690,7 +2690,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 154,
                 "xbox": 124,
                 "gbx-retail": 124,
                 "gbx-demo": 124,
@@ -2707,7 +2707,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 155,
                 "xbox": 125,
                 "gbx-retail": 125,
                 "gbx-demo": 125,
@@ -2724,7 +2724,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 156,
                 "xbox": 126,
                 "gbx-retail": 126,
                 "gbx-demo": 126,
@@ -2744,7 +2744,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 157,
                 "xbox": 127,
                 "gbx-retail": 127,
                 "gbx-demo": 127,
@@ -2764,7 +2764,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 158,
                 "xbox": 128,
                 "gbx-retail": 128,
                 "gbx-demo": 128,
@@ -2781,7 +2781,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 159,
                 "xbox": 129,
                 "gbx-retail": 129,
                 "gbx-demo": 129,
@@ -2801,7 +2801,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 160,
                 "xbox": 130,
                 "gbx-retail": 130,
                 "gbx-demo": 130,
@@ -2821,7 +2821,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 161,
                 "xbox": 131,
                 "gbx-retail": 131,
                 "gbx-demo": 131,
@@ -2833,7 +2833,7 @@
             "type": "boolean",
             "description": "returns whether the night-vision mode could be activated via the flashlight button",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 162,
                 "xbox": 132,
                 "gbx-retail": 132,
                 "gbx-demo": 132,
@@ -2853,7 +2853,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 163,
                 "xbox": 133,
                 "gbx-retail": 133,
                 "gbx-demo": 133,
@@ -2873,7 +2873,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 164,
                 "xbox": 134,
                 "gbx-retail": 134,
                 "gbx-demo": 134,
@@ -2890,7 +2890,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 165,
                 "xbox": 135,
                 "gbx-retail": 135,
                 "gbx-demo": 135,
@@ -2910,7 +2910,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 166,
                 "xbox": 136,
                 "gbx-retail": 136,
                 "gbx-demo": 136,
@@ -2927,7 +2927,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 167,
                 "xbox": 137,
                 "gbx-retail": 137,
                 "gbx-demo": 137,
@@ -2947,7 +2947,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 168,
                 "xbox": 138,
                 "gbx-retail": 138,
                 "gbx-demo": 138,
@@ -2967,7 +2967,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 169,
                 "xbox": 139,
                 "gbx-retail": 139,
                 "gbx-demo": 139,
@@ -2984,7 +2984,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 170,
                 "xbox": 140,
                 "gbx-retail": 140,
                 "gbx-demo": 140,
@@ -3004,7 +3004,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 171,
                 "xbox": 141,
                 "gbx-retail": 141,
                 "gbx-demo": 141,
@@ -3021,7 +3021,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 172,
                 "xbox": 142,
                 "gbx-retail": 142,
                 "gbx-demo": 142,
@@ -3041,7 +3041,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 173,
                 "xbox": 143,
                 "gbx-retail": 143,
                 "gbx-demo": 143,
@@ -3061,7 +3061,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 174,
                 "xbox": 144,
                 "gbx-retail": 144,
                 "gbx-demo": 144,
@@ -3081,7 +3081,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 175,
                 "xbox": 145,
                 "gbx-retail": 145,
                 "gbx-demo": 145,
@@ -3101,7 +3101,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 176,
                 "xbox": 146,
                 "gbx-retail": 146,
                 "gbx-demo": 146,
@@ -3121,7 +3121,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 177,
                 "xbox": 147,
                 "gbx-retail": 147,
                 "gbx-demo": 147,
@@ -3133,7 +3133,7 @@
             "type": "void",
             "description": "restores all breakable surfaces",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 178,
                 "xbox": 148,
                 "gbx-retail": 148,
                 "gbx-demo": 148,
@@ -3145,7 +3145,7 @@
             "type": "void",
             "description": "drops all powerups near player",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 179,
                 "xbox": 149,
                 "gbx-retail": 149,
                 "gbx-demo": 149,
@@ -3157,7 +3157,7 @@
             "type": "void",
             "description": "drops all weapons near player",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 180,
                 "xbox": 150,
                 "gbx-retail": 150,
                 "gbx-demo": 150,
@@ -3169,7 +3169,7 @@
             "type": "void",
             "description": "drops a warthog near player",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 183,
                 "gbx-retail": 151,
                 "gbx-demo": 151,
                 "gbx-custom": 151
@@ -3180,7 +3180,7 @@
             "type": "void",
             "description": "drops all vehicles on player",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 184,
                 "xbox": 151,
                 "gbx-retail": 152,
                 "gbx-demo": 152,
@@ -3192,7 +3192,7 @@
             "type": "void",
             "description": "teleports player to camera location",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 185,
                 "xbox": 152,
                 "gbx-retail": 153,
                 "gbx-demo": 153,
@@ -3204,7 +3204,7 @@
             "type": "void",
             "description": "gives the player active camouflage",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 186,
                 "xbox": 153,
                 "gbx-retail": 154,
                 "gbx-demo": 154,
@@ -3221,7 +3221,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 187,
                 "xbox": 154,
                 "gbx-retail": 155,
                 "gbx-demo": 155,
@@ -3233,7 +3233,7 @@
             "type": "void",
             "description": "reloads the cheats.txt file",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 188,
                 "xbox": 155,
                 "gbx-retail": 156,
                 "gbx-demo": 156,
@@ -3250,7 +3250,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 189,
                 "xbox": 156,
                 "gbx-retail": 157,
                 "gbx-demo": 157,
@@ -3267,7 +3267,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 190,
                 "xbox": 157,
                 "gbx-retail": 158,
                 "gbx-demo": 158,
@@ -3287,7 +3287,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 191,
                 "xbox": 158,
                 "gbx-retail": 159,
                 "gbx-demo": 159,
@@ -3307,7 +3307,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 192,
                 "xbox": 159,
                 "gbx-retail": 160,
                 "gbx-demo": 160,
@@ -3324,7 +3324,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 193,
                 "xbox": 160,
                 "gbx-retail": 161,
                 "gbx-demo": 161,
@@ -3341,7 +3341,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 194,
                 "xbox": 161,
                 "gbx-retail": 162,
                 "gbx-demo": 162,
@@ -3358,7 +3358,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 195,
                 "xbox": 162,
                 "gbx-retail": 163,
                 "gbx-demo": 163,
@@ -3375,7 +3375,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 196,
                 "xbox": 163,
                 "gbx-retail": 164,
                 "gbx-demo": 164,
@@ -3392,7 +3392,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 197,
                 "xbox": 164,
                 "gbx-retail": 165,
                 "gbx-demo": 165,
@@ -3404,7 +3404,7 @@
             "type": "void",
             "description": "erases all AI.",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 198,
                 "xbox": 165,
                 "gbx-retail": 166,
                 "gbx-demo": 166,
@@ -3421,7 +3421,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 199,
                 "xbox": 166,
                 "gbx-retail": 167,
                 "gbx-demo": 167,
@@ -3449,7 +3449,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 201,
                 "xbox": 168,
                 "gbx-retail": 169,
                 "gbx-demo": 169,
@@ -3469,7 +3469,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 202,
                 "xbox": 169,
                 "gbx-retail": 170,
                 "gbx-demo": 170,
@@ -3489,7 +3489,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 203,
                 "xbox": 170,
                 "gbx-retail": 171,
                 "gbx-demo": 171,
@@ -3509,7 +3509,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 204,
                 "xbox": 171,
                 "gbx-retail": 172,
                 "gbx-demo": 172,
@@ -3529,7 +3529,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 205,
                 "xbox": 172,
                 "gbx-retail": 173,
                 "gbx-demo": 173,
@@ -3546,7 +3546,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 206,
                 "xbox": 173,
                 "gbx-retail": 174,
                 "gbx-demo": 174,
@@ -3566,7 +3566,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 207,
                 "xbox": 174,
                 "gbx-retail": 175,
                 "gbx-demo": 175,
@@ -3583,7 +3583,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 208,
                 "xbox": 175,
                 "gbx-retail": 176,
                 "gbx-demo": 176,
@@ -3600,7 +3600,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 209,
                 "xbox": 176,
                 "gbx-retail": 177,
                 "gbx-demo": 177,
@@ -3617,7 +3617,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 210,
                 "xbox": 177,
                 "gbx-retail": 178,
                 "gbx-demo": 178,
@@ -3634,7 +3634,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 211,
                 "xbox": 178,
                 "gbx-retail": 179,
                 "gbx-demo": 179,
@@ -3651,7 +3651,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 212,
                 "xbox": 179,
                 "gbx-retail": 180,
                 "gbx-demo": 180,
@@ -3668,7 +3668,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 213,
                 "xbox": 180,
                 "gbx-retail": 181,
                 "gbx-demo": 181,
@@ -3688,7 +3688,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 214,
                 "xbox": 181,
                 "gbx-retail": 182,
                 "gbx-demo": 182,
@@ -3708,7 +3708,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 215,
                 "xbox": 182,
                 "gbx-retail": 183,
                 "gbx-demo": 183,
@@ -3731,7 +3731,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 216,
                 "xbox": 183,
                 "gbx-retail": 184,
                 "gbx-demo": 184,
@@ -3751,7 +3751,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 217,
                 "xbox": 184,
                 "gbx-retail": 185,
                 "gbx-demo": 185,
@@ -3771,7 +3771,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 218,
                 "xbox": 185,
                 "gbx-retail": 186,
                 "gbx-demo": 186,
@@ -3791,7 +3791,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 219,
                 "xbox": 186,
                 "gbx-retail": 187,
                 "gbx-demo": 187,
@@ -3808,7 +3808,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 220,
                 "xbox": 187,
                 "gbx-retail": 188,
                 "gbx-demo": 188,
@@ -3825,7 +3825,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 221,
                 "xbox": 188,
                 "gbx-retail": 189,
                 "gbx-demo": 189,
@@ -3842,7 +3842,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 222,
                 "xbox": 189,
                 "gbx-retail": 190,
                 "gbx-demo": 190,
@@ -3859,7 +3859,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 223,
                 "xbox": 190,
                 "gbx-retail": 191,
                 "gbx-demo": 191,
@@ -3876,7 +3876,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 224,
                 "xbox": 191,
                 "gbx-retail": 192,
                 "gbx-demo": 192,
@@ -3893,7 +3893,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 225,
                 "xbox": 192,
                 "gbx-retail": 193,
                 "gbx-demo": 193,
@@ -3916,7 +3916,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 226,
                 "xbox": 193,
                 "gbx-retail": 194,
                 "gbx-demo": 194,
@@ -3939,7 +3939,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 227,
                 "xbox": 194,
                 "gbx-retail": 195,
                 "gbx-demo": 195,
@@ -3956,7 +3956,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 228,
                 "xbox": 195,
                 "gbx-retail": 196,
                 "gbx-demo": 196,
@@ -3973,7 +3973,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 229,
                 "xbox": 196,
                 "gbx-retail": 197,
                 "gbx-demo": 197,
@@ -3993,7 +3993,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 230,
                 "xbox": 197,
                 "gbx-retail": 198,
                 "gbx-demo": 198,
@@ -4013,7 +4013,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 231,
                 "xbox": 198,
                 "gbx-retail": 199,
                 "gbx-demo": 199,
@@ -4033,7 +4033,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 232,
                 "xbox": 199,
                 "gbx-retail": 200,
                 "gbx-demo": 200,
@@ -4053,7 +4053,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 233,
                 "xbox": 200,
                 "gbx-retail": 201,
                 "gbx-demo": 201,
@@ -4070,7 +4070,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 234,
                 "xbox": 201,
                 "gbx-retail": 202,
                 "gbx-demo": 202,
@@ -4087,7 +4087,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 235,
                 "xbox": 202,
                 "gbx-retail": 203,
                 "gbx-demo": 203,
@@ -4104,7 +4104,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 236,
                 "xbox": 203,
                 "gbx-retail": 204,
                 "gbx-demo": 204,
@@ -4121,7 +4121,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 237,
                 "xbox": 204,
                 "gbx-retail": 205,
                 "gbx-demo": 205,
@@ -4141,7 +4141,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 238,
                 "xbox": 205,
                 "gbx-retail": 206,
                 "gbx-demo": 206,
@@ -4158,7 +4158,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 239,
                 "xbox": 206,
                 "gbx-retail": 207,
                 "gbx-demo": 207,
@@ -4178,7 +4178,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 240,
                 "xbox": 207,
                 "gbx-retail": 208,
                 "gbx-demo": 208,
@@ -4198,7 +4198,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 241,
                 "xbox": 208,
                 "gbx-retail": 209,
                 "gbx-demo": 209,
@@ -4215,7 +4215,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 242,
                 "xbox": 209,
                 "gbx-retail": 210,
                 "gbx-demo": 210,
@@ -4232,7 +4232,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 243,
                 "xbox": 210,
                 "gbx-retail": 211,
                 "gbx-demo": 211,
@@ -4249,7 +4249,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 244,
                 "xbox": 211,
                 "gbx-retail": 212,
                 "gbx-demo": 212,
@@ -4266,7 +4266,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 245,
                 "xbox": 212,
                 "gbx-retail": 213,
                 "gbx-demo": 213,
@@ -4286,7 +4286,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 246,
                 "xbox": 213,
                 "gbx-retail": 214,
                 "gbx-demo": 214,
@@ -4306,7 +4306,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 247,
                 "xbox": 214,
                 "gbx-retail": 215,
                 "gbx-demo": 215,
@@ -4326,7 +4326,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 248,
                 "xbox": 215,
                 "gbx-retail": 216,
                 "gbx-demo": 216,
@@ -4346,7 +4346,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 249,
                 "xbox": 216,
                 "gbx-retail": 217,
                 "gbx-demo": 217,
@@ -4366,7 +4366,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 250,
                 "xbox": 217,
                 "gbx-retail": 218,
                 "gbx-demo": 218,
@@ -4383,7 +4383,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 251,
                 "xbox": 218,
                 "gbx-retail": 219,
                 "gbx-demo": 219,
@@ -4395,7 +4395,7 @@
             "type": "void",
             "description": "reconnects all AI information to the current structure bsp (use this after you create encounters or command lists in sapien, or place new firing points or command list points)",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 252,
                 "xbox": 219,
                 "gbx-retail": 220,
                 "gbx-demo": 220,
@@ -4415,7 +4415,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 253,
                 "xbox": 220,
                 "gbx-retail": 221,
                 "gbx-demo": 221,
@@ -4435,7 +4435,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 254,
                 "xbox": 221,
                 "gbx-retail": 222,
                 "gbx-demo": 222,
@@ -4455,7 +4455,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 255,
                 "xbox": 222,
                 "gbx-retail": 223,
                 "gbx-demo": 223,
@@ -4475,7 +4475,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 256,
                 "xbox": 223,
                 "gbx-retail": 224,
                 "gbx-demo": 224,
@@ -4495,7 +4495,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 257,
                 "xbox": 224,
                 "gbx-retail": 225,
                 "gbx-demo": 225,
@@ -4512,7 +4512,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 258,
                 "xbox": 225,
                 "gbx-retail": 226,
                 "gbx-demo": 226,
@@ -4532,7 +4532,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 259,
                 "xbox": 226,
                 "gbx-retail": 227,
                 "gbx-demo": 227,
@@ -4549,7 +4549,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 260,
                 "xbox": 227,
                 "gbx-retail": 228,
                 "gbx-demo": 228,
@@ -4569,7 +4569,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 261,
                 "xbox": 228,
                 "gbx-retail": 229,
                 "gbx-demo": 229,
@@ -4586,7 +4586,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 262,
                 "xbox": 229,
                 "gbx-retail": 230,
                 "gbx-demo": 230,
@@ -4603,7 +4603,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 263,
                 "xbox": 230,
                 "gbx-retail": 231,
                 "gbx-demo": 231,
@@ -4623,7 +4623,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 264,
                 "xbox": 231,
                 "gbx-retail": 232,
                 "gbx-demo": 232,
@@ -4643,7 +4643,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 265,
                 "xbox": 232,
                 "gbx-retail": 233,
                 "gbx-demo": 233,
@@ -4663,7 +4663,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 266,
                 "xbox": 233,
                 "gbx-retail": 234,
                 "gbx-demo": 234,
@@ -4680,7 +4680,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 267,
                 "xbox": 234,
                 "gbx-retail": 235,
                 "gbx-demo": 235,
@@ -4697,7 +4697,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 268,
                 "xbox": 235,
                 "gbx-retail": 236,
                 "gbx-demo": 236,
@@ -4714,7 +4714,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 269,
                 "xbox": 236,
                 "gbx-retail": 237,
                 "gbx-demo": 237,
@@ -4731,7 +4731,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 270,
                 "xbox": 237,
                 "gbx-retail": 238,
                 "gbx-demo": 238,
@@ -4748,7 +4748,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 271,
                 "xbox": 238,
                 "gbx-retail": 239,
                 "gbx-demo": 239,
@@ -4768,7 +4768,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 272,
                 "xbox": 239,
                 "gbx-retail": 240,
                 "gbx-demo": 240,
@@ -4788,7 +4788,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 273,
                 "xbox": 240,
                 "gbx-retail": 241,
                 "gbx-demo": 241,
@@ -4808,7 +4808,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 274,
                 "xbox": 241,
                 "gbx-retail": 242,
                 "gbx-demo": 242,
@@ -4828,7 +4828,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 275,
                 "xbox": 242,
                 "gbx-retail": 243,
                 "gbx-demo": 243,
@@ -4848,7 +4848,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 276,
                 "xbox": 243,
                 "gbx-retail": 244,
                 "gbx-demo": 244,
@@ -4868,7 +4868,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 277,
                 "xbox": 244,
                 "gbx-retail": 245,
                 "gbx-demo": 245,
@@ -4885,7 +4885,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 278,
                 "xbox": 245,
                 "gbx-retail": 246,
                 "gbx-demo": 246,
@@ -4905,7 +4905,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 279,
                 "xbox": 246,
                 "gbx-retail": 247,
                 "gbx-demo": 247,
@@ -4928,7 +4928,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 280,
                 "xbox": 247,
                 "gbx-retail": 248,
                 "gbx-demo": 248,
@@ -4948,7 +4948,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 281,
                 "xbox": 248,
                 "gbx-retail": 249,
                 "gbx-demo": 249,
@@ -4965,7 +4965,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 282,
                 "xbox": 249,
                 "gbx-retail": 250,
                 "gbx-demo": 250,
@@ -4982,7 +4982,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 283,
                 "xbox": 250,
                 "gbx-retail": 251,
                 "gbx-demo": 251,
@@ -4994,7 +4994,7 @@
             "type": "short",
             "description": "returns the number of ticks remaining in the current camera interpolation.",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 284,
                 "xbox": 251,
                 "gbx-retail": 252,
                 "gbx-demo": 252,
@@ -5006,7 +5006,7 @@
             "type": "void",
             "description": "loads the saved camera position and facing from camera_<map_name>.txt",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 285,
                 "xbox": 252,
                 "gbx-retail": 253,
                 "gbx-demo": 253,
@@ -5018,7 +5018,7 @@
             "type": "void",
             "description": "saves the camera position and facing to camera_<map_name>.txt",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 286,
                 "xbox": 253,
                 "gbx-retail": 254,
                 "gbx-demo": 254,
@@ -5035,7 +5035,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null
+                "mcc-cea": 287
             }
         },
         {
@@ -5048,7 +5048,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null
+                "mcc-cea": 288
             }
         },
         {
@@ -5061,7 +5061,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null
+                "mcc-cea": 289
             }
         },
         {
@@ -5074,7 +5074,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null
+                "mcc-cea": 290
             }
         },
         {
@@ -5087,7 +5087,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null
+                "mcc-cea": 291
             }
         },
         {
@@ -5100,7 +5100,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 292,
                 "xbox": 254,
                 "gbx-retail": 255,
                 "gbx-demo": 255,
@@ -5112,7 +5112,7 @@
             "type": "long",
             "description": "gets ticks elapsed since the start of the game.",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 293,
                 "xbox": 255,
                 "gbx-retail": 256,
                 "gbx-demo": 256,
@@ -5129,7 +5129,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 295,
                 "xbox": 256,
                 "gbx-retail": 257,
                 "gbx-demo": 257,
@@ -5141,7 +5141,7 @@
             "type": "game_difficulty",
             "description": "returns the current difficulty setting, but lies to you and will never return easy, instead returning normal",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 296,
                 "xbox": 257,
                 "gbx-retail": 258,
                 "gbx-demo": 258,
@@ -5153,7 +5153,7 @@
             "type": "game_difficulty",
             "description": "returns the actual current difficulty setting without lying",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 297,
                 "xbox": 258,
                 "gbx-retail": 259,
                 "gbx-demo": 259,
@@ -5165,7 +5165,7 @@
             "type": "void",
             "description": "starts the map from the beginning.",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 298,
                 "xbox": 259,
                 "gbx-retail": 262,
                 "gbx-demo": 262,
@@ -5182,7 +5182,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 299,
                 "xbox": 260,
                 "gbx-retail": 263,
                 "gbx-demo": 263,
@@ -5199,7 +5199,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 300,
                 "xbox": 261,
                 "gbx-retail": 264,
                 "gbx-demo": 264,
@@ -5216,7 +5216,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 301,
                 "xbox": 262,
                 "gbx-retail": 265,
                 "gbx-demo": 265,
@@ -5233,7 +5233,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 302,
                 "xbox": 263,
                 "gbx-retail": 266,
                 "gbx-demo": 266,
@@ -5250,7 +5250,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 303,
                 "xbox": 264,
                 "gbx-retail": 267,
                 "gbx-demo": 267,
@@ -5262,7 +5262,7 @@
             "type": "short",
             "description": "returns the current structure bsp index",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 304,
                 "xbox": 265,
                 "gbx-retail": 268,
                 "gbx-demo": 268,
@@ -5274,7 +5274,7 @@
             "type": "void",
             "description": "prints the build version.",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 305,
                 "xbox": 266,
                 "gbx-retail": 269,
                 "gbx-demo": 269,
@@ -5286,7 +5286,7 @@
             "type": "void",
             "description": "starts game in film playback mode",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 306,
                 "xbox": 267,
                 "gbx-retail": 270,
                 "gbx-demo": 270,
@@ -5298,7 +5298,7 @@
             "type": "void",
             "description": "quits the game",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 307,
                 "gbx-retail": 271,
                 "gbx-demo": 271,
                 "gbx-custom": 271
@@ -5320,7 +5320,7 @@
             "type": "void",
             "description": "i'm a rebel!",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 309,
                 "xbox": 269,
                 "gbx-retail": 273,
                 "gbx-demo": 273,
@@ -5332,7 +5332,7 @@
             "type": "void",
             "description": "dump dat shit!",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 310,
                 "gbx-retail": 274,
                 "gbx-demo": 274,
                 "gbx-custom": 274
@@ -5471,7 +5471,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 324,
                 "xbox": 283,
                 "gbx-retail": 284,
                 "gbx-demo": 284,
@@ -5488,7 +5488,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 325,
                 "xbox": 284,
                 "gbx-retail": 285,
                 "gbx-demo": 285,
@@ -5505,7 +5505,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 326,
                 "xbox": 285,
                 "gbx-retail": 286,
                 "gbx-demo": 286,
@@ -5620,7 +5620,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 333,
                 "xbox": 292,
                 "gbx-retail": 293,
                 "gbx-demo": 293,
@@ -5646,7 +5646,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 334,
                 "xbox": 293,
                 "gbx-retail": 294,
                 "gbx-demo": 294,
@@ -5658,7 +5658,7 @@
             "type": "void",
             "description": "initializes game to start a cinematic (interruptive) cutscene",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 335,
                 "xbox": 294,
                 "gbx-retail": 295,
                 "gbx-demo": 295,
@@ -5670,7 +5670,7 @@
             "type": "void",
             "description": "initializes the game to end a cinematic (interruptive) cutscene",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 336,
                 "xbox": 295,
                 "gbx-retail": 296,
                 "gbx-demo": 296,
@@ -5682,7 +5682,7 @@
             "type": "void",
             "description": "aborts a cinematic",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 337,
                 "gbx-retail": 297,
                 "gbx-demo": 297,
                 "gbx-custom": 297
@@ -5692,7 +5692,7 @@
             "name": "cinematic_skip_start_internal",
             "type": "void",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 338,
                 "xbox": 296,
                 "gbx-retail": 298,
                 "gbx-demo": 298,
@@ -5703,7 +5703,7 @@
             "name": "cinematic_skip_stop_internal",
             "type": "void",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 339,
                 "xbox": 297,
                 "gbx-retail": 299,
                 "gbx-demo": 299,
@@ -5720,7 +5720,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 340,
                 "xbox": 298,
                 "gbx-retail": 300,
                 "gbx-demo": 300,
@@ -5737,7 +5737,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 341,
                 "xbox": 299,
                 "gbx-retail": 301,
                 "gbx-demo": 301,
@@ -5757,7 +5757,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 342,
                 "xbox": 300,
                 "gbx-retail": 302,
                 "gbx-demo": 302,
@@ -5774,7 +5774,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 343,
                 "xbox": 301,
                 "gbx-retail": 303,
                 "gbx-demo": 303,
@@ -5786,7 +5786,7 @@
             "type": "void",
             "description": "causes the player to successfully finish the current level and move to the next",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 344,
                 "xbox": 303,
                 "gbx-retail": 305,
                 "gbx-demo": 305,
@@ -5798,7 +5798,7 @@
             "type": "void",
             "description": "causes the player to revert to their previous saved game",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 345,
                 "xbox": 304,
                 "gbx-retail": 306,
                 "gbx-demo": 306,
@@ -5810,7 +5810,7 @@
             "type": "boolean",
             "description": "returns FALSE if it would be a bad idea to save the player's game right now",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 346,
                 "xbox": 305,
                 "gbx-retail": 307,
                 "gbx-demo": 307,
@@ -5822,7 +5822,7 @@
             "type": "boolean",
             "description": "returns FALSE if there are bad guys around, projectiles in the air, etc.",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 347,
                 "xbox": 306,
                 "gbx-retail": 308,
                 "gbx-demo": 308,
@@ -5834,7 +5834,7 @@
             "type": "boolean",
             "description": "returns FALSE if it would be a bad idea to save the player's game right now",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 348,
                 "xbox": 307,
                 "gbx-retail": 309,
                 "gbx-demo": 309,
@@ -5846,7 +5846,7 @@
             "type": "boolean",
             "description": "returns TRUE if the game is cooperative",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 349,
                 "xbox": 308,
                 "gbx-retail": 310,
                 "gbx-demo": 310,
@@ -5857,7 +5857,7 @@
             "name": "game_is_authoritative",
             "type": "boolean",
             "engines": {
-                "mcc-cea": null
+                "mcc-cea": 350
             }
         },
         {
@@ -5865,7 +5865,7 @@
             "type": "void",
             "description": "checks to see if it is safe to save game, then saves (gives up after 8 seconds)",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 351,
                 "xbox": 309,
                 "gbx-retail": 311,
                 "gbx-demo": 311,
@@ -5877,7 +5877,7 @@
             "type": "void",
             "description": "cancels any pending game_save, timeout or not",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 352,
                 "xbox": 310,
                 "gbx-retail": 312,
                 "gbx-demo": 312,
@@ -5889,7 +5889,7 @@
             "type": "void",
             "description": "checks to see if it is safe to save game, then saves (this version never gives up)",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 353,
                 "xbox": 311,
                 "gbx-retail": 313,
                 "gbx-demo": 313,
@@ -5901,7 +5901,7 @@
             "type": "void",
             "description": "disregards player's current situation",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 354,
                 "xbox": 312,
                 "gbx-retail": 314,
                 "gbx-demo": 314,
@@ -5913,7 +5913,7 @@
             "type": "boolean",
             "description": "checks to see if the game is trying to save the map.",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 355,
                 "xbox": 313,
                 "gbx-retail": 315,
                 "gbx-demo": 315,
@@ -5925,7 +5925,7 @@
             "type": "void",
             "description": "reverts to last saved game, if any (for testing, the first bastard that does this to me gets it in the head)",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 356,
                 "xbox": 314,
                 "gbx-retail": 316,
                 "gbx-demo": 316,
@@ -5937,7 +5937,7 @@
             "type": "boolean",
             "description": "don't use this for anything, you black-hearted bastards.",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 357,
                 "xbox": 315,
                 "gbx-retail": 317,
                 "gbx-demo": 317,
@@ -5949,7 +5949,7 @@
             "type": "void",
             "description": "saves debug game state to core\\core.bin",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 358,
                 "xbox": 316,
                 "gbx-retail": 318,
                 "gbx-demo": 318,
@@ -5971,7 +5971,7 @@
                 "gbx-retail": 319,
                 "gbx-demo": 319,
                 "gbx-custom": 319,
-                "mcc-cea": null
+                "mcc-cea": 359
             }
         },
         {
@@ -5979,7 +5979,7 @@
             "type": "void",
             "description": "loads debug game state from core\\core.bin",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 360,
                 "xbox": 318,
                 "gbx-retail": 320,
                 "gbx-demo": 320,
@@ -5991,7 +5991,7 @@
             "type": "void",
             "description": "loads debug game state from core\\core.bin as soon as the map is initialized",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 361,
                 "xbox": 319,
                 "gbx-retail": 321,
                 "gbx-demo": 321,
@@ -6008,7 +6008,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 362,
                 "xbox": 320,
                 "gbx-retail": 322,
                 "gbx-demo": 322,
@@ -6025,7 +6025,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 363,
                 "xbox": 321,
                 "gbx-retail": 323,
                 "gbx-demo": 323,
@@ -6041,7 +6041,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null
+                "mcc-cea": 364
             }
         },
         {
@@ -6054,7 +6054,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 365,
                 "xbox": 322,
                 "gbx-retail": 324,
                 "gbx-demo": 324,
@@ -6074,7 +6074,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 366,
                 "gbx-retail": 325,
                 "gbx-demo": 325,
                 "gbx-custom": 325
@@ -6096,7 +6096,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 367,
                 "xbox": 323,
                 "gbx-retail": 326,
                 "gbx-demo": 326,
@@ -6113,7 +6113,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 368,
                 "xbox": 324,
                 "gbx-retail": 327,
                 "gbx-demo": 327,
@@ -6130,7 +6130,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 369,
                 "xbox": 325,
                 "gbx-retail": 328,
                 "gbx-demo": 328,
@@ -6147,7 +6147,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 370,
                 "xbox": 326,
                 "gbx-retail": 329,
                 "gbx-demo": 329,
@@ -6170,7 +6170,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 371,
                 "xbox": 327,
                 "gbx-retail": 330,
                 "gbx-demo": 330,
@@ -6187,7 +6187,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 372,
                 "xbox": 328,
                 "gbx-retail": 331,
                 "gbx-demo": 331,
@@ -6207,7 +6207,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 373,
                 "xbox": 329,
                 "gbx-retail": 332,
                 "gbx-demo": 332,
@@ -6227,7 +6227,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 374,
                 "xbox": 330,
                 "gbx-retail": 333,
                 "gbx-demo": 333,
@@ -6247,7 +6247,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 375,
                 "xbox": 331,
                 "gbx-retail": 334,
                 "gbx-demo": 334,
@@ -6264,7 +6264,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 378,
                 "xbox": 334,
                 "gbx-retail": 337,
                 "gbx-demo": 337,
@@ -6281,7 +6281,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 379,
                 "gbx-retail": 338,
                 "gbx-demo": 338,
                 "gbx-custom": 338
@@ -6292,7 +6292,7 @@
             "type": "real",
             "description": "Returns the game's master gain",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 380,
                 "gbx-retail": 339,
                 "gbx-demo": 339,
                 "gbx-custom": 339
@@ -6308,7 +6308,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 381,
                 "gbx-retail": 340,
                 "gbx-demo": 340,
                 "gbx-custom": 340
@@ -6319,7 +6319,7 @@
             "type": "real",
             "description": "Returns the game's music gain",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 382,
                 "gbx-retail": 341,
                 "gbx-demo": 341,
                 "gbx-custom": 341
@@ -6335,7 +6335,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 383,
                 "gbx-retail": 342,
                 "gbx-demo": 342,
                 "gbx-custom": 342
@@ -6346,7 +6346,7 @@
             "type": "real",
             "description": "Returns the game's effects gain",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 384,
                 "gbx-retail": 343,
                 "gbx-demo": 343,
                 "gbx-custom": 343
@@ -6368,7 +6368,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 385,
                 "xbox": 335,
                 "gbx-retail": 344,
                 "gbx-demo": 344,
@@ -6388,7 +6388,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 386,
                 "xbox": 336,
                 "gbx-retail": 345,
                 "gbx-demo": 345,
@@ -6400,7 +6400,7 @@
             "type": "void",
             "description": "resets zoom levels on all players",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 387,
                 "xbox": 337,
                 "gbx-retail": 346,
                 "gbx-demo": 346,
@@ -6417,7 +6417,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 388,
                 "xbox": 338,
                 "gbx-retail": 347,
                 "gbx-demo": 347,
@@ -6434,7 +6434,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 389,
                 "xbox": 339,
                 "gbx-retail": 348,
                 "gbx-demo": 348,
@@ -6446,7 +6446,7 @@
             "type": "void",
             "description": "resets the player action test state so that all tests will return false.",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 390,
                 "xbox": 340,
                 "gbx-retail": 349,
                 "gbx-demo": 349,
@@ -6458,7 +6458,7 @@
             "type": "boolean",
             "description": "returns true if any player has jumped since the last call to (player_action_test_reset).",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 391,
                 "xbox": 341,
                 "gbx-retail": 350,
                 "gbx-demo": 350,
@@ -6470,7 +6470,7 @@
             "type": "boolean",
             "description": "returns true if any player has used primary trigger since the last call to (player_action_test_reset).",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 392,
                 "xbox": 342,
                 "gbx-retail": 351,
                 "gbx-demo": 351,
@@ -6482,7 +6482,7 @@
             "type": "boolean",
             "description": "returns true if any player has used grenade trigger since the last call to (player_action_test_reset).",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 393,
                 "xbox": 343,
                 "gbx-retail": 352,
                 "gbx-demo": 352,
@@ -6494,7 +6494,7 @@
             "type": "boolean",
             "description": "returns true if any player has hit the zoom button since the last call to (player_action_test_reset).",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 394,
                 "xbox": 344,
                 "gbx-retail": 353,
                 "gbx-demo": 353,
@@ -6506,7 +6506,7 @@
             "type": "boolean",
             "description": "returns true if any player has hit the action key since the last call to (player_action_test_reset).",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 395,
                 "xbox": 345,
                 "gbx-retail": 354,
                 "gbx-demo": 354,
@@ -6518,7 +6518,7 @@
             "type": "boolean",
             "description": "returns true if any player has hit accept since the last call to (player_action_test_reset).",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 396,
                 "xbox": 346,
                 "gbx-retail": 355,
                 "gbx-demo": 355,
@@ -6530,7 +6530,7 @@
             "type": "boolean",
             "description": "returns true if any player has hit the back key since the last call to (player_action_test_reset).",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 397,
                 "xbox": 347,
                 "gbx-retail": 356,
                 "gbx-demo": 356,
@@ -6542,7 +6542,7 @@
             "type": "boolean",
             "description": "returns true if any player has looked up since the last call to (player_action_test_reset).",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 398,
                 "xbox": 348,
                 "gbx-retail": 357,
                 "gbx-demo": 357,
@@ -6554,7 +6554,7 @@
             "type": "boolean",
             "description": "returns true if any player has looked down since the last call to (player_action_test_reset).",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 399,
                 "xbox": 349,
                 "gbx-retail": 358,
                 "gbx-demo": 358,
@@ -6566,7 +6566,7 @@
             "type": "boolean",
             "description": "returns true if any player has looked left since the last call to (player_action_test_reset).",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 400,
                 "xbox": 350,
                 "gbx-retail": 359,
                 "gbx-demo": 359,
@@ -6578,7 +6578,7 @@
             "type": "boolean",
             "description": "returns true if any player has looked right since the last call to (player_action_test_reset).",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 401,
                 "xbox": 351,
                 "gbx-retail": 360,
                 "gbx-demo": 360,
@@ -6590,7 +6590,7 @@
             "type": "boolean",
             "description": "returns true if any player has looked up, down, left, and right since the last call to (player_action_test_reset).",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 402,
                 "xbox": 352,
                 "gbx-retail": 361,
                 "gbx-demo": 361,
@@ -6602,7 +6602,7 @@
             "type": "boolean",
             "description": "returns true if any player has moved forward, backward, left, and right since the last call to (player_action_test_reset).",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 403,
                 "xbox": 353,
                 "gbx-retail": 362,
                 "gbx-demo": 362,
@@ -6625,7 +6625,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 404,
                 "xbox": 354,
                 "gbx-retail": 363,
                 "gbx-demo": 363,
@@ -6657,7 +6657,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 406,
                 "xbox": 356,
                 "gbx-retail": 364,
                 "gbx-demo": 364,
@@ -6674,7 +6674,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 407,
                 "xbox": 357,
                 "gbx-retail": 365,
                 "gbx-demo": 365,
@@ -6691,7 +6691,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 408,
                 "xbox": 358,
                 "gbx-retail": 366,
                 "gbx-demo": 366,
@@ -6703,7 +6703,7 @@
             "type": "void",
             "description": "resets the timer for the help text flashing",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 409,
                 "xbox": 359,
                 "gbx-retail": 367,
                 "gbx-demo": 367,
@@ -6729,7 +6729,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 410,
                 "xbox": 360,
                 "gbx-retail": 368,
                 "gbx-demo": 368,
@@ -6755,7 +6755,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 411,
                 "xbox": 361,
                 "gbx-retail": 369,
                 "gbx-demo": 369,
@@ -6781,7 +6781,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 412,
                 "xbox": 362,
                 "gbx-retail": 370,
                 "gbx-demo": 370,
@@ -6807,7 +6807,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 413,
                 "xbox": 363,
                 "gbx-retail": 371,
                 "gbx-demo": 371,
@@ -6827,7 +6827,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 414,
                 "xbox": 364,
                 "gbx-retail": 372,
                 "gbx-demo": 372,
@@ -6847,7 +6847,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 415,
                 "xbox": 365,
                 "gbx-retail": 373,
                 "gbx-demo": 373,
@@ -6867,7 +6867,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 416,
                 "xbox": 366,
                 "gbx-retail": 374,
                 "gbx-demo": 374,
@@ -6887,7 +6887,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 417,
                 "xbox": 367,
                 "gbx-retail": 375,
                 "gbx-demo": 375,
@@ -6899,7 +6899,7 @@
             "type": "void",
             "description": "clears console text from the screen",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 418,
                 "xbox": 368,
                 "gbx-retail": 376,
                 "gbx-demo": 376,
@@ -6916,7 +6916,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 419,
                 "xbox": 369,
                 "gbx-retail": 389,
                 "gbx-demo": 389,
@@ -6939,7 +6939,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 420,
                 "xbox": 371,
                 "gbx-retail": 391,
                 "gbx-demo": 391,
@@ -6962,7 +6962,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 421,
                 "xbox": 372,
                 "gbx-retail": 392,
                 "gbx-demo": 392,
@@ -6982,7 +6982,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 422,
                 "gbx-retail": 393,
                 "gbx-demo": 393,
                 "gbx-custom": 393
@@ -7002,7 +7002,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 423,
                 "gbx-retail": 393,
                 "gbx-demo": 393,
                 "gbx-custom": 393,
@@ -7022,7 +7022,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 424,
                 "xbox": 374,
                 "gbx-retail": 394,
                 "gbx-demo": 394,
@@ -7039,7 +7039,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 425,
                 "xbox": 375,
                 "gbx-retail": 395,
                 "gbx-demo": 395,
@@ -7056,7 +7056,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 426,
                 "xbox": 376,
                 "gbx-retail": 396,
                 "gbx-demo": 396,
@@ -7073,7 +7073,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 427,
                 "xbox": 377,
                 "gbx-retail": 397,
                 "gbx-demo": 397,
@@ -7090,7 +7090,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 428,
                 "xbox": 378,
                 "gbx-retail": 398,
                 "gbx-demo": 398,
@@ -7107,7 +7107,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 429,
                 "xbox": 379,
                 "gbx-retail": 399,
                 "gbx-demo": 399,
@@ -7124,7 +7124,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 430,
                 "xbox": 380,
                 "gbx-retail": 400,
                 "gbx-demo": 400,
@@ -7141,7 +7141,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 431,
                 "xbox": 381,
                 "gbx-retail": 401,
                 "gbx-demo": 401,
@@ -7158,7 +7158,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 432,
                 "xbox": 382,
                 "gbx-retail": 402,
                 "gbx-demo": 402,
@@ -7170,7 +7170,7 @@
             "type": "void",
             "description": "clears all non-state messages on the hud",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 433,
                 "xbox": 383,
                 "gbx-retail": 403,
                 "gbx-demo": 403,
@@ -7187,7 +7187,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 434,
                 "xbox": 384,
                 "gbx-retail": 404,
                 "gbx-demo": 404,
@@ -7204,7 +7204,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 435,
                 "xbox": 385,
                 "gbx-retail": 405,
                 "gbx-demo": 405,
@@ -7224,7 +7224,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 436,
                 "xbox": 386,
                 "gbx-retail": 406,
                 "gbx-demo": 406,
@@ -7244,7 +7244,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 437,
                 "xbox": 387,
                 "gbx-retail": 407,
                 "gbx-demo": 407,
@@ -7267,7 +7267,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 438,
                 "xbox": 388,
                 "gbx-retail": 408,
                 "gbx-demo": 408,
@@ -7284,7 +7284,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 439,
                 "xbox": 389,
                 "gbx-retail": 409,
                 "gbx-demo": 409,
@@ -7301,7 +7301,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 440,
                 "xbox": 390,
                 "gbx-retail": 410,
                 "gbx-demo": 410,
@@ -7313,7 +7313,7 @@
             "type": "short",
             "description": "returns the ticks left on the hud timer",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 441,
                 "xbox": 391,
                 "gbx-retail": 411,
                 "gbx-demo": 411,
@@ -7330,7 +7330,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 442,
                 "xbox": 392,
                 "gbx-retail": 412,
                 "gbx-demo": 412,
@@ -7347,7 +7347,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 443,
                 "xbox": 393,
                 "gbx-retail": 413,
                 "gbx-demo": 413,
@@ -7359,7 +7359,7 @@
             "type": "void",
             "description": "resets the time code timer",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 444,
                 "xbox": 394,
                 "gbx-retail": 414,
                 "gbx-demo": 414,
@@ -7382,7 +7382,7 @@
             "type": "void",
             "description": "flush all decals",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 447,
                 "xbox": 395,
                 "gbx-retail": 417,
                 "gbx-demo": 417,
@@ -7394,7 +7394,7 @@
             "type": "void",
             "description": "average fps",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 448,
                 "xbox": 396,
                 "gbx-retail": 418,
                 "gbx-demo": 418,
@@ -7419,7 +7419,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 449,
                 "xbox": 397,
                 "gbx-retail": 419,
                 "gbx-demo": 419,
@@ -7430,7 +7430,7 @@
             "name": "rasterizer_lights_reset_for_new_map",
             "type": "void",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 450,
                 "xbox": 398,
                 "gbx-retail": 420,
                 "gbx-demo": 420,
@@ -7450,7 +7450,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 451,
                 "xbox": 399,
                 "gbx-retail": 421,
                 "gbx-demo": 421,
@@ -7467,7 +7467,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 452,
                 "xbox": 400,
                 "gbx-retail": 422,
                 "gbx-demo": 422,
@@ -7496,7 +7496,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 453,
                 "xbox": 401,
                 "gbx-retail": 423,
                 "gbx-demo": 423,
@@ -7528,7 +7528,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 454,
                 "xbox": 402,
                 "gbx-retail": 424,
                 "gbx-demo": 424,
@@ -7551,7 +7551,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 455,
                 "xbox": 403,
                 "gbx-retail": 425,
                 "gbx-demo": 425,
@@ -7571,7 +7571,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 456,
                 "xbox": 404,
                 "gbx-retail": 426,
                 "gbx-demo": 426,
@@ -7583,7 +7583,7 @@
             "type": "void",
             "description": "returns control of the screen effects to the rest of the game",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 457,
                 "xbox": 405,
                 "gbx-retail": 427,
                 "gbx-demo": 427,
@@ -7599,7 +7599,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 458,
                 "xbox": 406,
                 "gbx-retail": 428,
                 "gbx-demo": 428,
@@ -7616,7 +7616,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 459,
                 "xbox": 411,
                 "gbx-retail": 432,
                 "gbx-demo": 432,
@@ -7628,7 +7628,7 @@
             "type": "boolean",
             "description": "returns TRUE if player0's look pitch is inverted",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 460,
                 "xbox": 412,
                 "gbx-retail": 433,
                 "gbx-demo": 433,
@@ -7640,7 +7640,7 @@
             "type": "boolean",
             "description": "returns TRUE if player0 is using the normal joystick set",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 461,
                 "xbox": 413,
                 "gbx-retail": 434,
                 "gbx-demo": 434,
@@ -7657,7 +7657,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 462,
                 "xbox": 414,
                 "gbx-retail": 435,
                 "gbx-demo": 435,
@@ -7674,7 +7674,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 463,
                 "xbox": 415,
                 "gbx-retail": 436,
                 "gbx-demo": 436,
@@ -7807,7 +7807,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 472,
                 "gbx-retail": 453,
                 "gbx-demo": 453,
                 "gbx-custom": 453
@@ -7823,7 +7823,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 473,
                 "gbx-retail": 454,
                 "gbx-demo": 454,
                 "gbx-custom": 454
@@ -7842,7 +7842,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 474,
                 "gbx-retail": 455,
                 "gbx-demo": 455,
                 "gbx-custom": 455
@@ -7861,7 +7861,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 475,
                 "gbx-retail": 456,
                 "gbx-demo": 456,
                 "gbx-custom": 456
@@ -7883,7 +7883,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 476,
                 "gbx-retail": 481,
                 "gbx-demo": 481,
                 "gbx-custom": 481
@@ -7902,7 +7902,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 477,
                 "gbx-retail": 482,
                 "gbx-demo": 482,
                 "gbx-custom": 482
@@ -7913,7 +7913,7 @@
             "type": "void",
             "description": "prints a list of all input bindings",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 478,
                 "gbx-retail": 483,
                 "gbx-demo": 483,
                 "gbx-custom": 483
@@ -7931,7 +7931,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 479,
                 "gbx-retail": 492,
                 "gbx-demo": 493,
                 "gbx-custom": 492
@@ -7947,7 +7947,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 481,
                 "gbx-retail": 505,
                 "gbx-demo": 504,
                 "gbx-custom": 511
@@ -7973,7 +7973,7 @@
                 }
             ],
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 483,
                 "gbx-retail": 511,
                 "gbx-demo": 508,
                 "gbx-custom": 517
@@ -8012,7 +8012,7 @@
             "type": "void",
             "description": "places lens flares in the structure bsp",
             "engines": {
-                "mcc-cea": null,
+                "mcc-cea": 486,
                 "xbox": 370,
                 "gbx-retail": 390,
                 "gbx-demo": 390,
@@ -9555,7 +9555,7 @@
             "parameters": [],
             "type": "void",
             "engines": {
-                "mcc-cea": null
+                "mcc-cea": 181
             }
         },
         {
@@ -9564,7 +9564,7 @@
             "parameters": [],
             "type": "void",
             "engines": {
-                "mcc-cea": null
+                "mcc-cea": 182
             }
         },
         {
@@ -9573,7 +9573,7 @@
             "parameters": [],
             "type": "long",
             "engines": {
-                "mcc-cea": null
+                "mcc-cea": 294
             }
         }
     ],
