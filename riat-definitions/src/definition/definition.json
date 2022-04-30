@@ -42,7 +42,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 0,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -60,7 +60,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 1,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -106,7 +106,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 2,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -126,7 +126,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 4,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -144,7 +144,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 5,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -162,7 +162,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 6,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -180,7 +180,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 7,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -200,7 +200,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 8,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -218,7 +218,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 9,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -238,7 +238,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 10,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -256,7 +256,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 11,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -274,7 +274,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 12,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -294,7 +294,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 13,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -314,7 +314,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 14,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -335,7 +335,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 15,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -356,7 +356,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 16,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -377,7 +377,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 17,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -398,7 +398,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 18,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -419,7 +419,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 19,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -445,7 +445,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 20,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -462,7 +462,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 21,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -479,7 +479,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 22,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -496,7 +496,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 23,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -514,7 +514,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 24,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -532,7 +532,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 25,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -550,7 +550,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 26,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -567,7 +567,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 27,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -764,7 +764,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 28,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -815,7 +815,7 @@
             "description": "returns a list of the players",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 29,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -848,7 +848,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 30,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -868,7 +868,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 31,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -888,7 +888,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 32,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -908,7 +908,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 33,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -928,7 +928,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 34,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -948,7 +948,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 35,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -968,7 +968,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 36,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -991,7 +991,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 37,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -1008,7 +1008,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 38,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -1025,7 +1025,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 39,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -1042,7 +1042,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 40,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -1059,7 +1059,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 41,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -1076,7 +1076,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 42,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -1093,7 +1093,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 43,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -1105,7 +1105,7 @@
             "description": "destroys all non player objects.",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 44,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -1122,7 +1122,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 53,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -1142,7 +1142,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 45,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -1159,7 +1159,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 46,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -1192,7 +1192,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 47,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -1215,7 +1215,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 48,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -1235,7 +1235,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 49,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -1255,7 +1255,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 50,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -1278,7 +1278,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 51,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -1301,7 +1301,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 52,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -1353,7 +1353,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 54,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -1370,7 +1370,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 55,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -1382,7 +1382,7 @@
             "description": "recompiles scripts.",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 56,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -1394,7 +1394,7 @@
             "description": "saves a file called hs_doc.txt with parameters for all script commands.",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 57,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -1411,7 +1411,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 58,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -1431,7 +1431,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 59,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -1451,7 +1451,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 60,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -1500,7 +1500,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 61,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -1517,7 +1517,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 62,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -1528,7 +1528,7 @@
             "type": "void",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 63,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -1539,7 +1539,7 @@
             "type": "void",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 64,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -1556,7 +1556,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 65,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -1576,7 +1576,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 66,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -1596,7 +1596,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 67,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -1616,7 +1616,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 68,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -1633,7 +1633,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 69,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -1650,7 +1650,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 70,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -1670,7 +1670,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 71,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -1690,7 +1690,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 72,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -1702,7 +1702,7 @@
             "description": "debugs object memory usage",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 73,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -1722,7 +1722,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 74,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -1745,7 +1745,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 75,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -1771,7 +1771,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 76,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -1791,7 +1791,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 77,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -1803,7 +1803,7 @@
             "description": "causes all garbage objects except those visible to a player to be collected immediately",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 78,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -1820,7 +1820,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 79,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -1837,7 +1837,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 80,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -1857,7 +1857,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 81,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -1874,7 +1874,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 82,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -1891,7 +1891,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 83,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -1908,7 +1908,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 84,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -1925,7 +1925,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 85,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -1942,7 +1942,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 86,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -1954,7 +1954,7 @@
             "description": "removes the special place that activates everything it sees.",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 87,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -1971,7 +1971,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 88,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -1988,7 +1988,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 89,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -2011,7 +2011,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 90,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -2037,7 +2037,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 91,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -2053,7 +2053,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 92,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -2073,7 +2073,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 93,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -2090,7 +2090,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 94,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -2107,7 +2107,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 95,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -2124,7 +2124,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 96,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -2141,7 +2141,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 97,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -2158,7 +2158,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 98,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -2175,7 +2175,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 99,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -2204,7 +2204,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 100,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -2230,7 +2230,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 101,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -2256,7 +2256,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 102,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -2273,7 +2273,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 103,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -2293,7 +2293,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 104,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -2313,7 +2313,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 105,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -2333,7 +2333,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 106,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -2356,7 +2356,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 107,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -2379,7 +2379,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 108,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -2402,7 +2402,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 109,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -2422,7 +2422,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 110,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -2439,7 +2439,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 111,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -2462,7 +2462,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 112,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -2485,7 +2485,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 113,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -2508,7 +2508,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 114,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -2531,7 +2531,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 115,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -2554,7 +2554,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 116,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -2574,7 +2574,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 117,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -2591,7 +2591,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 118,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -2611,7 +2611,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 119,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -2623,7 +2623,7 @@
             "description": "causes player's unit to start a melee attack",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 120,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -2640,7 +2640,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 121,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -2657,7 +2657,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 122,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -2674,7 +2674,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 123,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -2691,7 +2691,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 124,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -2708,7 +2708,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 125,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -2725,7 +2725,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 126,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -2745,7 +2745,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 127,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -2765,7 +2765,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 128,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -2782,7 +2782,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 129,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -2802,7 +2802,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 130,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -2822,7 +2822,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 131,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -2834,7 +2834,7 @@
             "description": "returns whether the night-vision mode could be activated via the flashlight button",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 132,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -2854,7 +2854,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 133,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -2874,7 +2874,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 134,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -2891,7 +2891,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 135,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -2911,7 +2911,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 136,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -2928,7 +2928,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 137,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -2948,7 +2948,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 138,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -2968,7 +2968,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 139,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -2985,7 +2985,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 140,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3005,7 +3005,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 141,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3022,7 +3022,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 142,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3042,7 +3042,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 143,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3062,7 +3062,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 144,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3082,7 +3082,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 145,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3102,7 +3102,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 146,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3122,7 +3122,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 147,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3134,7 +3134,7 @@
             "description": "restores all breakable surfaces",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 148,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3146,7 +3146,7 @@
             "description": "drops all powerups near player",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 149,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3158,7 +3158,7 @@
             "description": "drops all weapons near player",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 150,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3181,7 +3181,7 @@
             "description": "drops all vehicles on player",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 151,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3193,7 +3193,7 @@
             "description": "teleports player to camera location",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 152,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3205,7 +3205,7 @@
             "description": "gives the player active camouflage",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 153,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3222,7 +3222,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 154,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3234,7 +3234,7 @@
             "description": "reloads the cheats.txt file",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 155,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3251,7 +3251,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 156,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3268,7 +3268,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 157,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3288,7 +3288,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 158,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3308,7 +3308,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 159,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3325,7 +3325,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 160,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3342,7 +3342,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 161,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3359,7 +3359,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 162,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3376,7 +3376,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 163,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3393,7 +3393,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 164,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3405,7 +3405,7 @@
             "description": "erases all AI.",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 165,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3422,7 +3422,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 166,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3434,7 +3434,7 @@
             "description": "clears the selected encounter.",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 167,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3451,7 +3451,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 168,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3471,7 +3471,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 169,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3491,7 +3491,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 170,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3511,7 +3511,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 171,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3531,7 +3531,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 172,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3548,7 +3548,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 173,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3568,7 +3568,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 174,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3585,7 +3585,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 175,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3602,7 +3602,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 176,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3619,7 +3619,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 177,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3636,7 +3636,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 178,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3653,7 +3653,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 179,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3670,7 +3670,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 180,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3690,7 +3690,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 181,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3710,7 +3710,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 182,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3733,7 +3733,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 183,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3753,7 +3753,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 184,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3773,7 +3773,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 185,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3793,7 +3793,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 186,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3810,7 +3810,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 187,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3827,7 +3827,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 188,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3844,7 +3844,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 189,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3861,7 +3861,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 190,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3878,7 +3878,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 191,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3895,7 +3895,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 192,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3918,7 +3918,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 193,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3941,7 +3941,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 194,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3958,7 +3958,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 195,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3975,7 +3975,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 196,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -3995,7 +3995,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 197,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4015,7 +4015,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 198,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4035,7 +4035,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 199,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4055,7 +4055,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 200,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4072,7 +4072,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 201,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4089,7 +4089,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 202,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4106,7 +4106,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 203,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4123,7 +4123,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 204,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4143,7 +4143,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 205,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4160,7 +4160,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 206,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4180,7 +4180,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 207,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4200,7 +4200,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 208,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4217,7 +4217,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 209,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4234,7 +4234,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 210,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4251,7 +4251,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 211,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4268,7 +4268,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 212,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4288,7 +4288,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 213,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4308,7 +4308,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 214,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4328,7 +4328,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 215,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4348,7 +4348,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 216,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4368,7 +4368,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 217,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4385,7 +4385,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 218,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4397,7 +4397,7 @@
             "description": "reconnects all AI information to the current structure bsp (use this after you create encounters or command lists in sapien, or place new firing points or command list points)",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 219,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4417,7 +4417,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 220,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4437,7 +4437,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 221,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4457,7 +4457,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 222,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4477,7 +4477,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 223,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4497,7 +4497,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 224,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4514,7 +4514,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 225,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4534,7 +4534,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 226,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4551,7 +4551,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 227,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4571,7 +4571,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 228,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4588,7 +4588,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 229,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4605,7 +4605,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 230,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4625,7 +4625,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 231,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4645,7 +4645,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 232,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4665,7 +4665,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 233,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4682,7 +4682,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 234,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4699,7 +4699,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 235,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4716,7 +4716,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 236,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4733,7 +4733,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 237,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4750,7 +4750,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 238,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4770,7 +4770,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 239,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4790,7 +4790,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 240,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4810,7 +4810,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 241,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4830,7 +4830,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 242,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4850,7 +4850,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 243,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4870,7 +4870,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 244,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4887,7 +4887,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 245,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4907,7 +4907,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 246,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4930,7 +4930,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 247,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4950,7 +4950,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 248,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4967,7 +4967,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 249,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4984,7 +4984,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 250,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -4996,7 +4996,7 @@
             "description": "returns the number of ticks remaining in the current camera interpolation.",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 251,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5008,7 +5008,7 @@
             "description": "loads the saved camera position and facing from camera_<map_name>.txt",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 252,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5020,7 +5020,7 @@
             "description": "saves the camera position and facing to camera_<map_name>.txt",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 253,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5102,7 +5102,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 254,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5114,7 +5114,7 @@
             "description": "gets ticks elapsed since the start of the game.",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 255,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5131,7 +5131,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 256,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5143,7 +5143,7 @@
             "description": "returns the current difficulty setting, but lies to you and will never return easy, instead returning normal",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 257,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5155,7 +5155,7 @@
             "description": "returns the actual current difficulty setting without lying",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 258,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5167,7 +5167,7 @@
             "description": "starts the map from the beginning.",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 259,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5184,7 +5184,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 260,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5201,7 +5201,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 261,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5218,7 +5218,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 262,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5235,7 +5235,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 263,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5252,7 +5252,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 264,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5264,7 +5264,7 @@
             "description": "returns the current structure bsp index",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 265,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5276,7 +5276,7 @@
             "description": "prints the build version.",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 266,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5288,7 +5288,7 @@
             "description": "starts game in film playback mode",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 267,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5311,7 +5311,7 @@
             "description": "don't make me kick your ass!",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 268,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5323,7 +5323,7 @@
             "description": "i'm a rebel!",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 269,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5346,7 +5346,7 @@
             "description": "writes all memory being used by tag files into tag_dump.txt",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 273,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5358,7 +5358,7 @@
             "description": "resets profiling data.",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 274,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5375,7 +5375,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 275,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5392,7 +5392,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 276,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5409,7 +5409,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 277,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5426,7 +5426,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 278,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5442,7 +5442,7 @@
                 }
             ],
             "engines": {
-                "xbox": null
+                "xbox": 279
             }
         },
         {
@@ -5450,7 +5450,7 @@
             "type": "void",
             "description": "starts radiosity computation.",
             "engines": {
-                "xbox": null
+                "xbox": 280
             }
         },
         {
@@ -5458,7 +5458,7 @@
             "type": "void",
             "description": "saves radiosity solution.",
             "engines": {
-                "xbox": null
+                "xbox": 281
             }
         },
         {
@@ -5466,7 +5466,7 @@
             "type": "void",
             "description": "tests sun occlusion at a point.",
             "engines": {
-                "xbox": null
+                "xbox": 282
             }
         },
         {
@@ -5480,7 +5480,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 283,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5497,7 +5497,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 284,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5514,7 +5514,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 285,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5526,7 +5526,7 @@
             "description": "cycles through AI line-spray modes",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 286,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5538,7 +5538,7 @@
             "description": "drops the AI debugging sound point at the camera location",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 287,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5558,7 +5558,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 288,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5575,7 +5575,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 289,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5592,7 +5592,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 290,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5609,7 +5609,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 291,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5635,7 +5635,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 292,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5661,7 +5661,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 293,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5673,7 +5673,7 @@
             "description": "initializes game to start a cinematic (interruptive) cutscene",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 294,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5685,7 +5685,7 @@
             "description": "initializes the game to end a cinematic (interruptive) cutscene",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 295,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5707,7 +5707,7 @@
             "type": "void",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 296,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5718,7 +5718,7 @@
             "type": "void",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 297,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5735,7 +5735,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 298,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5752,7 +5752,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 299,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5772,7 +5772,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 300,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5789,7 +5789,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 301,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5801,7 +5801,7 @@
             "description": "causes the player to successfully finish the current level and move to the next",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 303,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5813,7 +5813,7 @@
             "description": "causes the player to revert to their previous saved game",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 304,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5825,7 +5825,7 @@
             "description": "returns FALSE if it would be a bad idea to save the player's game right now",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 305,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5837,7 +5837,7 @@
             "description": "returns FALSE if there are bad guys around, projectiles in the air, etc.",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 306,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5849,7 +5849,7 @@
             "description": "returns FALSE if it would be a bad idea to save the player's game right now",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 307,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5861,7 +5861,7 @@
             "description": "returns TRUE if the game is cooperative",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 308,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5880,7 +5880,7 @@
             "description": "checks to see if it is safe to save game, then saves (gives up after 8 seconds)",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 309,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5892,7 +5892,7 @@
             "description": "cancels any pending game_save, timeout or not",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 310,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5904,7 +5904,7 @@
             "description": "checks to see if it is safe to save game, then saves (this version never gives up)",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 311,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5916,7 +5916,7 @@
             "description": "disregards player's current situation",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 312,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5928,7 +5928,7 @@
             "description": "checks to see if the game is trying to save the map.",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 313,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5940,7 +5940,7 @@
             "description": "reverts to last saved game, if any (for testing, the first bastard that does this to me gets it in the head)",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 314,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5952,7 +5952,7 @@
             "description": "don't use this for anything, you black-hearted bastards.",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 315,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5964,7 +5964,7 @@
             "description": "saves debug game state to core\\core.bin",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 316,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -5981,7 +5981,7 @@
             ],
             "retcon_note": "this command exists in cea but it returns boolean, thus it is mutually exclusive in these definitions",
             "engines": {
-                "xbox": null,
+                "xbox": 317,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null,
@@ -5994,7 +5994,7 @@
             "description": "loads debug game state from core\\core.bin",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 318,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -6006,7 +6006,7 @@
             "description": "loads debug game state from core\\core.bin as soon as the map is initialized",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 319,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -6023,7 +6023,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 320,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -6040,7 +6040,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 321,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -6069,7 +6069,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 322,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -6111,7 +6111,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 323,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -6128,7 +6128,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 324,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -6145,7 +6145,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 325,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -6162,7 +6162,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 326,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -6185,7 +6185,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 327,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -6202,7 +6202,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 328,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -6222,7 +6222,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 329,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -6242,7 +6242,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 330,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -6262,7 +6262,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 331,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -6279,7 +6279,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 334,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -6383,7 +6383,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 335,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -6403,7 +6403,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 336,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -6415,7 +6415,7 @@
             "description": "resets zoom levels on all players",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 337,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -6432,7 +6432,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 338,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -6449,7 +6449,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 339,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -6461,7 +6461,7 @@
             "description": "resets the player action test state so that all tests will return false.",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 340,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -6473,7 +6473,7 @@
             "description": "returns true if any player has jumped since the last call to (player_action_test_reset).",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 341,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -6485,7 +6485,7 @@
             "description": "returns true if any player has used primary trigger since the last call to (player_action_test_reset).",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 342,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -6497,7 +6497,7 @@
             "description": "returns true if any player has used grenade trigger since the last call to (player_action_test_reset).",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 343,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -6509,7 +6509,7 @@
             "description": "returns true if any player has hit the zoom button since the last call to (player_action_test_reset).",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 344,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -6521,7 +6521,7 @@
             "description": "returns true if any player has hit the action key since the last call to (player_action_test_reset).",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 345,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -6533,7 +6533,7 @@
             "description": "returns true if any player has hit accept since the last call to (player_action_test_reset).",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 346,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -6545,7 +6545,7 @@
             "description": "returns true if any player has hit the back key since the last call to (player_action_test_reset).",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 347,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -6557,7 +6557,7 @@
             "description": "returns true if any player has looked up since the last call to (player_action_test_reset).",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 348,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -6569,7 +6569,7 @@
             "description": "returns true if any player has looked down since the last call to (player_action_test_reset).",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 349,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -6581,7 +6581,7 @@
             "description": "returns true if any player has looked left since the last call to (player_action_test_reset).",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 350,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -6593,7 +6593,7 @@
             "description": "returns true if any player has looked right since the last call to (player_action_test_reset).",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 351,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -6605,7 +6605,7 @@
             "description": "returns true if any player has looked up, down, left, and right since the last call to (player_action_test_reset).",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 352,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -6617,7 +6617,7 @@
             "description": "returns true if any player has moved forward, backward, left, and right since the last call to (player_action_test_reset).",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 353,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -6640,7 +6640,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 354,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -6658,7 +6658,7 @@
                 }
             ],
             "engines": {
-                "xbox": null
+                "xbox": 355
             }
         },
         {
@@ -6672,7 +6672,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 356,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -6689,7 +6689,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 357,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -6706,7 +6706,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 358,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -6718,7 +6718,7 @@
             "description": "resets the timer for the help text flashing",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 359,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -6744,7 +6744,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 360,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -6770,7 +6770,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 361,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -6796,7 +6796,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 362,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -6822,7 +6822,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 363,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -6842,7 +6842,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 364,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -6862,7 +6862,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 365,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -6882,7 +6882,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 366,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -6902,7 +6902,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 367,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -6914,7 +6914,7 @@
             "description": "clears console text from the screen",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 368,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -6931,7 +6931,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 369,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -6954,7 +6954,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 371,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -6977,7 +6977,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 372,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -7020,7 +7020,7 @@
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null,
-                "xbox": null
+                "xbox": 373
             }
         },
         {
@@ -7037,7 +7037,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 374,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -7054,7 +7054,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 375,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -7071,7 +7071,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 376,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -7088,7 +7088,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 377,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -7105,7 +7105,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 378,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -7122,7 +7122,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 379,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -7139,7 +7139,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 380,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -7156,7 +7156,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 381,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -7173,7 +7173,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 382,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -7185,7 +7185,7 @@
             "description": "clears all non-state messages on the hud",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 383,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -7202,7 +7202,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 384,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -7219,7 +7219,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 385,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -7239,7 +7239,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 386,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -7259,7 +7259,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 387,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -7282,7 +7282,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 388,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -7299,7 +7299,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 389,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -7316,7 +7316,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 390,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -7328,7 +7328,7 @@
             "description": "returns the ticks left on the hud timer",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 391,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -7345,7 +7345,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 392,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -7362,7 +7362,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 393,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -7374,7 +7374,7 @@
             "description": "resets the time code timer",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 394,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -7397,7 +7397,7 @@
             "description": "flush all decals",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 395,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -7409,7 +7409,7 @@
             "description": "average fps",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 396,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -7434,7 +7434,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 397,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -7445,7 +7445,7 @@
             "type": "void",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 398,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -7465,7 +7465,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 399,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -7482,7 +7482,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 400,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -7511,7 +7511,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 401,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -7543,7 +7543,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 402,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -7566,7 +7566,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 403,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -7586,7 +7586,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 404,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -7598,7 +7598,7 @@
             "description": "returns control of the screen effects to the rest of the game",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 405,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -7614,7 +7614,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 406,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -7631,7 +7631,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 411,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -7643,7 +7643,7 @@
             "description": "returns TRUE if player0's look pitch is inverted",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 412,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -7655,7 +7655,7 @@
             "description": "returns TRUE if player0 is using the normal joystick set",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 413,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -7672,7 +7672,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 414,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -7689,7 +7689,7 @@
             ],
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 415,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -8028,7 +8028,7 @@
             "description": "places lens flares in the structure bsp",
             "engines": {
                 "mcc-cea": null,
-                "xbox": null,
+                "xbox": 370,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -8038,7 +8038,7 @@
             "name": "debug_memory",
             "description": "dumps memory leaks.",
             "engines": {
-                "xbox": null,
+                "xbox": 270,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null,
@@ -8050,7 +8050,7 @@
             "name": "debug_memory_by_file",
             "description": "dumps memory leaks by source file.",
             "engines": {
-                "xbox": null,
+                "xbox": 271,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null,
@@ -8067,7 +8067,7 @@
                 }
             ],
             "engines": {
-                "xbox": null,
+                "xbox": 272,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null,
@@ -8078,7 +8078,7 @@
         {
             "name": "attract_mode_start",
             "engines": {
-                "xbox": null,
+                "xbox": 302,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -8100,7 +8100,7 @@
                 }
             ],
             "engines": {
-                "xbox": null,
+                "xbox": 332,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null,
@@ -8120,7 +8120,7 @@
                 }
             ],
             "engines": {
-                "xbox": null,
+                "xbox": 333,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null,
@@ -8132,7 +8132,7 @@
             "name": "enumerate_memory_units",
             "description": "enumerate memory units",
             "engines": {
-                "xbox": null
+                "xbox": 407
             },
             "type": "void"
         },
@@ -8140,7 +8140,7 @@
             "name": "delete_save_game_files",
             "description": "delete all custom profile files",
             "engines": {
-                "xbox": null,
+                "xbox": 408,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -8151,7 +8151,7 @@
             "name": "fast_setup_network_server",
             "description": "for zach's multiplayer testing",
             "engines": {
-                "xbox": null,
+                "xbox": 409,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -8162,7 +8162,7 @@
             "name": "profile_unlock_solo_levels",
             "description": "unlocks all the solo player levels for player 1's profile",
             "engines": {
-                "xbox": null,
+                "xbox": 410,
                 "gbx-retail": null,
                 "gbx-demo": null,
                 "gbx-custom": null
@@ -8173,7 +8173,7 @@
             "name": "network_game_start_now",
             "description": "another one for zach",
             "engines": {
-                "xbox": null
+                "xbox": 416
             },
             "type": "void"
         },
@@ -8186,7 +8186,7 @@
                 }
             ],
             "engines": {
-                "xbox": null
+                "xbox": 417
             },
             "type": "void"
         },
