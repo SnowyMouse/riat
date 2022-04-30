@@ -1,5 +1,3 @@
-// For documentation, refer to riatc's documentation.
-
 #ifndef RAT_IN_A_TUBE_HPP
 #define RAT_IN_A_TUBE_HPP
 
@@ -49,6 +47,98 @@ namespace RIAT {
         std::string reason;
     };
 
+    class CompilerScriptResult {
+    public:
+        /**
+         * Get all scripts.
+         * 
+         * @return scripts
+         */
+        std::vector<RIATScriptC> get_scripts() {
+            if(!this->script_data) {
+                return {};
+            }
+
+            auto *script_data = this->script_data.get();
+            auto script_count = ::riat_script_data_get_scripts(script_data, nullptr);
+            std::vector<RIATScriptC> r(script_count);
+            ::riat_script_data_get_scripts(script_data, r.data());
+            return r;
+        }
+
+        /**
+         * Get all globals.
+         * 
+         * @return globals
+         */
+        std::vector<RIATGlobalC> get_globals() {
+            if(!this->script_data) {
+                return {};
+            }
+
+            auto *script_data = this->script_data.get();
+            auto global_count = ::riat_script_data_get_globals(script_data, nullptr);
+            std::vector<RIATGlobalC> r(global_count);
+            ::riat_script_data_get_globals(script_data, r.data());
+            return r;
+        }
+
+        /**
+         * Get all nodes.
+         * 
+         * @return nodes
+         */
+        std::vector<RIATScriptNodeC> get_nodes() {
+            if(!this->script_data) {
+                return {};
+            }
+
+            auto *script_data = this->script_data.get();
+            auto node_count = ::riat_script_data_get_nodes(script_data, nullptr);
+            std::vector<RIATScriptNodeC> r(node_count);
+            ::riat_script_data_get_nodes(script_data, r.data());
+            return r;
+        }
+
+        /**
+         * Get all warnings.
+         * 
+         * @return warnings
+         */
+        std::vector<CompileError> get_warnings() {
+            if(!this->script_data) {
+                return {};
+            }
+
+            std::vector<CompileError> r;
+            auto *script_data = this->script_data.get();
+            auto warning_count = ::riat_script_data_get_warnings(script_data, nullptr);
+            r.reserve(warning_count);
+
+            std::vector<RIATCompileErrorC> errors;
+            errors.resize(warning_count);
+            ::riat_script_data_get_warnings(script_data, errors.data());
+
+            for(auto &e : errors) {
+                r.emplace_back(e, "warning");
+            }
+            return r;
+        }
+
+        CompilerScriptResult(const CompilerScriptResult &) = delete;
+        CompilerScriptResult(CompilerScriptResult &&) = default;
+        CompilerScriptResult &operator=(CompilerScriptResult &&) = default;
+
+        /** Instantiate an instance using a smart pointer */
+        CompilerScriptResult(std::unique_ptr<RIATCompiledScriptData, void(*)(RIATCompiledScriptData*)> &&script_data) : script_data(std::move(script_data)) {}
+
+        /** Instantiate an empty instance */
+        CompilerScriptResult() : CompilerScriptResult(std::unique_ptr<RIATCompiledScriptData, void(*)(RIATCompiledScriptData*)>(nullptr, ::riat_script_data_free)) {};
+
+    private:
+        std::unique_ptr<RIATCompiledScriptData, void(*)(RIATCompiledScriptData*)> script_data;
+    };
+
     class Compiler {
     public:
         /**
@@ -74,7 +164,7 @@ namespace RIAT {
          * 
          * @throws RIAT::CompileError on failure
          */
-        void compile_scripts() {
+        CompilerScriptResult compile_scripts() {
             RIATCompileErrorC error;
             auto new_compiled_data = std::unique_ptr<RIATCompiledScriptData, void(*)(RIATCompiledScriptData*)>(::riat_compiler_compile_script_data(this->get_instance(), &error), ::riat_script_data_free);
             if(new_compiled_data.get() == nullptr) {
@@ -82,70 +172,7 @@ namespace RIAT {
                 ::riat_error_free(&error);
                 throw exception;
             }
-            this->script_data = std::move(new_compiled_data);
-        }
-
-        /**
-         * Get all scripts compiled from the last call to compile_scripts.
-         */
-        std::vector<RIATScriptC> get_scripts() {
-            std::vector<RIATScriptC> r;
-            if(this->script_data.has_value()) {
-                auto *script_data = (*this->script_data).get();
-                auto script_count = ::riat_script_data_get_scripts(script_data, nullptr);
-                r.resize(script_count);
-                ::riat_script_data_get_scripts(script_data, r.data());
-            }
-            return r;
-        }
-
-        /**
-         * Get all globals compiled from the last call to compile_scripts.
-         */
-        std::vector<RIATGlobalC> get_globals() {
-            std::vector<RIATGlobalC> r;
-            if(this->script_data.has_value()) {
-                auto *script_data = (*this->script_data).get();
-                auto global_count = ::riat_script_data_get_globals(script_data, nullptr);
-                r.resize(global_count);
-                ::riat_script_data_get_globals(script_data, r.data());
-            }
-            return r;
-        }
-
-        /**
-         * Get all nodes compiled from the last call to compile_scripts.
-         */
-        std::vector<RIATScriptNodeC> get_nodes() {
-            std::vector<RIATScriptNodeC> r;
-            if(this->script_data.has_value()) {
-                auto *script_data = (*this->script_data).get();
-                auto node_count = ::riat_script_data_get_nodes(script_data, nullptr);
-                r.resize(node_count);
-                ::riat_script_data_get_nodes(script_data, r.data());
-            }
-            return r;
-        }
-
-        /**
-         * Get all warnings from the last call to compile_scripts.
-         */
-        std::vector<CompileError> get_warnings() {
-            std::vector<CompileError> r;
-            if(this->script_data.has_value()) {
-                auto *script_data = (*this->script_data).get();
-                auto warning_count = ::riat_script_data_get_warnings(script_data, nullptr);
-                r.reserve(warning_count);
-
-                std::vector<RIATCompileErrorC> errors;
-                errors.resize(warning_count);
-                ::riat_script_data_get_warnings(script_data, errors.data());
-
-                for(auto &e : errors) {
-                    r.emplace_back(e, "warning");
-                }
-            }
-            return r;
+            return CompilerScriptResult(std::move(new_compiled_data));
         }
 
         /**
@@ -170,7 +197,6 @@ namespace RIAT {
         }
     private:
         std::unique_ptr<RIATCompiler, void(*)(RIATCompiler*)> instance;
-        std::optional<std::unique_ptr<RIATCompiledScriptData, void(*)(RIATCompiledScriptData*)>> script_data;
     };
 }
 

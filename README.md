@@ -51,7 +51,7 @@ fn compile_scripts_rust(script_file_name: &str, script_data: &[u8]) -> bool {
 
 
 ### C
-RIAT comes with C bindings via the rustc package. You will need to link with the
+RIAT comes with C bindings via the riatc package. You will need to link with the
 riatc library, compiled using your toolchain of choice, and have riatc's include
 directory in your include list.
 
@@ -60,6 +60,7 @@ directory in your include list.
 #include <stdlib.h>
 #include <stdio.h>
 #include <stdint.h>
+#include <string.h>
 
 /* Return 0 if successful. Return a nonzero value if failed. */
 int compile_scripts_c(const char *script_file_name, const uint8_t *script_data, size_t script_data_length) {
@@ -73,6 +74,7 @@ int compile_scripts_c(const char *script_file_name, const uint8_t *script_data, 
 
     /* Zero-out error struct. Not required, but calling riat_error_free() on a zeroed out struct is always OK. */
     RIATCompileErrorC error;
+    memset(&error, 0, sizeof(error));
 
     /* Instantiate our instance */
     RIATCompiler *compiler = riat_compiler_new(RIAT_HaloCEA, RIAT_Windows1252);
@@ -149,11 +151,12 @@ such as std::vector.
 bool compile_scripts_cpp(const char *script_file_name, const std::vector<std::uint8_t> &script_data) {
     // Instantiate our instance
     RIAT::Compiler instance(RIATCompileTarget::RIAT_HaloCEA);
+    RIAT::CompilerScriptResult result;
     
     // Try to compile
     try {
         instance.read_script_data(script_data.data(), script_data.size(), script_file_name);
-        instance.compile_scripts();
+        result = instance.compile_scripts();
     }
     catch(std::exception &e) {
         std::cerr << "Error when compiling: " << e.what() << "\n";
@@ -161,9 +164,9 @@ bool compile_scripts_cpp(const char *script_file_name, const std::vector<std::ui
     }
     
     // Print information
-    auto scripts = instance.get_scripts();
-    auto globals = instance.get_globals();
-    auto nodes = instance.get_nodes();
+    auto scripts = result.get_scripts();
+    auto globals = result.get_globals();
+    auto nodes = result.get_nodes();
     std::cout << "Script count:" << scripts.size() << std::endl;
     std::cout << "Global count:" << globals.size() << std::endl;
     std::cout << "Node count:" << nodes.size() << std::endl;
