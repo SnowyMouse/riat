@@ -400,7 +400,7 @@ impl Compiler {
                     ValueType::Team => {
                         clear_string_data = false;
                         match string_to_parse_str {
-                            // "none" => Some(NodeData::Short(0)), // none is not supported for some reason
+                            "default" => Some(NodeData::Short(0)),
                             "player" => Some(NodeData::Short(1)),
                             "human" => Some(NodeData::Short(2)),
                             "covenant" => Some(NodeData::Short(3)),
@@ -410,7 +410,7 @@ impl Compiler {
                             "unused7" => Some(NodeData::Short(7)),
                             "unused8" => Some(NodeData::Short(8)),
                             "unused9" => Some(NodeData::Short(9)),
-                            _ => complain!("player/human/covenant/flood/sentinel/unused6/unused7/unused8/unused9")
+                            _ => complain!("default/player/human/covenant/flood/sentinel/unused6/unused7/unused8/unused9")
                         }
                     },
 
