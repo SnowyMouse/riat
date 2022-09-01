@@ -9617,6 +9617,537 @@
             "engines": {
                 "mcc-cea": 294
             }
+        },
+        {
+            "name": "sleep_forever",
+            "type": "void",
+            "description": "pauses execution of this script (or, optionally, another script) forever.",
+            "parameters": [
+                {
+                    "optional": true,
+                    "type": "script"
+                }
+            ],
+            "engines": {
+                "mcc-cea": 20
+            }
+        },
+        {
+            "name": "debug_script_thread",
+            "type": "void",
+            "description": "Verbose threads spew to log about script and function calls.",
+            "parameters": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "boolean"
+                }
+            ],
+            "engines": {
+                "mcc-cea": 30
+            }
+        },
+        {
+            "name": "debug_scripting",
+            "type": "void",
+            "description": "Turn on/off hs script debugging.",
+            "parameters": [
+                {
+                    "type": "boolean"
+                }
+            ],
+            "engines": {
+                "mcc-cea": 31
+            }
+        },
+        {
+            "name": "breakpoint",
+            "type": "void",
+            "description": "If breakpoints are enabled, pause execution when this statement is hit (displaying the given message).",
+            "parameters": [
+                {
+                    "type": "string"
+                }
+            ],
+            "engines": {
+                "mcc-cea": 32
+            }
+        },
+        {
+            "name": "kill_active_scripts",
+            "type": "void",
+            "description": "Terminates all currently running threads.",
+            "engines": {
+                "mcc-cea": 33
+            }
+        },
+        {
+            "name": "get_executing_running_thread",
+            "type": "long",
+            "description": "Retrieves the current executing thread index",
+            "engines": {
+                "mcc-cea": 34
+            }
+        },
+        {
+            "name": "kill_thread",
+            "type": "void",
+            "description": "Kill the specified thread",
+            "parameters": [
+                {
+                    "type": "long"
+                }
+            ],
+            "engines": {
+                "mcc-cea": 35
+            }
+        },
+        {
+            "name": "script_started",
+            "type": "boolean",
+            "description": "Returns true if the continuous, dormant or startup script was started.",
+            "parameters": [
+                {
+                    "type": "string"
+                }
+            ],
+            "engines": {
+                "mcc-cea": 36
+            }
+        },
+        {
+            "name": "script_finished",
+            "type": "boolean",
+            "description": "Returns true if the continuous, dormant or startup script was finished.",
+            "parameters": [
+                {
+                    "type": "string"
+                }
+            ],
+            "engines": {
+                "mcc-cea": 37
+            }
+        },
+        {
+            "name": "events_enabled",
+            "type": "void",
+            "description": "enable/disable all events",
+            "parameters": [
+                {
+                    "type": "boolean"
+                }
+            ],
+            "engines": {
+                "mcc-cea": 487
+            }
+        },
+        {
+            "name": "events_disable_suppression",
+            "type": "void",
+            "description": "enable/disable event suppression",
+            "parameters": [
+                {
+                    "type": "boolean"
+                }
+            ],
+            "engines": {
+                "mcc-cea": 488
+            }
+        },
+        {
+            "name": "event_global_display_category",
+            "type": "void",
+            "description": "sets the global event display level",
+            "parameters": [
+                {
+                    "type": "string"
+                }
+            ],
+            "engines": {
+                "mcc-cea": 489
+            }
+        },
+        {
+            "name": "event_global_log_category",
+            "type": "void",
+            "description": "sets the global evetn log level",
+            "parameters": [
+                {
+                    "type": "string"
+                }
+            ],
+            "engines": {
+                "mcc-cea": 490
+            }
+        },
+        {
+            "name": "event_global_remote_log_category",
+            "type": "void",
+            "description": "sets the global remote evetn log level",
+            "parameters": [
+                {
+                    "type": "string"
+                }
+            ],
+            "engines": {
+                "mcc-cea": 491
+            }
+        },
+        {
+            "name": "event_display_category",
+            "type": "void",
+            "description": "sets the display level for a named category of network events",
+            "parameters": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "string"
+                }
+            ],
+            "engines": {
+                "mcc-cea": 492
+            }
+        },
+        {
+            "name": "event_force_display_category",
+            "type": "void",
+            "description": "sets the forced display level for a named category of network events",
+            "parameters": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "string"
+                }
+            ],
+            "engines": {
+                "mcc-cea": 493
+            }
+        },
+        {
+            "name": "event_log_category",
+            "type": "void",
+            "description": "sets the log level for a named category of network events",
+            "parameters": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "string"
+                }
+            ],
+            "engines": {
+                "mcc-cea": 494
+            }
+        },
+        {
+            "name": "event_remote_log_category",
+            "type": "void",
+            "description": "sets the remote log level for a named category of network events",
+            "parameters": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "string"
+                }
+            ],
+            "engines": {
+                "mcc-cea": 495
+            }
+        },
+        {
+            "name": "event_debugger_break_category",
+            "type": "void",
+            "description": "sets the debugger break level for a named category of network events",
+            "parameters": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "string"
+                }
+            ],
+            "engines": {
+                "mcc-cea": 496
+            }
+        },
+        {
+            "name": "event_halt_category",
+            "type": "void",
+            "description": "sets the halt (assert/crash) level for a named category of network events",
+            "parameters": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "string"
+                }
+            ],
+            "engines": {
+                "mcc-cea": 497
+            }
+        },
+        {
+            "name": "event_list_categories",
+            "type": "void",
+            "description": "lists all categories that exist under a particular category string",
+            "parameters": [
+                {
+                    "type": "string"
+                }
+            ],
+            "engines": {
+                "mcc-cea": 498
+            }
+        },
+        {
+            "name": "events_suppress_console_display",
+            "type": "void",
+            "description": "disables console display for events",
+            "parameters": [
+                {
+                    "type": "boolean"
+                }
+            ],
+            "engines": {
+                "mcc-cea": 499
+            }
+        },
+        {
+            "name": "saved_film_play",
+            "type": "void",
+            "description": "plays a saved film for given controller",
+            "parameters": [
+                {
+                    "type": "short"
+                },
+                {
+                    "type": "string"
+                }
+            ],
+            "engines": {
+                "mcc-cea": 500
+            }
+        },
+        {
+            "name": "saved_film_play_last",
+            "type": "void",
+            "description": "play back last recorded saved film for given controller",
+            "engines": {
+                "mcc-cea": 501
+            }
+        },
+        {
+            "name": "saved_film_disable_version_checking",
+            "type": "void",
+            "description": "disable saved film version checking",
+            "parameters": [
+                {
+                    "type": "boolean"
+                }
+            ],
+            "engines": {
+                "mcc-cea": 502
+            }
+        },
+        {
+            "name": "saved_film_toggle_debug_saving",
+            "type": "void",
+            "description": "toggle saving of last film to the debug output directory automatically after each game level",
+            "parameters": [
+                {
+                    "type": "boolean"
+                }
+            ],
+            "engines": {
+                "mcc-cea": 503
+            }
+        },
+        {
+            "name": "saved_films_delete_on_level_load",
+            "type": "void",
+            "description": "toggle deletion last saved film after loading a new game level",
+            "parameters": [
+                {
+                    "type": "boolean"
+                }
+            ],
+            "engines": {
+                "mcc-cea": 504
+            }
+        },
+        {
+            "name": "saved_films_show_timestamp",
+            "type": "void",
+            "description": "toggle showing timestamp for saved film playback",
+            "parameters": [
+                {
+                    "type": "boolean"
+                }
+            ],
+            "engines": {
+                "mcc-cea": 505
+            }
+        },
+        {
+            "name": "saved_film_set_playback_game_speed",
+            "type": "void",
+            "description": "set the saved film playback speed",
+            "parameters": [
+                {
+                    "type": "real"
+                }
+            ],
+            "engines": {
+                "mcc-cea": 506
+            }
+        },
+        {
+            "name": "saved_film_seek_to_film_tick",
+            "type": "void",
+            "description": "seeks to a film tick",
+            "parameters": [
+                {
+                    "type": "long"
+                }
+            ],
+            "engines": {
+                "mcc-cea": 507
+            }
+        },
+        {
+            "name": "saved_film_set_repro_mode",
+            "type": "void",
+            "description": "set the saved film into repro mode (splitscreen users are created based on the number of splitscreen players that recorded the film)",
+            "parameters": [
+                {
+                    "type": "boolean"
+                }
+            ],
+            "engines": {
+                "mcc-cea": 508
+            }
+        },
+        {
+            "name": "determinism_debug_manager_enable_logging",
+            "type": "void",
+            "description": "enable/disable determinism logging",
+            "parameters": [
+                {
+                    "type": "boolean"
+                }
+            ],
+            "engines": {
+                "mcc-cea": 509
+            }
+        },
+        {
+            "name": "determinism_debug_manager_set_trace_flags",
+            "type": "void",
+            "description": "set which determinism debugging traces should be turned on",
+            "parameters": [
+                {
+                    "type": "long"
+                }
+            ],
+            "engines": {
+                "mcc-cea": 510
+            }
+        },
+        {
+            "name": "determinism_debug_manager_enable_game_state_checksum",
+            "type": "void",
+            "description": "enable/disable determinism checkpoints",
+            "parameters": [
+                {
+                    "type": "boolean"
+                }
+            ],
+            "engines": {
+                "mcc-cea": 511
+            }
+        },
+        {
+            "name": "determinism_debug_manager_enable_trace",
+            "type": "void",
+            "description": "enable determinism tracing",
+            "parameters": [
+                {
+                    "type": "boolean"
+                }
+            ],
+            "engines": {
+                "mcc-cea": 512
+            }
+        },
+        {
+            "name": "determinism_debug_manager_set_consumer_sample_level",
+            "type": "void",
+            "description": "sets sample level for a consumer",
+            "parameters": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "long"
+                }
+            ],
+            "engines": {
+                "mcc-cea": 513
+            }
+        },
+        {
+            "name": "determinism_debug_manager_enable_log_file_comparision_on_oos",
+            "type": "void",
+            "description": "enables/disables determinism log file comparision on oos",
+            "parameters": [
+                {
+                    "type": "boolean"
+                }
+            ],
+            "engines": {
+                "mcc-cea": 514
+            }
+        },
+        {
+            "name": "determinism_log_compare_log_files",
+            "type": "void",
+            "description": "compares determinism log files",
+            "parameters": [
+                {
+                    "type": "string"
+                },
+                {
+                    "type": "string"
+                }
+            ],
+            "engines": {
+                "mcc-cea": 515
+            }
+        },
+        {
+            "name": "debug_menu_rebuild",
+            "type": "void",
+            "description": "Reparses the debug menu from the text file.",
+            "engines": {
+                "mcc-cea": 516
+            }
+        },
+        {
+            "name": "net_never_timeout",
+            "type": "void",
+            "description": "",
+            "parameters": [
+                {
+                    "type": "boolean"
+                }
+            ],
+            "engines": {
+                "mcc-cea": 517
+            }
         }
     ],
     "globals": [
