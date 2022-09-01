@@ -1,4 +1,5 @@
 use super::*;
+use std::fmt::Display;
 
 /// Compile target to use. This determines available features, such as functions.
 #[derive(Copy, Clone, PartialEq)]
@@ -24,6 +25,29 @@ pub enum CompileTarget {
 
     /// Halo Custom Edition as released by Gearbox on Windows.
     HaloCustomEdition,
+}
+
+impl CompileTarget {
+    /// Get the maximum number of script parameters supported for the target engine.
+    pub fn maximum_script_parameters(&self) -> usize {
+        match *self {
+            CompileTarget::HaloCEA => 16,
+            _ => 0
+        }
+    }
+}
+
+impl Display for CompileTarget {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> Result<(), std::fmt::Error> {
+        let name = match *self {
+            CompileTarget::HaloCEA => "Halo: Combat Evolved Anniversary",
+            CompileTarget::HaloCustomEdition => "Halo: Custom Edition",
+            CompileTarget::HaloCEGBX => "Halo: Combat Evolved (PC / Mac)",
+            CompileTarget::HaloCEGBXDemo => "Halo: Combat Evolved Demo (PC / Mac)",
+            CompileTarget::HaloCEXboxNTSC => "Halo: Combat Evolved (Xbox)",
+        };
+        f.write_str(name)
+    }
 }
 
 /// Script type which determines how a script is run and parsed.
@@ -102,7 +126,10 @@ pub(crate) struct Script {
     pub(crate) original_token: Token,
 
     /// Node of the script
-    pub node: Node
+    pub node: Node,
+
+    /// Parameters of the script
+    pub parameters: Vec<ScriptParameter>
 }
 
 impl CallableFunction for Script {
@@ -112,6 +139,43 @@ impl CallableFunction for Script {
 
     fn get_return_type(&self) -> ValueType {
         self.return_type
+    }
+
+    fn supports_target(&self, _target: CompileTarget) -> bool {
+        true
+    }
+
+    fn get_total_parameter_count(&self) -> usize {
+        self.parameters.len()
+    }
+
+    fn get_type_of_parameter(&self, index: usize) -> Option<ValueType> {
+        match self.parameters.get(index) {
+            Some(n) => Some(n.value_type),
+            None => None
+        }
+    }
+}
+
+/// Script parameters are part of scripts and work like globals.
+pub(crate) struct ScriptParameter {
+    /// Name of the parameter
+    pub name: String,
+
+    /// Type of the parameter
+    pub value_type: ValueType,
+
+    /// Token of the global (internal only)
+    pub(crate) original_token: Token
+}
+
+impl CallableGlobal for ScriptParameter {
+    fn get_name(&self) -> &str {
+        &self.name
+    }
+
+    fn get_value_type(&self) -> ValueType {
+        self.value_type
     }
 
     fn supports_target(&self, _target: CompileTarget) -> bool {
@@ -223,13 +287,26 @@ pub enum NodeData {
     NodeOffset(usize)
 }
 
+/// Primitive type
+#[derive(PartialEq, Copy, Clone, Debug)]
+pub enum PrimitiveType {
+    /// Value is a static value.
+    Static,
+
+    /// Value is a local variable.
+    Local,
+
+    /// Value is a global variable.
+    Global
+}
+
 /// Type of the node.
 #[derive(PartialEq, Copy, Clone, Debug)]
 pub enum NodeType {
     /// Node refers to a value.
     ///
-    /// If the boolean is `true`, then string_data will be set to the global name.
-    Primitive(bool),
+    /// If PrimitiveType refers to a variable, then string_data will be set to the variable name.
+    Primitive(PrimitiveType),
 
     /// Node is a function call.
     ///
@@ -239,19 +316,19 @@ pub enum NodeType {
 
 impl Default for NodeType {
     fn default() -> Self {
-        Self::Primitive(false)
+        Self::Primitive(PrimitiveType::Static)
     }
 }
 
 impl NodeType {
-    /// Get whether or not the node type is a global.
-    pub fn is_global(&self) -> bool {
-        *self == NodeType::Primitive(true)
+    /// Get whether or not the node type is a variable.
+    pub fn is_variable(&self) -> bool {
+        *self == NodeType::Primitive(PrimitiveType::Local) || *self == NodeType::Primitive(PrimitiveType::Global)
     }
 
-    /// Get whether or not the node type is a not a global but is a primitive.
-    pub fn is_nonglobal_primitive(&self) -> bool {
-        *self == NodeType::Primitive(false)
+    /// Get whether or not the node type is a static value and not a variable.
+    pub fn is_static_value(&self) -> bool {
+        *self == NodeType::Primitive(PrimitiveType::Static)
     }
     
     /// Get whether or not the node type is a script.

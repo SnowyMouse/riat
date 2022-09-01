@@ -107,8 +107,9 @@ typedef enum RIATScriptType {
 } RIATScriptType;
 
 typedef enum RIATNodeTypeC {
-    RIAT_Primitive,
-    RIAT_Global,
+    RIAT_StaticValue,
+    RIAT_LocalVariable,
+    RIAT_GlobalVariable,
     RIAT_FunctionCall,
     RIAT_ScriptCall
 } RIATNodeTypeC;

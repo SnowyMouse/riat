@@ -39,6 +39,18 @@ macro_rules! compile_warn {
     };
 }
 
+
+/// Get the index of the parameter from a slice of parameters.
+fn parameter_index(name: &str, parameters: &[ScriptParameter]) -> Option<usize> {
+    for i in 0..parameters.len() {
+        if parameters[i].name == name {
+            return Some(i)
+        }
+    }
+    None
+}
+
+
 impl Compiler {
     /// Lowercase the token, warning if the result is different than the input.
     fn lowercase_token(&mut self, token: &Token) -> String {
@@ -55,13 +67,14 @@ impl Compiler {
     fn create_node_from_tokens(&mut self,
                                token: &Token, 
                                expected_type: ValueType,
+                               available_parameters: &[ScriptParameter],
                                available_functions: &BTreeMap<&str, &dyn CallableFunction>,
                                available_globals: &BTreeMap<&str, &dyn CallableGlobal>) -> Result<Node, CompileError> {
         let node = match token.children.as_ref() {
             Some(ref children) => {
                 let function_name = self.lowercase_token(&children[0]);
 
-                self.create_node_from_function(function_name, token, expected_type, &children[1..], available_functions, available_globals)?
+                self.create_node_from_function(function_name, token, expected_type, &children[1..], available_parameters, available_functions, available_globals)?
             },
             None => {
                 // Figure out if it's a global
@@ -71,36 +84,45 @@ impl Compiler {
 
                 let final_type;
 
-                let is_global = if let Some(global) = available_globals.get(literal_lowercase.as_str()) {
-                    let value_type = global.get_value_type();
-
+                let calculate_type = |value_type: ValueType| {
                     // Handle global type if passthrough
-                    final_type = if expected_type == ValueType::Passthrough {
-                        value_type
+                    if expected_type == ValueType::Passthrough {
+                        Ok(value_type)
                     }
                     else {
                         if !value_type.can_convert_to(expected_type) {
                             return_compile_error!(self, token, format!("global '{literal_lowercase}' is '{}' which cannot convert to '{}'", value_type.as_str(), expected_type.as_str()))
                         }
-                        expected_type
-                    };
-
-                    // Use the global name as the string data
-                    literal = self.lowercase_token(token);
-
-                    // Great!
-                    true
-                }
-
-                // It's not? I guess it's a literal. We'll worry about parsing it later.
-                else {
-                    final_type = expected_type;
-                    false
+                        Ok(expected_type)
+                    }
                 };
+
+                let primitive_type = match parameter_index(literal_lowercase.as_str(), available_parameters) {
+                    // Local?
+                    Some(n) => {
+                        final_type = calculate_type(available_parameters[n].get_value_type())?;
+                        PrimitiveType::Local
+                    },
+
+                    // Global?
+                    None => if let Some(global) = available_globals.get(literal_lowercase.as_str()) {
+                        final_type = calculate_type(global.get_value_type())?;
+                        PrimitiveType::Global
+                    }
+
+                    // Not a variable? We'll worry about parsing it later.
+                    else {
+                        final_type = expected_type;
+                        PrimitiveType::Static
+                    }
+                };
+
+                // Use the global name as the string data
+                literal = self.lowercase_token(token);
 
                 Node {
                     value_type: final_type,
-                    node_type: NodeType::Primitive(is_global),
+                    node_type: NodeType::Primitive(primitive_type),
                     string_data: Some(literal),
                     data: None,
                     parameters: None,
@@ -121,6 +143,7 @@ impl Compiler {
                                  function_call_token: &Token,
                                  expected_type: ValueType,
                                  tokens: &[Token],
+                                 available_parameters: &[ScriptParameter],
                                  available_functions: &BTreeMap<&str, &dyn CallableFunction>,
                                  available_globals: &BTreeMap<&str, &dyn CallableGlobal>) -> Result<Node, CompileError> {
         
@@ -198,7 +221,7 @@ impl Compiler {
             debug_assert_eq!(if_tree.len(), 1); // we should have 1 left, right??
 
             // Now parse it
-            return self.create_node_from_tokens(&if_tree.pop().unwrap(), expected_type, available_functions, available_globals);
+            return self.create_node_from_tokens(&if_tree.pop().unwrap(), expected_type, available_parameters, available_functions, available_globals);
         }
 
         // Get function information
@@ -286,7 +309,7 @@ impl Compiler {
 
 
             // Make the node
-            let new_node = self.create_node_from_tokens(token, parameter_expected_type, available_functions, available_globals)?;
+            let new_node = self.create_node_from_tokens(token, parameter_expected_type, available_parameters, available_functions, available_globals)?;
 
             // Update passthrough if needed
             if parameter_is_passthrough && new_node.value_type != ValueType::Passthrough {
@@ -298,9 +321,19 @@ impl Compiler {
         }
 
 
-        // Set the index union to 0xFFFF for globals if set
+        // Set the index union to 0xFFFF for variables if set
         if function_name == "set" {
-            debug_assert_eq!(parameters[0].node_type, NodeType::Primitive(true));
+            let string_data = match &parameters[0].string_data {
+                Some(n) => n.to_ascii_lowercase(),
+                None => return_compile_error!(self, &tokens[0], format!("function 'set' requires a name of a variable"))
+            };
+
+            let parameter_type = match parameter_index(&string_data, available_parameters) {
+                Some(_) => PrimitiveType::Local,
+                None => PrimitiveType::Global
+            };
+
+            debug_assert_eq!(parameters[0].node_type, NodeType::Primitive(parameter_type));
             parameters[0].index = Some(0xFFFF);
         }
 
@@ -319,7 +352,7 @@ impl Compiler {
         for parameter_index in 0..parameter_count {
             let parameter_node = &mut parameters[parameter_index];
 
-            if matches!(parameter_node.node_type, NodeType::Primitive(false)) {
+            if matches!(parameter_node.node_type, NodeType::Primitive(PrimitiveType::Static)) {
                 let parameter_token = &tokens[parameter_index];
                 let string_to_parse = if function.is_uppercase_allowed_for_parameter(parameter_index) {
                     parameter_token.string.clone()
@@ -469,6 +502,7 @@ impl Compiler {
     pub fn digest_tokens(&mut self) -> Result<CompiledScriptData, CompileError> {
         let (mut scripts, mut globals) = {
             let tokens : Vec<Token> = self.tokens.drain(..).collect();
+            let max_script_parameters = self.target.maximum_script_parameters();
 
             let mut scripts = Vec::<Script>::new();
             let mut globals = Vec::<Global>::new();
@@ -533,15 +567,68 @@ impl Compiler {
                             return_compile_error!(self, token, format!("incomplete script definition, expected (script {script_type_string}{} <name> <expression(s)>)", if type_expected { "" } else { " <return type>" }))
                         }
 
+                        // Parameters!
+                        let mut parameters = Vec::<ScriptParameter>::new();
+
                         // Add the script
                         scripts.push(Script {
                             name: {
                                 let name_token = &children[minimum_number_of_tokens - 2];
-                                if !matches!(name_token.children, None) {
-                                    return_compile_error!(self, name_token, format!("expected script name, got a block instead (note: function parameters are not supported prior to Halo 3)"))
-                                }
 
-                                let name = self.lowercase_token(&name_token);
+                                // Get the name. We may need to also get the script parameters.
+                                let name;
+                                match &name_token.children {
+                                    // If there are children, then that means script parameters were passed.
+                                    Some(c) => {
+                                        // Check if the target supports script parameters
+                                        if max_script_parameters == 0 {
+                                            return_compile_error!(self, name_token, format!("function parameters are not supported in {}", self.target));
+                                        }
+
+                                        // Can we even use them?
+                                        if script_type != ScriptType::Static && script_type != ScriptType::Stub {
+                                            return_compile_error!(self, name_token, format!("script parameters can only be used in static or stub functions"))
+                                        }
+
+                                        // Get the name
+                                        let name_token = &c[0];
+                                        if !matches!(name_token.children, None) {
+                                            return_compile_error!(self, name_token, format!("expected script name, got a block instead (note: function parameters are not supported prior to Halo 3)"))
+                                        }
+                                        name = self.lowercase_token(&name_token);
+
+                                        // Get the parameters
+                                        let parameter_tokens = &c[1..];
+                                        let parameter_count = parameter_tokens.len() - 1;
+                                        if parameter_count > max_script_parameters {
+                                            return_compile_error!(self, name_token, format!("only {max_script_parameters} script parameter(s) are supported in {}", self.target));
+                                        }
+
+                                        // Reserve it
+                                        parameters.reserve_exact(parameter_count);
+
+                                        for p in parameter_tokens {
+                                            let children = match &p.children {
+                                                Some(n) => n,
+                                                None => return_compile_error!(self, p, format!("expected script parameter"))
+                                            };
+
+                                            if children.len() != 2 || !matches!(children[0].children, None) || !matches!(children[1].children, None) {
+                                                return_compile_error!(self, p, format!("script parameters should be in (<type> <name>) format"))
+                                            }
+
+                                            let parameter_type = match ValueType::from_str_underscore(&children[0].string) {
+                                                Some(n) => n,
+                                                None => return_compile_error!(self, p, format!("expected parameter type, got {}", children[0].string))
+                                            };
+
+                                            let parameter_name = self.lowercase_token(&children[1]);
+                                            parameters.push(ScriptParameter { name: parameter_name, value_type: parameter_type, original_token: children[1].clone() });
+                                        }
+                                    },
+                                    None => name = self.lowercase_token(&name_token)
+                                };
+
                                 match name.as_str() {
                                     "begin" | "if" | "cond" => return_compile_error!(self, name_token, format!("function '{name}' cannot be overridden by a script")),
                                     _ => ()
@@ -564,6 +651,7 @@ impl Compiler {
                             },
                             script_type: script_type,
                             original_token: token,
+                            parameters: parameters,
 
                             node: Node::default() // we're going to parse this later
                         });
@@ -609,7 +697,7 @@ impl Compiler {
             if g.name.len() > 31 {
                 return_compile_error!(self, g.original_token, format!("global name '{}' exceeds 31 characters in length", g.name));
             }
-            global_nodes.push_back(self.create_node_from_function("begin".to_owned(), &g.original_token, g.value_type, &g.original_token.children.as_ref().unwrap()[3..], &callable_functions, &callable_globals)?);
+            global_nodes.push_back(self.create_node_from_function("begin".to_owned(), &g.original_token, g.value_type, &g.original_token.children.as_ref().unwrap()[3..], &[], &callable_functions, &callable_globals)?);
         }
 
         // Now parse all the scripts
@@ -617,7 +705,7 @@ impl Compiler {
             if s.name.len() > 31 {
                 return_compile_error!(self, s.original_token, format!("script name '{}' exceeds 31 characters in length", s.name));
             }
-            script_nodes.push_back(self.create_node_from_function("begin".to_owned(), &s.original_token, s.return_type, &s.original_token.children.as_ref().unwrap()[s.script_type.expression_offset()..], &callable_functions, &callable_globals)?);
+            script_nodes.push_back(self.create_node_from_function("begin".to_owned(), &s.original_token, s.return_type, &s.original_token.children.as_ref().unwrap()[s.script_type.expression_offset()..], &s.parameters, &callable_functions, &callable_globals)?);
         }
 
         // Move all the globals and scripts
@@ -730,15 +818,21 @@ impl Compiler {
             gbi
         };
 
-        fn find_global_script_indices_for_node(node: &mut Node, scripts: &BTreeMap::<String, i16>, globals: &BTreeMap::<String, i32>, target: CompileTarget) {
+        fn find_global_script_indices_for_node(node: &mut Node, function_parameters: &[ScriptParameter], scripts: &BTreeMap::<String, i16>, globals: &BTreeMap::<String, i32>, target: CompileTarget) -> Result<(), CompileError> {
             match node.node_type {
-                NodeType::Primitive(false) => {
+                NodeType::Primitive(PrimitiveType::Static) => {
                     if node.value_type == ValueType::Script {
                         node.data = Some(NodeData::Short(*scripts.get(node.string_data.as_ref().unwrap()).unwrap()));
                     }
                 },
-                NodeType::Primitive(true) => {
-                    match globals.get(node.string_data.as_ref().unwrap()) {
+                NodeType::Primitive(PrimitiveType::Local) => {
+                    node.data = Some(NodeData::Long(parameter_index(node.string_data.as_ref().unwrap(), function_parameters).unwrap() as i32));
+                },
+                NodeType::Primitive(PrimitiveType::Global) => {
+                    let string_data = node.string_data.as_ref().unwrap();
+
+                    // Otherwise try getting the global index
+                    match globals.get(string_data) {
                         Some(n) => node.data = Some(NodeData::Long(*n)),
                         None => ()
                     }
@@ -764,19 +858,21 @@ impl Compiler {
                     }
 
                     for p in node.parameters.as_mut().unwrap() {
-                        find_global_script_indices_for_node(p, scripts, globals, target);
+                        find_global_script_indices_for_node(p, function_parameters, scripts, globals, target)?;
                     }
                 }
             }
+
+            Ok(())
         }
         for s in &mut scripts {
-            find_global_script_indices_for_node(&mut s.node, &scripts_by_index, &globals_by_index, target);
+            find_global_script_indices_for_node(&mut s.node, &s.parameters, &scripts_by_index, &globals_by_index, target)?;
         }
 
         // Detect uninitialized globals (and also find script indices)
         fn find_uninitialized_globals(node: &Node, globals: &[Global], compiler: &mut Compiler) {
             match node.node_type {
-                NodeType::Primitive(true) => {
+                NodeType::Primitive(PrimitiveType::Global) => {
                     let global_name = node.string_data.as_ref().unwrap().as_str();
                     for g in globals {
                         if g.name == global_name {
@@ -790,7 +886,7 @@ impl Compiler {
             }
         }
         for i in 0..globals.len() {
-            find_global_script_indices_for_node(&mut globals[i].node, &scripts_by_index, &globals_by_index, target);
+            find_global_script_indices_for_node(&mut globals[i].node, &[], &scripts_by_index, &globals_by_index, target)?;
             find_uninitialized_globals(&globals[i].node, &globals[i..], self);
         }
 
@@ -821,12 +917,12 @@ impl Compiler {
         let mut compiled_globals = Vec::new();
         let mut nodes = Vec::new();
 
-        fn make_compiled_node_from_node(compiler: &Compiler, node: Node, node_array: &mut Vec<CompiledNode>) -> usize {
+        fn make_compiled_node_from_node(compiler: &Compiler, node: Node, node_array: &mut Vec<CompiledNode>, script_parameters: &[ScriptParameter]) -> usize {
             // What type of node is it?
             match node.node_type {
-                NodeType::Primitive(is_global) => {
+                NodeType::Primitive(primitive_type) => {
                     // Globals need to have string data set
-                    debug_assert!(!is_global || !matches!(node.string_data, None));
+                    debug_assert!((primitive_type != PrimitiveType::Global && primitive_type != PrimitiveType::Local) || !matches!(node.string_data, None));
 
                     let result = node_array.len();
                     node_array.push(CompiledNode {
@@ -864,7 +960,7 @@ impl Compiler {
 
                     // Next get the function name out of the way
                     node_array.push(CompiledNode {
-                        node_type: NodeType::Primitive(false),
+                        node_type: NodeType::Primitive(PrimitiveType::Static),
                         value_type: ValueType::FunctionName,
                         data: Some(NodeData::Long(0)),
                         string_data: match node.string_data { Some(n) => Some(compiler.encoding.encode_to_cstring(n.as_str())), None => None },
@@ -879,7 +975,7 @@ impl Compiler {
                     // Let's get our parameters here now
                     let mut previous_node = function_name_node;
                     for p in parameters {
-                        let next_node = make_compiled_node_from_node(compiler, p, node_array);
+                        let next_node = make_compiled_node_from_node(compiler, p, node_array, script_parameters);
                         node_array[previous_node].next_node = Some(next_node);
                         previous_node = next_node;
                     }
@@ -891,12 +987,25 @@ impl Compiler {
         }
 
         for s in scripts {
+            let mut parameters = Vec::new();
+            parameters.reserve_exact(s.parameters.len());
+            for p in &s.parameters {
+                parameters.push(CompiledScriptParameter { 
+                    name: self.encoding.encode_to_cstring(p.name.as_str()),
+                    value_type: p.value_type,
+                    file: p.original_token.file,
+                    column: p.original_token.column,
+                    line: p.original_token.line,
+                });
+            }
+
             compiled_scripts.push(
                 CompiledScript {
                     name: self.encoding.encode_to_cstring(s.name.as_str()),
                     value_type: s.return_type,
                     script_type: s.script_type,
-                    first_node: make_compiled_node_from_node(self, s.node, &mut nodes),
+                    first_node: make_compiled_node_from_node(self, s.node, &mut nodes, &s.parameters),
+                    parameters: parameters,
 
                     file: s.original_token.file,
                     column: s.original_token.column,
@@ -909,7 +1018,7 @@ impl Compiler {
                 CompiledGlobal {
                     name: self.encoding.encode_to_cstring(g.name.as_str()),
                     value_type: g.value_type,
-                    first_node: make_compiled_node_from_node(self, g.node, &mut nodes),
+                    first_node: make_compiled_node_from_node(self, g.node, &mut nodes, &[]),
 
                     file: g.original_token.file,
                     column: g.original_token.column,

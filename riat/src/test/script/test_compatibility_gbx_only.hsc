@@ -4,4 +4,4 @@
 
 *;
 
-(script startup void no_fun_allowed (connect 127.0.0.1:2302 "")) ; the connect command is not available in MCC or Xbox
+(script startup no_fun_allowed (connect 127.0.0.1:2302 "")) ; the connect command is not available in MCC or Xbox

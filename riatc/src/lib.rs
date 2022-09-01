@@ -202,8 +202,9 @@ pub unsafe extern "C" fn riat_script_data_get_warnings(script_data: *const Compi
 #[repr(C)]
 #[derive(Copy, Clone)]
 pub enum NodeTypeC {
-    Primitive,
-    Global,
+    StaticValue,
+    LocalVariable,
+    GlobalVariable,
     FunctionCall,
     ScriptCall
 }
@@ -211,8 +212,9 @@ pub enum NodeTypeC {
 impl NodeTypeC {
     fn new(t: NodeType) -> Self {
         match t {
-            NodeType::Primitive(true) => Self::Global,
-            NodeType::Primitive(false) => Self::Primitive,
+            NodeType::Primitive(PrimitiveType::Local) => Self::LocalVariable,
+            NodeType::Primitive(PrimitiveType::Global) => Self::GlobalVariable,
+            NodeType::Primitive(PrimitiveType::Static) => Self::StaticValue,
             NodeType::FunctionCall(true) => Self::FunctionCall,
             NodeType::FunctionCall(false) => Self::ScriptCall
         }

@@ -36,6 +36,49 @@ impl CompiledScriptData {
     }
 }
 
+/// Script parameter
+pub struct CompiledScriptParameter {
+    pub(super) name: CString,
+    pub(super) value_type: ValueType,
+
+    pub(super) file: usize,
+    pub(super) line: usize,
+    pub(super) column: usize
+}
+
+impl CompiledScriptParameter {
+    /// Get the name of the script parameter.
+    pub fn get_name(&self) -> &str {
+        self.name.to_str().unwrap()
+    }
+
+    /// Get the name of the script as a null terminated C string.
+    pub fn get_name_cstr(&self) -> &CStr {
+        &self.name
+    }
+
+    /// Get the parameter value type.
+    pub fn get_value_type(&self) -> ValueType {
+        self.value_type
+    }
+
+    /// Get the file index of the script, starting at 0.
+    ///
+    /// This corresponds to [`CompiledScriptData::get_files`].
+    pub fn get_file(&self) -> usize {
+        self.file
+    }
+
+    /// Get the line index of the script, starting at 1.
+    pub fn get_line(&self) -> usize {
+        self.line
+    }
+
+    /// Get the column index of the script, starting at 1.
+    pub fn get_column(&self) -> usize {
+        self.column
+    }
+}
 
 /// Compiled script result.
 pub struct CompiledScript {
@@ -43,6 +86,7 @@ pub struct CompiledScript {
     pub(super) value_type: ValueType,
     pub(super) script_type: ScriptType,
     pub(super) first_node: usize,
+    pub(super) parameters: Vec<CompiledScriptParameter>,
 
     pub(super) file: usize,
     pub(super) line: usize,
@@ -55,7 +99,7 @@ impl CompiledScript {
         self.name.to_str().unwrap()
     }
 
-    /// Get the name of the global as a null terminated C string.
+    /// Get the name of the script as a null terminated C string.
     pub fn get_name_cstr(&self) -> &CStr {
         &self.name
     }
@@ -90,6 +134,11 @@ impl CompiledScript {
     /// Get the column index of the script, starting at 1.
     pub fn get_column(&self) -> usize {
         self.column
+    }
+
+    /// Get the script parameters for this function.
+    pub fn get_parameters(&self) -> &[CompiledScriptParameter] {
+        &self.parameters
     }
 }
 
@@ -218,7 +267,6 @@ impl CompiledNode {
         self.column
     }
 }
-
 
 /// Data unit used for scripts.
 #[derive(PartialEq, Clone, Debug, Default)]
