@@ -67,6 +67,23 @@ namespace RIAT {
         }
 
         /**
+         * Get all parameters for the given script.
+         * 
+         * @return parameters
+         */
+        std::vector<RIATScriptParameterC> get_script_parameters_for_script(const RIATScriptC &script) {
+            if(!this->script_data) {
+                return {};
+            }
+
+            auto *script_data = this->script_data.get();
+            auto parameter_count = ::riat_script_data_get_script_parameters(script_data, script.name, nullptr);
+            std::vector<RIATScriptParameterC> r(parameter_count);
+            ::riat_script_data_get_script_parameters(script_data, script.name, r.data());
+            return r;
+        }
+
+        /**
          * Get all globals.
          * 
          * @return globals

@@ -397,6 +397,56 @@ pub unsafe extern "C" fn riat_script_data_get_scripts(script_data: *const Compil
     count
 }
 
+/// Script parameter C struct.
+#[repr(C)]
+#[derive(Copy, Clone)]
+pub struct RIATScriptParameterC {
+    /// Name of the script
+    pub name: *const c_char,
+
+    /// Type of the parameter
+    pub value_type: ValueType
+}
+
+/// Get all script parameters from the script compilation for the script.
+///
+/// Return the number of script parameters. Write this many script parameters to an array pointed to by `parameters` if `parameters` is non-null.
+///
+/// Return 0 and do nothing if the script was not found.
+///
+/// # Requirements
+///
+/// If any of these requirements are not met, **undefined behavior** will occur:
+/// * The `script_data` parameter must point to a valid [`CompiledScriptData`].
+/// * The `script_name` must point to a valid null-terminated C string.
+/// * The `scripts` parameter must point to a valid array of [`RIATScriptC`] long enough to hold the result of this function or be null. To query the number of warnings, run this function with this parameter set to null.
+/// * If [`riat_script_data_free`] is called, the resulting scripts will no longer be valid, thus no pointers may be dereferenced after this.
+#[no_mangle]
+pub unsafe extern "C" fn riat_script_data_get_script_parameters(script_data: *const CompiledScriptData, script_name: *const c_char, parameters: *mut RIATScriptParameterC) -> usize {
+    let all_scripts = (*script_data).get_scripts();
+    let script_name = CStr::from_ptr(script_name).to_str().unwrap();
+
+    for i in all_scripts {
+        if i.get_name_cstr().to_str().unwrap() == script_name {
+            let all_parameters = i.get_parameters();
+            let count = all_parameters.len();
+
+            if !parameters.is_null() {
+                for c in 0..count {
+                    let parameter_out = &mut *parameters.add(c);
+                    let parameter_in = &all_parameters[c];
+                    parameter_out.name = parameter_in.get_name_cstr().as_ptr();
+                    parameter_out.value_type = parameter_in.get_value_type();
+                }
+            }
+
+            return count;
+        }
+    }
+
+    0
+}
+
 /// Get all globals from the global compilation.
 ///
 /// Return the number of globals. Write this many globals to an array pointed to by `globals` if `globals` is non-null.

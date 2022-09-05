@@ -158,6 +158,13 @@ typedef struct RIATGlobalC {
 size_t riat_script_data_get_scripts(const RIATCompiledScriptData *script_data, RIATScriptC *scripts);
 size_t riat_script_data_get_globals(const RIATCompiledScriptData *script_data, RIATGlobalC *globals);
 
+typedef struct RIATScriptParameterC {
+    const char *name;
+    RIATValueType value_type;
+} RIATScriptParameterC;
+
+size_t riat_script_data_get_script_parameters(const RIATCompiledScriptData *script_data, const char *script_name, RIATScriptParameterC *parameters);
+
 #ifdef __cplusplus
 }
 #endif
