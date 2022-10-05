@@ -52,20 +52,14 @@ fn parameter_index(name: &str, parameters: &[ScriptParameter]) -> Option<usize> 
 
 
 impl Compiler {
-    /// Lowercase the token, warning if the result is different than the input.
+    /// Lowercase the token as needed.
     fn lowercase_token(&mut self, token: &Token) -> String {
-        let mut t = token.string.clone();
-        t.make_ascii_lowercase();
-
-        if t != token.string {
-            compile_warn!(self, token, format!("token '{}' contains uppercase characters and was made lowercase", token.string))
-        }
-
-        t
+        // Ideally, if this results in a different token, this should be a warning! However, the original HSCs would then have over 3000 warnings. Oh well.
+        token.string.to_ascii_lowercase()
     }
 
     fn create_node_from_tokens(&mut self,
-                               token: &Token, 
+                               token: &Token,
                                expected_type: ValueType,
                                available_parameters: &[ScriptParameter],
                                available_functions: &BTreeMap<&str, &dyn CallableFunction>,
@@ -146,7 +140,7 @@ impl Compiler {
                                  available_parameters: &[ScriptParameter],
                                  available_functions: &BTreeMap<&str, &dyn CallableFunction>,
                                  available_globals: &BTreeMap<&str, &dyn CallableGlobal>) -> Result<Node, CompileError> {
-        
+
         // Special handling for the cond function, turning (cond (condition1 expression1...) (condition2 expression2...)) into (if condition1 (begin expression1...) (if condition2 (begin expression2...) ...)
         if function_name == "cond" {
             // Make sure we have somewhere first
@@ -291,7 +285,7 @@ impl Compiler {
                         ValueType::Void
                     }
 
-                    // Otherwise, it's a passthrough type, 
+                    // Otherwise, it's a passthrough type,
                     else {
                         match passthrough_type.as_ref() {
                             Some(n) => { parameter_is_passthrough = false; *n }
@@ -313,7 +307,7 @@ impl Compiler {
 
             // Update passthrough if needed
             if parameter_is_passthrough && new_node.value_type != ValueType::Passthrough {
-                passthrough_type = Some(new_node.value_type); 
+                passthrough_type = Some(new_node.value_type);
             }
 
             // Add the parameter
@@ -378,7 +372,7 @@ impl Compiler {
                         match available_functions.get(string_to_parse_str) {
                             // If we have a function by this name, tell the user that such a function exists
                             Some(_) => return_compile_error!(self, tokens[parameter_index], format!("cannot parse token '{string_to_parse_str}' as {value_type_name} and no global of this name defined; did you mean to call '({string_to_parse_str})' as a function?")),
-                            
+
                             // Otherwise we have no global or anything like that, so here
                             None => return_compile_error!(self, tokens[parameter_index], format!("cannot parse token '{string_to_parse_str}' as {value_type_name} and no global of this name defined (expected {})", $allowed_values))
                         };
@@ -659,7 +653,7 @@ impl Compiler {
                     n => return_compile_error!(self, block_type, format!("expected 'global' or 'script', got '{n}' instead"))
                 }
             }
-            
+
             (scripts, globals)
         };
 
@@ -753,12 +747,12 @@ impl Compiler {
                         if j == i || scripts[i].name != scripts[j].name { // ignore self and scripts that don't have the same name as self
                             continue
                         }
-                        
+
                         // Is the script a static script?
                         if scripts[j].script_type != ScriptType::Static {
                             return_compile_error!(self, scripts[i].original_token, format!("cannot replace stub script '{}' with non-static script", scripts[i].name))
                         }
-                        
+
                         // Does the type match?
                         if scripts[j].return_type != scripts[i].return_type {
                             return_compile_error!(self, scripts[i].original_token, format!("cannot replace stub script '{}' that returns '{}' with static script which returns '{}'", scripts[i].return_type.as_str(), scripts[i].name, scripts[j].return_type.as_str()))
@@ -990,7 +984,7 @@ impl Compiler {
             let mut parameters = Vec::new();
             parameters.reserve_exact(s.parameters.len());
             for p in &s.parameters {
-                parameters.push(CompiledScriptParameter { 
+                parameters.push(CompiledScriptParameter {
                     name: self.encoding.encode_to_cstring(p.name.as_str()),
                     value_type: p.value_type,
                     file: p.original_token.file,
