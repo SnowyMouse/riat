@@ -310,7 +310,7 @@ pub enum NodeType {
 
     /// Node is a function call.
     ///
-    /// If the boolean is `true`, then the function is a script.
+    /// If the boolean is `true`, then the function is an engine function.
     FunctionCall(bool)
 }
 
@@ -330,17 +330,17 @@ impl NodeType {
     pub fn is_static_value(&self) -> bool {
         *self == NodeType::Primitive(PrimitiveType::Static)
     }
-    
-    /// Get whether or not the node type is a script.
-    pub fn is_script(&self) -> bool {
-        *self == NodeType::FunctionCall(true)
-    }
-    
+
     /// Get whether or not the node type is an engine function.
     pub fn is_engine_function(&self) -> bool {
+        *self == NodeType::FunctionCall(true)
+    }
+
+    /// Get whether or not the node type is a script.
+    pub fn is_script(&self) -> bool {
         *self == NodeType::FunctionCall(false)
     }
-    
+
     /// Get whether or not the node type is a primitive.
     pub fn is_primitive(&self) -> bool {
         matches!(*self, NodeType::Primitive(_))
