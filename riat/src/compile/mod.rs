@@ -29,13 +29,13 @@ fn all_functions_and_globals_for_target(target: CompileTarget) -> (Vec<&'static 
 
 macro_rules! return_compile_error {
     ($compiler: expr, $token: expr, $message: expr) => {
-        return Err(CompileError::from_message($compiler, $compiler.files[$token.file].as_str(), $token.line, $token.column, CompileErrorType::Error, $message.as_str()))
+        return Err(CompileError::from_message($compiler.files[$token.file].as_str(), $token.line, $token.column, CompileErrorType::Error, $message.as_str()))
     };
 }
 
 macro_rules! compile_warn {
     ($compiler: expr, $token: expr, $message: expr) => {
-        $compiler.warnings.push(CompileError::from_message($compiler, $compiler.files[$token.file].as_str(), $token.line, $token.column, CompileErrorType::Warning, $message.as_str()))
+        $compiler.warnings.push(CompileError::from_message($compiler.files[$token.file].as_str(), $token.line, $token.column, CompileErrorType::Warning, $message.as_str()))
     };
 }
 
@@ -923,7 +923,7 @@ impl Compiler {
                         node_type: node.node_type,
                         value_type: node.value_type,
                         data: node.data,
-                        string_data: match node.string_data { Some(n) => Some(compiler.encoding.encode_to_cstring(n.as_str())), None => None },
+                        string_data: match node.string_data { Some(n) => Some(CString::new(n.as_str()).unwrap()), None => None },
                         next_node: None,
                         index: node.index,
 
@@ -957,7 +957,7 @@ impl Compiler {
                         node_type: NodeType::Primitive(PrimitiveType::Static),
                         value_type: ValueType::FunctionName,
                         data: Some(NodeData::Long(0)),
-                        string_data: match node.string_data { Some(n) => Some(compiler.encoding.encode_to_cstring(n.as_str())), None => None },
+                        string_data: match node.string_data { Some(n) => Some(CString::new(n.as_str()).unwrap()), None => None },
                         next_node: None,
                         index: node.index,
 
@@ -985,7 +985,7 @@ impl Compiler {
             parameters.reserve_exact(s.parameters.len());
             for p in &s.parameters {
                 parameters.push(CompiledScriptParameter {
-                    name: self.encoding.encode_to_cstring(p.name.as_str()),
+                    name: CString::new(p.name.as_str()).unwrap(),
                     value_type: p.value_type,
                     file: p.original_token.file,
                     column: p.original_token.column,
@@ -995,7 +995,7 @@ impl Compiler {
 
             compiled_scripts.push(
                 CompiledScript {
-                    name: self.encoding.encode_to_cstring(s.name.as_str()),
+                    name: CString::new(s.name.as_str()).unwrap(),
                     value_type: s.return_type,
                     script_type: s.script_type,
                     first_node: make_compiled_node_from_node(self, s.node, &mut nodes, &s.parameters),
@@ -1010,7 +1010,7 @@ impl Compiler {
         for g in globals {
             compiled_globals.push(
                 CompiledGlobal {
-                    name: self.encoding.encode_to_cstring(g.name.as_str()),
+                    name: CString::new(g.name.as_str()).unwrap(),
                     value_type: g.value_type,
                     first_node: make_compiled_node_from_node(self, g.node, &mut nodes, &[]),
 
@@ -1024,7 +1024,7 @@ impl Compiler {
         // Make the files
         let mut files = Vec::<CString>::new();
         for i in self.files.drain(..) {
-            files.push(self.encoding.encode_to_cstring(i.as_str()));
+            files.push(CString::new(i.as_str()).unwrap());
         }
 
         // Done!

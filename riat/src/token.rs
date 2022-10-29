@@ -52,9 +52,9 @@ impl Compiler {
                     line: current_token_line,
                     column: current_token_column,
                     file: file,
-                    string: match self.encoding.decode_from_bytes(&script[current_token_offset + if quoted { 1 } else { 0 }..i]) {
+                    string: match std::str::from_utf8(&script[current_token_offset + if quoted { 1 } else { 0 }..i]) {
                         Ok(n) => n.to_owned(),
-                        Err(e) => return Err(CompileError::from_message(self, filename, line, column, CompileErrorType::Error, &format!("failed to decode token - {e}")))
+                        Err(e) => return Err(CompileError::from_message(filename, line, column, CompileErrorType::Error, &format!("failed to decode token - {e}")))
                     },
                     children: None
                 });
@@ -72,7 +72,7 @@ impl Compiler {
                     break
                 }
                 else {
-                    return Err(CompileError::from_message(self, filename, line, column, CompileErrorType::Error, "unexpected null terminator"))
+                    return Err(CompileError::from_message(filename, line, column, CompileErrorType::Error, "unexpected null terminator"))
                 }
             }
 
@@ -150,7 +150,7 @@ impl Compiler {
 
         // Did the token end prematurely?
         if let CurrentlyIn::Token(_) = currently_in {
-            return Err(CompileError::from_message(self, filename, line, column, CompileErrorType::Error, "unterminated token"));
+            return Err(CompileError::from_message(filename, line, column, CompileErrorType::Error, "unterminated token"));
         }
 
         // Make the tokens into a tree
@@ -171,7 +171,7 @@ impl Compiler {
                             // Check if we have another token
                             let mut next_token = match token_iter.next() {
                                 Some(n) => n,
-                                None => return Err(CompileError::from_message(compiler, filename, token.line, token.column, CompileErrorType::Error, "unterminated block"))
+                                None => return Err(CompileError::from_message(filename, token.line, token.column, CompileErrorType::Error, "unterminated block"))
                             };
 
                             // See if it's a parenthesis
@@ -185,7 +185,7 @@ impl Compiler {
                                 ")" => {
                                     // Error if a block is empty
                                     if children.is_empty() {
-                                        return Err(CompileError::from_message(compiler, filename, token.line, token.column, CompileErrorType::Error, "empty block"))
+                                        return Err(CompileError::from_message(filename, token.line, token.column, CompileErrorType::Error, "empty block"))
                                     }
 
                                     // Move the token
@@ -208,7 +208,7 @@ impl Compiler {
                 }
 
                 n => {
-                    return Err(CompileError::from_message(self, filename, next_token.line, next_token.column, CompileErrorType::Error, &format!("expected left parenthesis, got {n} instead")))
+                    return Err(CompileError::from_message(filename, next_token.line, next_token.column, CompileErrorType::Error, &format!("expected left parenthesis, got {n} instead")))
                 }
             }
         }

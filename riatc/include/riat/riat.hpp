@@ -51,7 +51,7 @@ namespace RIAT {
     public:
         /**
          * Get all scripts.
-         * 
+         *
          * @return scripts
          */
         std::vector<RIATScriptC> get_scripts() {
@@ -68,7 +68,7 @@ namespace RIAT {
 
         /**
          * Get all parameters for the given script.
-         * 
+         *
          * @return parameters
          */
         std::vector<RIATScriptParameterC> get_script_parameters_for_script(const RIATScriptC &script) {
@@ -85,7 +85,7 @@ namespace RIAT {
 
         /**
          * Get all globals.
-         * 
+         *
          * @return globals
          */
         std::vector<RIATGlobalC> get_globals() {
@@ -102,7 +102,7 @@ namespace RIAT {
 
         /**
          * Get all nodes.
-         * 
+         *
          * @return nodes
          */
         std::vector<RIATScriptNodeC> get_nodes() {
@@ -119,7 +119,7 @@ namespace RIAT {
 
         /**
          * Get all warnings.
-         * 
+         *
          * @return warnings
          */
         std::vector<CompileError> get_warnings() {
@@ -160,11 +160,11 @@ namespace RIAT {
     public:
         /**
          * Load the given script
-         * 
+         *
          * @param script_source_data   pointer to the script source data
          * @param script_source_length length of the script source data
          * @param file_name            name of the file (for error reporting)
-         * 
+         *
          * @throws RIAT::CompileError on failure
          */
         void read_script_data(const std::uint8_t *script_source_data, std::size_t script_source_length, const char *file_name) {
@@ -178,7 +178,7 @@ namespace RIAT {
 
         /**
          * Compile the given script and, if successful, clear all loaded scripts.
-         * 
+         *
          * @throws RIAT::CompileError on failure
          */
         CompilerScriptResult compile_scripts() {
@@ -194,7 +194,7 @@ namespace RIAT {
 
         /**
          * Get the instance handle
-         * 
+         *
          * @return instance
          */
         RIATCompiler *get_instance() noexcept {
@@ -203,11 +203,10 @@ namespace RIAT {
 
         /**
          * Instantiate a compiler instance
-         * 
+         *
          * @param target   target engine
-         * @param encoding target encoding (by default use Windows-1252)
          */
-        Compiler(RIATCompileTarget target, RIATCompileEncoding encoding = RIATCompileEncoding::RIAT_Windows1252) : instance(::riat_compiler_new(target, encoding), ::riat_compiler_free) {
+        Compiler(RIATCompileTarget target) : instance(::riat_compiler_new(target), ::riat_compiler_free) {
             if(this->instance.get() == nullptr) {
                 throw std::exception();
             }

@@ -47,7 +47,7 @@ impl CompileErrorC {
 
     unsafe fn free(&mut self) {
         if !self.base.is_null() {
-            Box::from_raw(self.base);
+            drop(Box::from_raw(self.base));
             self.base = std::ptr::null_mut();
             self.file = std::ptr::null();
             self.message = std::ptr::null();
@@ -66,8 +66,8 @@ impl CompileErrorC {
 ///
 /// The target must be a valid [`CompileTarget`] enum or else **undefined behavior** will occur.
 #[no_mangle]
-pub extern "C" fn riat_compiler_new(target: CompileTarget, encoding: CompileEncoding) -> *mut Compiler {
-    Box::into_raw(Box::<Compiler>::new(Compiler::new(target, encoding)))
+pub extern "C" fn riat_compiler_new(target: CompileTarget) -> *mut Compiler {
+    Box::into_raw(Box::<Compiler>::new(Compiler::new(target)))
 }
 
 /// Free a Compiler instance.
@@ -80,7 +80,7 @@ pub extern "C" fn riat_compiler_new(target: CompileTarget, encoding: CompileEnco
 #[no_mangle]
 pub unsafe extern "C" fn riat_compiler_free(compiler: *mut Compiler) {
     if !compiler.is_null() {
-        Box::from_raw(compiler);
+        drop(Box::from_raw(compiler));
     }
 }
 
@@ -117,10 +117,10 @@ pub unsafe extern "C" fn riat_error_free(error: *mut CompileErrorC) {
 #[no_mangle]
 pub unsafe extern "C" fn riat_compiler_read_script_data(compiler: *mut Compiler, input_filename: *const c_char, input_data: *const u8, input_data_length: usize, error: *mut CompileErrorC) -> c_int {
     let compiler_ref = &mut *compiler;
-    let filename = compiler_ref.get_encoder().decode_from_cstring(CStr::from_ptr(input_filename)).unwrap();
+    let filename = CStr::from_ptr(input_filename).to_str().unwrap();
     let input_data_slice = std::slice::from_raw_parts(input_data, input_data_length);
 
-    match compiler_ref.read_script_data(filename.as_str(), input_data_slice) {
+    match compiler_ref.read_script_data(filename, input_data_slice) {
         Ok(()) => 0,
         Err(e) => {
             if !error.is_null() {
@@ -167,7 +167,7 @@ pub unsafe extern "C" fn riat_compiler_compile_script_data(compiler: *mut Compil
 #[no_mangle]
 pub unsafe extern "C" fn riat_script_data_free(script_data: *mut CompiledScriptData) {
     if !script_data.is_null() {
-        Box::from_raw(script_data);
+        drop(Box::from_raw(script_data));
     }
 }
 

@@ -31,12 +31,7 @@ typedef struct RIATCompileErrorC {
     void *_reserved;
 } RIATCompileErrorC;
 
-typedef enum RIATCompileEncoding {
-    RIAT_UTF8,
-    RIAT_Windows1252
-} RIATCompileEncoding;
-
-RIATCompiler *riat_compiler_new(RIATCompileTarget target, RIATCompileEncoding encoding);
+RIATCompiler *riat_compiler_new(RIATCompileTarget target);
 int riat_compiler_read_script_data(RIATCompiler *compiler, const char *input_filename, const uint8_t *input_data, size_t input_size, RIATCompileErrorC *error);
 RIATCompiledScriptData *riat_compiler_compile_script_data(RIATCompiler *compiler, RIATCompileErrorC *error);
 void riat_compiler_free(RIATCompiler *compiler);

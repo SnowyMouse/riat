@@ -19,7 +19,6 @@ pub use value_type::ValueType;
 
 /// Compiler instance.
 pub struct Compiler {
-    encoding: CompileEncoding,
     tokens: Vec<Token>,
     files: Vec<String>,
 
@@ -29,9 +28,8 @@ pub struct Compiler {
 
 impl Compiler {
     /// Instantiate a new compiler instance with the given compile target.
-    pub fn new(target: CompileTarget, encoding: CompileEncoding) -> Compiler {
+    pub fn new(target: CompileTarget) -> Compiler {
         Compiler {
-            encoding: encoding,
             tokens: Vec::new(),
             files: Vec::new(),
 
@@ -56,10 +54,5 @@ impl Compiler {
     /// Errors if the script data is invalid.
     pub fn compile_script_data(&mut self) -> Result<CompiledScriptData, CompileError> {
         self.digest_tokens()
-    }
-
-    /// Get the set encoding.
-    pub fn get_encoder(&self) -> CompileEncoding {
-        self.encoding
     }
 }

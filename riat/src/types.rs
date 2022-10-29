@@ -352,21 +352,8 @@ impl NodeType {
     }
 }
 
-extern crate encoding;
-use self::encoding::{Encoding, DecoderTrap, EncoderTrap};
-use self::encoding::all::WINDOWS_1252;
+/*
 use std::ffi::{CString, CStr};
-
-/// Encoding type used.
-#[derive(Copy, Clone, PartialEq)]
-#[repr(C)]
-pub enum CompileEncoding {
-    /// UTF-8 is natively supported by Rust and is the fastest.
-    UTF8,
-
-    /// Windows-1252 is the encoding used by Halo: Combat Evolved.
-    Windows1252
-}
 
 impl CompileEncoding {
     /// Encode to a null-terminated C string.
@@ -412,3 +399,4 @@ impl CompileEncoding {
         }
     }
 }
+*/

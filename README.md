@@ -16,8 +16,8 @@ use riat::Compiler;
 /** Return true if successful. Return false on failure. */
 fn compile_scripts_rust(script_file_name: &str, script_data: &[u8]) -> bool {
     // Instantiate our instance
-    let mut compiler = Compiler::new(CompileTarget::HaloCEA, CompileEncoding::Windows1252);
-    
+    let mut compiler = Compiler::new(CompileTarget::HaloCEA);
+
     // Try to compile
     match compiler.read_script_data(script_file_name, script_data) {
         Ok(_) => (),
@@ -39,12 +39,12 @@ fn compile_scripts_rust(script_file_name: &str, script_data: &[u8]) -> bool {
             return false;
         }
     };
-    
+
     // Print information
     println!("Script count: {}", script_data.get_scripts().len());
     println!("Global count: {}", script_data.get_globals().len());
     println!("Node count: {}", script_data.get_nodes().len());
-    
+
     return true;
 }
 ```
@@ -77,8 +77,8 @@ int compile_scripts_c(const char *script_file_name, const uint8_t *script_data, 
     memset(&error, 0, sizeof(error));
 
     /* Instantiate our instance */
-    RIATCompiler *compiler = riat_compiler_new(RIAT_HaloCEA, RIAT_Windows1252);
-    
+    RIATCompiler *compiler = riat_compiler_new(RIAT_HaloCEA);
+
     /* Try to compile */
     if(riat_compiler_read_script_data(compiler, script_file_name, script_data, script_data_length, &error) != 0) {
         fprintf(stderr, "Failed to read script data: %s:%zu:%zu: %s\n", error.file, error.line, error.column, error.message);
@@ -90,34 +90,34 @@ int compile_scripts_c(const char *script_file_name, const uint8_t *script_data, 
         result = 1;
         goto CLEANUP;
     }
-    
+
     /* Get the sizes */
     script_count = riat_script_data_get_scripts(compiled_script_data, NULL);
     global_count = riat_script_data_get_globals(compiled_script_data, NULL);
     node_count = riat_script_data_get_nodes(compiled_script_data, NULL);
-    
+
     /* Allocate */
     scripts = malloc(sizeof(*scripts) * script_count);
     globals = malloc(sizeof(*globals) * global_count);
     nodes = malloc(sizeof(*nodes) * node_count);
-    
+
     /* If any of those returned false, we failed */
     if(scripts == NULL || globals == NULL || nodes == NULL) {
         fprintf(stderr, "Allocation error!\n");
         result = 2;
         goto CLEANUP;
     }
-    
+
     /* Read everything */
     riat_script_data_get_scripts(compiled_script_data, scripts);
     riat_script_data_get_globals(compiled_script_data, globals);
     riat_script_data_get_nodes(compiled_script_data, nodes);
-    
+
     /* Print information */
     printf("Script count: %zu\n", script_count);
     printf("Global count: %zu\n", global_count);
     printf("Node count %zu\n", node_count);
-    
+
     /* Cleanup */
     CLEANUP:
     riat_error_free(&error);
@@ -126,10 +126,10 @@ int compile_scripts_c(const char *script_file_name, const uint8_t *script_data, 
     free(scripts);
     free(globals);
     free(nodes);
-    
+
     /* Done! */
     return result;
-} 
+}
 ```
 
 ### C++
@@ -152,7 +152,7 @@ bool compile_scripts_cpp(const char *script_file_name, const std::vector<std::ui
     // Instantiate our instance
     RIAT::Compiler instance(RIATCompileTarget::RIAT_HaloCEA);
     RIAT::CompilerScriptResult result;
-    
+
     // Try to compile
     try {
         instance.read_script_data(script_data.data(), script_data.size(), script_file_name);
@@ -162,7 +162,7 @@ bool compile_scripts_cpp(const char *script_file_name, const std::vector<std::ui
         std::cerr << "Error when compiling: " << e.what() << "\n";
         return false;
     }
-    
+
     // Print information
     auto scripts = result.get_scripts();
     auto globals = result.get_globals();
@@ -170,7 +170,7 @@ bool compile_scripts_cpp(const char *script_file_name, const std::vector<std::ui
     std::cout << "Script count:" << scripts.size() << std::endl;
     std::cout << "Global count:" << globals.size() << std::endl;
     std::cout << "Node count:" << nodes.size() << std::endl;
-    
+
     // Done!
     return true;
 }
