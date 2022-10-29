@@ -1,6 +1,12 @@
-[workspace]
-members = [
-    "riat",
-    "riat-definitions",
-    "riatc"
-]
+[package]
+name = "riat"
+description = "Halo: Combat Evolved HSC Script Compiler"
+version = "0.2.0"
+authors = ["Snowy Mouse"]
+license = "GPL-3.0-only"
+
+[lib]
+name = "riat"
+
+[dependencies]
+riat-definitions = { path = "definitions" }

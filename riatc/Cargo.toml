@@ -4,6 +4,7 @@ description = "C and C++ bindings for Rat in a Tube"
 version = "0.2.0"
 authors = ["Snowy Mouse"]
 license = "GPL-3.0-only"
+publish = false
 
 [dependencies]
 riat = { path = "../riat" }
