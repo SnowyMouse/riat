@@ -1,12 +1,11 @@
 [package]
-name = "riat"
-description = "Halo: Combat Evolved HSC Script Compiler"
+name = "rat-in-a-tube"
+description = "Rat In a Tube, Halo: Combat Evolved HSC Script Compiler"
 version = "0.2.0"
 authors = ["Snowy Mouse"]
 license = "GPL-3.0-only"
-
-[lib]
-name = "riat"
+repository = "https://github.com/SnowyMouse/riat"
+exclude = ["definitions", "riatc"]
 
 [dependencies]
-riat-definitions = { path = "definitions" }
+riat-definitions = { package = "rat-in-a-tube-definitions", path = "definitions", version = "0.2.0" }

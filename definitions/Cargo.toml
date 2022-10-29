@@ -1,9 +1,10 @@
 [package]
-name = "riat-definitions"
-description = "riat script compiler definition generator"
+name = "rat-in-a-tube-definitions"
+description = "Definitions for Rat In a Tube"
 version = "0.2.0"
 authors = ["Snowy Mouse"]
 license = "GPL-3.0-only"
+repository = "https://github.com/SnowyMouse/riat"
 
 [lib]
 proc-macro = true
