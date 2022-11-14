@@ -1,7 +1,7 @@
 [package]
 name = "riatc"
 description = "C and C++ bindings for Rat in a Tube"
-version = "0.2.0"
+version = "0.2.1"
 authors = ["Snowy Mouse"]
 license = "GPL-3.0-only"
 publish = false
