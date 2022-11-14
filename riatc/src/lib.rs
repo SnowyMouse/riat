@@ -1,5 +1,5 @@
-extern crate riat;
-use riat::*;
+extern crate rat_in_a_tube;
+use rat_in_a_tube::*;
 
 use std::os::raw::*;
 use std::ffi::CStr;
@@ -91,7 +91,7 @@ pub unsafe extern "C" fn riat_compiler_free(compiler: *mut Compiler) {
 /// # Requirements
 ///
 /// If any of these requirements are not met, **undefined behavior** will occur:
-/// * The `CompileErrorC` pointed to must be initialized either as a zeroed-out struct or from a riatc function.
+/// * The `CompileErrorC` pointed to must be initialized either as a zeroed-out struct or from a rat_in_a_tubec function.
 /// * The function that initialized the `CompileErrorC` must state that this function needs to be used to clean it up.
 #[no_mangle]
 pub unsafe extern "C" fn riat_error_free(error: *mut CompileErrorC) {
@@ -317,7 +317,7 @@ pub unsafe extern "C" fn riat_script_data_get_nodes(script_data: *const Compiled
 /// Global C struct.
 #[repr(C)]
 #[derive(Copy, Clone)]
-pub struct RIATGlobalC {
+pub struct rat_in_a_tubeGlobalC {
     /// Name of the global
     pub name: *const c_char,
 
@@ -340,7 +340,7 @@ pub struct RIATGlobalC {
 /// Script C struct.
 #[repr(C)]
 #[derive(Copy, Clone)]
-pub struct RIATScriptC {
+pub struct rat_in_a_tubeScriptC {
     /// Name of the script
     pub name: *const c_char,
 
@@ -371,10 +371,10 @@ pub struct RIATScriptC {
 ///
 /// If any of these requirements are not met, **undefined behavior** will occur:
 /// * The `script_data` parameter must point to a valid [`CompiledScriptData`].
-/// * The `scripts` parameter must point to a valid array of [`RIATScriptC`] long enough to hold the result of this function or be null. To query the number of warnings, run this function with this parameter set to null.
+/// * The `scripts` parameter must point to a valid array of [`rat_in_a_tubeScriptC`] long enough to hold the result of this function or be null. To query the number of warnings, run this function with this parameter set to null.
 /// * If [`riat_script_data_free`] is called, the resulting scripts will no longer be valid, thus no pointers may be dereferenced after this.
 #[no_mangle]
-pub unsafe extern "C" fn riat_script_data_get_scripts(script_data: *const CompiledScriptData, scripts: *mut RIATScriptC) -> usize {
+pub unsafe extern "C" fn riat_script_data_get_scripts(script_data: *const CompiledScriptData, scripts: *mut rat_in_a_tubeScriptC) -> usize {
     let all_scripts = (*script_data).get_scripts();
     let all_files = (*script_data).get_files();
     let count = all_scripts.len();
@@ -400,7 +400,7 @@ pub unsafe extern "C" fn riat_script_data_get_scripts(script_data: *const Compil
 /// Script parameter C struct.
 #[repr(C)]
 #[derive(Copy, Clone)]
-pub struct RIATScriptParameterC {
+pub struct rat_in_a_tubeScriptParameterC {
     /// Name of the script
     pub name: *const c_char,
 
@@ -419,10 +419,10 @@ pub struct RIATScriptParameterC {
 /// If any of these requirements are not met, **undefined behavior** will occur:
 /// * The `script_data` parameter must point to a valid [`CompiledScriptData`].
 /// * The `script_name` must point to a valid null-terminated C string.
-/// * The `scripts` parameter must point to a valid array of [`RIATScriptC`] long enough to hold the result of this function or be null. To query the number of warnings, run this function with this parameter set to null.
+/// * The `scripts` parameter must point to a valid array of [`rat_in_a_tubeScriptC`] long enough to hold the result of this function or be null. To query the number of warnings, run this function with this parameter set to null.
 /// * If [`riat_script_data_free`] is called, the resulting scripts will no longer be valid, thus no pointers may be dereferenced after this.
 #[no_mangle]
-pub unsafe extern "C" fn riat_script_data_get_script_parameters(script_data: *const CompiledScriptData, script_name: *const c_char, parameters: *mut RIATScriptParameterC) -> usize {
+pub unsafe extern "C" fn riat_script_data_get_script_parameters(script_data: *const CompiledScriptData, script_name: *const c_char, parameters: *mut rat_in_a_tubeScriptParameterC) -> usize {
     let all_scripts = (*script_data).get_scripts();
     let script_name = CStr::from_ptr(script_name).to_str().unwrap();
 
@@ -455,10 +455,10 @@ pub unsafe extern "C" fn riat_script_data_get_script_parameters(script_data: *co
 ///
 /// If any of these requirements are not met, **undefined behavior** will occur:
 /// * The `global_data` parameter must point to a valid [`CompiledScriptData`].
-/// * The `globals` parameter must point to a valid array of [`RIATScriptC`] long enough to hold the result of this function or be null. To query the number of warnings, run this function with this parameter set to null.
+/// * The `globals` parameter must point to a valid array of [`rat_in_a_tubeScriptC`] long enough to hold the result of this function or be null. To query the number of warnings, run this function with this parameter set to null.
 /// * If [`riat_script_data_free`] is called, the resulting globals will no longer be valid, thus no pointers may be dereferenced after this.
 #[no_mangle]
-pub unsafe extern "C" fn riat_script_data_get_globals(global_data: *const CompiledScriptData, globals: *mut RIATGlobalC) -> usize {
+pub unsafe extern "C" fn riat_script_data_get_globals(global_data: *const CompiledScriptData, globals: *mut rat_in_a_tubeGlobalC) -> usize {
     let all_globals = (*global_data).get_globals();
     let all_files = (*global_data).get_files();
     let count = all_globals.len();

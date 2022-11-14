@@ -7,7 +7,7 @@ license = "GPL-3.0-only"
 publish = false
 
 [dependencies]
-riat = { path = "../" }
+rat-in-a-tube = { path = "../" }
 
 [lib]
 name = "riatc"

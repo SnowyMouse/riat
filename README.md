@@ -10,8 +10,8 @@ Rat in a Tube can be used in Rust, C, and C++.
 RIAT is a Rust library, thus you can directly use it in your Rust library.
 
 ```rust
-extern crate riat;
-use riat::Compiler;
+extern crate rat_in_a_tube;
+use rat_in_a_tube::Compiler;
 
 /** Return true if successful. Return false on failure. */
 fn compile_scripts_rust(script_file_name: &str, script_data: &[u8]) -> bool {
