@@ -334,11 +334,17 @@ impl Compiler {
 
         // If nothing was passed, treat everything passthrough as a real
         let final_passthrough_type = passthrough_type.unwrap_or(ValueType::Real);
+        let passthrough_type_is_numeric = final_passthrough_type.can_convert_to(ValueType::Real);
 
 
         // If we do number passthrough, make sure our passthrough type is numeric
-        if function.is_number_passthrough() && !final_passthrough_type.can_convert_to(ValueType::Real) {
+        if function.is_number_passthrough() && !passthrough_type_is_numeric {
             return_compile_error!(self, function_call_token, format!("passthrough parameters resolve to '{}', but function '{function_name}' takes only numeric parameters", final_passthrough_type.as_str()))
+        }
+
+        // Or if it's inequality, allow some types
+        if function.is_inequality() && !(passthrough_type_is_numeric || final_passthrough_type == ValueType::GameDifficulty) {
+            return_compile_error!(self, function_call_token, format!("passthrough parameters resolve to '{}', but function '{function_name}' is an inequality operator", final_passthrough_type.as_str()))
         }
 
 

@@ -38,6 +38,7 @@ pub(crate) struct EngineFunction {
     pub number_passthrough: bool,
     pub passthrough_last: bool,
     pub return_type: ValueType,
+    pub inequality: bool,
     pub availability: EngineAvailability
 }
 
@@ -96,6 +97,10 @@ impl CallableFunction for EngineFunction {
 
     fn is_number_passthrough(&self) -> bool {
         self.number_passthrough
+    }
+
+    fn is_inequality(&self) -> bool {
+        self.inequality
     }
 
     fn supports_target(&self, target: CompileTarget) -> bool {

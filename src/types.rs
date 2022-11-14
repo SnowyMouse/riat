@@ -246,6 +246,11 @@ pub(crate) trait CallableFunction {
         false
     }
 
+    /// Get whether the function is an inequality function.
+    fn is_inequality(&self) -> bool {
+        false
+    }
+
     /// Get whether or not the target engine is supported
     fn supports_target(&self, target: CompileTarget) -> bool;
 

@@ -324,7 +324,7 @@
             "name": ">",
             "type": "boolean",
             "description": "returns true if the first number is larger than the second.",
-            "number_passthrough": true,
+            "inequality": true,
             "parameters": [
                 {
                     "type": "passthrough"
@@ -345,7 +345,7 @@
             "name": "<",
             "type": "boolean",
             "description": "returns true if the first number is smaller than the second.",
-            "number_passthrough": true,
+            "inequality": true,
             "parameters": [
                 {
                     "type": "passthrough"
@@ -366,7 +366,7 @@
             "name": ">=",
             "type": "boolean",
             "description": "returns true if the first number is larger than or equal to the second.",
-            "number_passthrough": true,
+            "inequality": true,
             "parameters": [
                 {
                     "type": "passthrough"
@@ -387,7 +387,7 @@
             "name": "<=",
             "type": "boolean",
             "description": "returns true if the first number is smaller than or equal to the second.",
-            "number_passthrough": true,
+            "inequality": true,
             "parameters": [
                 {
                     "type": "passthrough"
