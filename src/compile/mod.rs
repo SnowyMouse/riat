@@ -343,7 +343,7 @@ impl Compiler {
         }
 
         // Or if it's inequality, allow some types
-        if function.is_inequality() && !(passthrough_type_is_numeric || final_passthrough_type == ValueType::GameDifficulty) {
+        if function.is_inequality() && !(passthrough_type_is_numeric || final_passthrough_type == ValueType::GameDifficulty || final_passthrough_type == ValueType::Team) {
             return_compile_error!(self, function_call_token, format!("passthrough parameters resolve to '{}', but function '{function_name}' is an inequality operator", final_passthrough_type.as_str()))
         }
 
