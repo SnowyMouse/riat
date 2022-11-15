@@ -9,3 +9,6 @@ exclude = ["definitions", "riatc"]
 
 [dependencies]
 riat-definitions = { package = "rat-in-a-tube-definitions", path = "definitions", version = "0.2.1" }
+
+[lib]
+crate-type = ["rlib"]
