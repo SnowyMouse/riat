@@ -9692,7 +9692,6 @@
             ],
             "engines": {
                 "gbx-retail": 520,
-                "gbx-demo": 4,
                 "gbx-custom": 526
             },
             "type": "void"
