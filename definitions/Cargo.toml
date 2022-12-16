@@ -1,7 +1,7 @@
 [package]
 name = "rat-in-a-tube-definitions"
 description = "Definitions for Rat In a Tube"
-version = "0.2.1"
+version = "0.2.2"
 authors = ["Snowy Mouse"]
 license = "GPL-3.0-only"
 repository = "https://github.com/SnowyMouse/riat"
